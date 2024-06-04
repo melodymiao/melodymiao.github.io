@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap');
+
+* {
+  margin: 0;
+}
+
+.section-body {
+  max-width: 1200px;
+  padding: 0 16px;
+  margin: 0 calc((100vw - 1200px)/2);
+}
+
+#landing-section {
+  position: relative;
+  height: 660px;
+  background: linear-gradient(111deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(10px);
+}
+
+/* infinite banner */
+.wrapper {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.marquee {
+  background-color: #F66047;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee:hover {
+  animation: marquee 0s linear infinite;
+}
+
+.marquee p {
+  display: inline-block;
+  color: white;
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+#portfolio-section {
+  background-color: white;
+}
+
+#footer-section {
+  height: 320px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+@media (max-width: 1200px) {
+  .section-body {
+    margin: auto;
+  }
+}

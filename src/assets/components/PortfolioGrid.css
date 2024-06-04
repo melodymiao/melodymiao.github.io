@@ -1,0 +1,29 @@
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 64px 0 64px 0;
+}
+
+.grid-container img {
+    width: 552px;
+    margin: 8px;
+    height: auto;
+    transition: transform 0.3s ease; /* Apply transition for hover effect */
+}
+
+.grid-container img:hover {
+    transform: scale(1.02); /* Enlarge image on hover */
+}
+
+@media (min-width: 801px) and (max-width: 1200px) {
+    .grid-container img {
+        max-width: calc(50vw - 32px);
+    }
+}
+
+@media (max-width: 800px) {
+    .grid-container img {
+        width: calc(100vw - 48px);
+    }
+}
