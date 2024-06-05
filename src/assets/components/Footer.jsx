@@ -1,7 +1,7 @@
 import React from 'react';
 import './Footer.css';
 import linkedin from '../images/home/linkedin.png';
-import Resume from '../documents/Melody Miao - Resume.pdf'
+import Resume from '../documents/Melody Miao - Product Designer.pdf'
 
 const Footer = () => {
   return (

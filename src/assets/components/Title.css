@@ -7,12 +7,14 @@
 }
 
 #title img {
-    width: 480px;
+    width: 100%;
+    max-width: 480px;
     opacity: 90%;
 }
 
 .subtitle {
     font-size: 20px;
+    text-align: center;
 }
 
 .orange {

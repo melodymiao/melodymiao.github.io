@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import DolciMangoProject from './pages/DolciMangoProject';
@@ -9,11 +8,8 @@ import RecWellProject from './pages/RecWellProject';
 import KPGProject from './pages/KPGProject';
 import './App.css'
 
-//import styled from 'styled-components';
-
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>

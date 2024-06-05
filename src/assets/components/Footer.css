@@ -49,6 +49,10 @@
     color: black;
 }
 
+.footer-right {
+    text-align: right;
+}
+
 #linkedin-logo {
     width: 32px;
     padding-right: 2px;

@@ -9,15 +9,22 @@ import recwell from '../images/portfolio-grid/RecWell.png'
 import kpg from '../images/portfolio-grid/KPG.png'
 
 const PortfolioGrid = () => {
+  const handleLinkClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <>
     <div class='grid-container'>
-      <Link to="/dolci-mango"><img id='dolci-mango' src={dolci} /></Link>
-      <Link to="/checkt"><img id='checkt' src={checkt} /></Link>
-      <Link to="/meskies-ethiopia-restaurant"><img id='meskies' src={meskies} /></Link>
-      <Link to="/moodtunes"><img id='moodtunes' src={moodtunes} /></Link>
-      <Link to="/recwell"><img id='recwell' src={recwell} /></Link>
-      <Link to="/kpg"><img id='kpg' src={kpg} /></Link>
+      <Link to="/dolci-mango" onClick={handleLinkClick}><img id='dolci-mango' src={dolci} /></Link>
+      <Link to="/checkt" onClick={handleLinkClick}><img id='checkt' src={checkt} /></Link>
+      <Link to="/meskies-ethiopia-restaurant" onClick={handleLinkClick}><img id='meskies' src={meskies} /></Link>
+      <Link to="/moodtunes" onClick={handleLinkClick}><img id='moodtunes' src={moodtunes} /></Link>
+      <Link to="/recwell" onClick={handleLinkClick}><img id='recwell' src={recwell} /></Link>
+      <Link to="/kpg" onClick={handleLinkClick}><img id='kpg' src={kpg} /></Link>
     </div>
     </>
   );
