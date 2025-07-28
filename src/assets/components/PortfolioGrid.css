@@ -1,0 +1,133 @@
+.project-div {
+    width: 1080px;
+    margin: 0 20px;
+    max-width: 96%;
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+}
+
+.tags {
+    display: flex;
+    gap: 24px;
+}
+
+.tag {
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.tags .green {
+    background-color: #E3F39B;
+    color: #9BC65E;
+}
+
+.tags .blue {
+    background-color: #9CB2FF;
+    color: #2A68FB;
+}
+
+.tags .orange {
+    background-color: #FFD69D;
+    color: #DC8A19;
+}
+
+.tags .pink {
+    background-color: #F29ED1;
+    color: #A20F6A;
+}
+
+.project-link {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-decoration: none;
+}
+
+.project-div-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    color: #303030;
+    gap: 40px;
+}
+
+.project-description {
+    text-align: right;
+    color: #B9B9B9;
+}
+
+.project-name-arrow {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+} 
+
+.project-name-arrow .name {
+    font-size: 32px;
+    font-weight: 500;
+    transition: transform 0.3s ease,
+} 
+
+.project-name-arrow .arrow {
+    font-size: 48px;
+    transition: transform 0.3s ease,
+}
+
+.project-link:hover .arrow {
+    transform: translateX(12px);
+}
+
+.project-link .project-img {
+    transition: transform 0.3s ease;
+}
+
+.project-link:hover .project-img {
+    transform: scale(1.02);
+}
+
+.project-name-arrow .name {
+    font-size: 32px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+  
+.project-name-arrow .name::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #303030;
+    transition: width 0.3s ease;
+}
+  
+.project-link:hover .name::after {
+    width: 100%;
+}
+
+@media (max-width: 720px) {
+    .project-div-text {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .project-div {
+        gap: 10px;
+    }
+
+    .tags {
+        gap: 20px;
+    }
+
+    .tag {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}

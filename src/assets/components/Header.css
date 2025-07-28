@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --main: #9E9E9E;
+}
+
+.header-section {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 6px rgba(167, 167, 167, 0.05);
+  padding: 0 30px;
+}
+
+.header-wrap {
+  width: 1080px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  text-decoration: none;
+}
+
+.home-button {
+  font-family: "Poppins", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 24px;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-button {
+  font-family: "Poppins", serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 16px;
+  color: var(--main);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+/* page selection */
+.nav-text {
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: 400;
+  color: #303030;
+  transition: all 0.25s ease;
+}
+
+.nav-text:hover {
+  background: -webkit-linear-gradient(#B175FE, #9CB2FF);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-button:hover {
+  color: #303030;
+}
+
+/* resume button */
+#resume-button {
+  padding: 0.5em 1.5em;
+  background: #EAEAEA;
+  border-radius: 100px;
+  border: 3px solid transparent;
+  transition: all 0.25s ease;
+}
+
+#resume-button:hover {
+  background: #303030;
+  color: var(--main);
+}
+
+/* Toggle Menu Button */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--main);
+  font-size: 32px;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 720px) {
+  .nav-buttons {
+      display: none;
+      flex-direction: column;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(255, 255, 255, 0.94);
+      position: fixed;
+      top: 60px;
+      right: 0;
+      padding-top: 60px;
+      border-radius: 5px;
+  }
+
+  .nav-buttons.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+  
+}

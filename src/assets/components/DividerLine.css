@@ -1,0 +1,9 @@
+.div-line {
+    border: none;
+    height: 1px;
+    background-color: #e4e4e4;
+}
+
+.div-line-padding {
+    padding: 120px 0;
+}

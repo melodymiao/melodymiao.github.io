@@ -1,0 +1,12 @@
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    padding: 80px calc((100vw - 1120px)/2);
+    background-color: white;
+    gap: 120px;
+}
+
+#about-portrait {
+    border-radius: 12px;
+}

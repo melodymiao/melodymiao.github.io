@@ -1,0 +1,79 @@
+.footer {
+    padding: 100px 0 100px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background: #ffffff;
+}
+
+.footer-wrap {
+    width: 1080px;
+    gap: 48px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-text {
+    color: #303030;
+    font-size: 16px;
+}
+
+.copyright {
+    font-weight: 600;
+}
+
+.footer-icons {
+    display: flex;
+    gap: 48px;
+}
+
+.resume-link {
+    text-decoration: none;
+}
+
+.resume-text {
+    color: #303030;
+    transition: all 0.25s ease;
+    font-size: 20px;
+}
+
+#linkedin-logo {
+    color: #303030;
+    height: 28px;
+}
+
+.gg-mail,
+.gg-mail::after {
+    color: #303030;
+    display: block;
+    box-sizing: border-box;
+    height: 24px;
+    border: 3px solid;
+}
+
+.gg-mail {
+    overflow: hidden;
+    position: relative;
+    width: 30px;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+
+.gg-mail::after {
+    content: "";
+    position: absolute;
+    border-radius: 3px;
+    width: 24px;
+    transform: rotate(-45deg);
+    bottom: 8px;
+} 
+
+@media (max-width: 1240px) {
+    .footer {
+      padding-right: 20px;
+      padding-left: 20px;
+    }
+}
