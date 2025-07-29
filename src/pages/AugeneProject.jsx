@@ -330,7 +330,7 @@ const AugeneProject = () => {
         </div>
       </Link>
   
-      <Link className='next-project-link' to="/checkt" onClick={handleLinkClick}>
+      <Link className='next-project-link' to="/innod" onClick={handleLinkClick}>
         <div className='next-project-text'>
           <h3 className='project-stage'>NEXT PROJECT</h3>
           <h1 className='project-title'>INNOVATIVE DESIGN</h1>
