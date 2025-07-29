@@ -20,9 +20,6 @@ function App() {
         {/* Checkt */}
         <Route path="/checkt" element={<ChecktProject />} />
 
-        {/* RecWell */}
-        <Route path="/recwell" element={<RecWellProject />} />
-
         {/* Augene */}
         <Route path="/augene" element={<AugeneProject />} />
 
