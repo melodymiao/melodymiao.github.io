@@ -5,21 +5,22 @@
 }
 
 .header-section {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 5;
-  height: 80px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(6px);
-  box-shadow: 0 4px 6px rgba(167, 167, 167, 0.05);
-  padding: 0 30px;
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  background-color: rgba(255, 255, 255, 0);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  transition: background-color 0.3s ease;
+  width: 100vw;
 }
 
 .header-wrap {
-  width: 1080px;
+  width: 100%;
+  padding: 20px 40px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

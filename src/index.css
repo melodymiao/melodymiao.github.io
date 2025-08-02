@@ -5,7 +5,7 @@
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-style: normal;
-  color: #303030;
+  color: #292929;
   overscroll-behavior: contain;
 }
 
@@ -47,13 +47,20 @@ p {
   line-height: 1.8;
 }
 
-.section {
+.old-section {
   display: flex;
   flex-direction: column;
   padding-left: calc((100vw - 1120px)/2);
   padding-right: calc((100vw - 1120px)/2);
   background-color: white;
   gap: 120px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  padding: 0 80px;
+  background-color: white;
 }
 
 .dark-text {

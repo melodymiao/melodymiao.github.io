@@ -13,13 +13,20 @@ const Home = () => {
     <Header />
     <section id="landing-section" className="sections">
         <div className='landing-text'>
-            <h1 className='gray-text'>
-                Hi, I'm <span id='miao-hover'><span id='miao'>缪</span><span id='miao-text'>Miao,</span></span> Melody.
-            </h1>
+            <div className='landing-large'>
+                <h1 className='gray-landing-text'>
+                    Hi! I'm <span id='miao-hover'>
+                        <span id='miao'>缪</span>
+                        <span id='miao-text'>Miao,</span>
+                    </span> Melody.
+                </h1>
+                
+                <h1 className='dark-text'>
+                    Product Designer creating <span id='blue-purple-text'>simple</span> &amp; <span id='yellow-orange-text'>enjoyable</span> user experiences
+                </h1>
+            </div>
             
-            <h1 className='dark-text'>
-                Product Designer creating simple and enjoyable user experiences
-            </h1>
+            <p>Currently <span className='italic'>open to work</span>.</p>
         </div>
         
     </section>
