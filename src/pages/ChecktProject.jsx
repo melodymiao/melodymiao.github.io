@@ -106,6 +106,9 @@ const ChecktProject = () => {
         </h1>
       </section>
       <section className='two-column-text'>
+        <div className='right-column'>
+          <img src={TasksVSHabits} />
+        </div>
         <div className='left-column'>
           <h3 className='project-stage'>RESEARCH TAKEAWAY #1</h3>
           <h1 className='stage-title'>Habits are hard.</h1>
@@ -113,9 +116,6 @@ const ChecktProject = () => {
           Through a survey of 19 responses, most participants rated completing day-to-day tasks with a 
           difficulty of 2-3 (easy-neutral), but rated building habits with a difficulty of 4 (difficult).
           </p>
-        </div>
-        <div className='right-column'>
-          <img src={TasksVSHabits} />
         </div>
       </section>
       <section className='two-column-text'>
@@ -133,6 +133,9 @@ const ChecktProject = () => {
         </div>
       </section>
       <section className='two-column-text'>
+        <div className='right-column'>
+          <img src={JourneyMap} />
+        </div>
         <div className='left-column'>
           <h3 className='project-stage'>RESEARCH TAKEAWAY #3</h3>
           <h1 className='stage-title'>Accountability</h1>
@@ -143,9 +146,6 @@ const ChecktProject = () => {
           Accountability from friends creates healthy peer pressure and reminders that you're not alone 
           in your goals.
           </p>
-        </div>
-        <div className='right-column'>
-          <img src={JourneyMap} />
         </div>
       </section>
     </section>
@@ -181,6 +181,9 @@ const ChecktProject = () => {
 
     <section className='section'>
       <section className='two-column-text'>
+        <div className='right-column'>
+          <img src={Improvement1} />
+        </div>
         <div className='left-column'>
           <h3 className='project-stage'>DESIGN IMPROVEMENT #1</h3>
           <h1 className='stage-title'>Habit Display</h1>
@@ -188,9 +191,6 @@ const ChecktProject = () => {
           From the original design, I improved the habit display to provide a cleaner design that 
           emphasizes personal progress for a simpler at-a-glance experience.
           </p>
-        </div>
-        <div className='right-column'>
-          <img src={Improvement1} />
         </div>
       </section>
       <section className='two-column-text'>
@@ -209,6 +209,9 @@ const ChecktProject = () => {
         </div>
       </section>
       <section className='two-column-text'>
+        <div className='right-column'>
+          <img src={Improvement3} />
+        </div>
         <div className='left-column'>
           <h3 className='project-stage'>DESIGN IMPROVEMENT #3</h3>
           <h1 className='stage-title'>Post vs Chat Format</h1>
@@ -219,9 +222,6 @@ const ChecktProject = () => {
           It encourages open conversation and support without the social anxiety of public posts and 
           reactions.
           </p>
-        </div>
-        <div className='right-column'>
-          <img src={Improvement3} />
         </div>
       </section>
     </section>

@@ -51,6 +51,7 @@ p {
   display: flex;
   flex-direction: column;
   padding: 0 80px;
+  gap: 140px;
   background-color: white;
 }
 
