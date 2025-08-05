@@ -7,9 +7,13 @@
     align-items: center;
 }
 
+.header-preview {
+    height: 100%;
+}
+
 .header-img-wrapper {
-    width: 1080px;
     display: flex;
+    height: 90vh;
     justify-content: space-between;
     align-items: center;
 }
@@ -72,7 +76,7 @@
 }
 
 /* new project overview section */
-.project-overview-section {
+.old-project-overview-section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -80,6 +84,15 @@
     padding-left: calc((100vw - 1120px)/2);
     padding-right: calc((100vw - 1120px)/2);
     background-color: white;
+}
+
+.project-overview-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 80px;
+    margin-bottom: 80px;
+    background-color: #F6F6F6;
 }
 
 .project-overview-description {

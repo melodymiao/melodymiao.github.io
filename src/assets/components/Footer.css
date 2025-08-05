@@ -1,5 +1,4 @@
 .footer {
-    padding: 100px 0 100px 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +7,8 @@
 }
 
 .footer-wrap {
-    width: 1080px;
+    width: 100%;
+    padding: 40px 40px;
     gap: 48px;
     display: flex;
     flex-direction: row;
@@ -19,10 +19,6 @@
 .footer-text {
     color: #303030;
     font-size: 16px;
-}
-
-.copyright {
-    font-weight: 600;
 }
 
 .footer-icons {

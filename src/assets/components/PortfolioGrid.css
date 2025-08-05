@@ -1,5 +1,5 @@
 .project-div {
-    width: 1080px;
+    width: 100vw;
     margin: 0 20px;
     max-width: 96%;
     padding: 60px 0;
@@ -70,15 +70,16 @@
 .project-name-arrow .name {
     font-size: 32px;
     font-weight: 500;
-    transition: transform 0.3s ease,
+    transition: transform 0.3s ease;
 } 
 
-.project-name-arrow .arrow {
+.project-name-arrow .left-arrow {
     font-size: 48px;
-    transition: transform 0.3s ease,
+    transition: transform 0.3s ease;
+    color: #303030;
 }
 
-.project-link:hover .arrow {
+.project-link:hover .left-arrow {
     transform: translateX(12px);
 }
 
@@ -110,6 +111,15 @@
   
 .project-link:hover .name::after {
     width: 100%;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.4s;
 }
 
 @media (max-width: 720px) {

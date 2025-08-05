@@ -5,7 +5,7 @@ import Header from '../assets/components/Header'
 import Footer from '../assets/components/Footer'
 import DividerLine from '../assets/components/DividerLine'
 import GradientCircles from '../assets/components/GradientCircles';
-import PhoneHeader from '../assets/images/checkt/checkt header phone.png'
+import PhoneHeader from '../assets/images/checkt/checkt header.jpg'
 import ChecktLogo from '../assets/images/checkt/checkt logo.png'
 import ToDoList from '../assets/images/checkt/to do list.png'
 import TasksVSHabits from '../assets/images/checkt/tasks vs habits.png'
@@ -46,7 +46,7 @@ const ChecktProject = () => {
     <section id="checkt-project-landing-section" className="project-landing-section">
       <div className='header-img-wrapper'>
         <img id='checkt-logo' className='logo' src={ChecktLogo} />
-        <img id='augene-dashboard' className='preview' src={PhoneHeader} />
+        <img className='header-preview' src={PhoneHeader} />
       </div>
     </section>
 
@@ -75,8 +75,6 @@ const ChecktProject = () => {
         </div>
       </div>
     </section>
-
-    <DividerLine />
 
     <section className='section'>
       <section className='two-column-text'>

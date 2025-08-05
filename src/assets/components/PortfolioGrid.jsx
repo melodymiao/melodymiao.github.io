@@ -15,54 +15,51 @@ const PortfolioGrid = () => {
 
   return (
     <>
-    <div className='project-div'>
-      <div className='tags'>
-        <div className='blue tag'>Product Design</div>
-        <div className='green tag'>Mobile App</div>
-      </div>
+    <div className='project-div fade-in delay-1'>
       <Link className='project-link' to="/checkt" onClick={handleLinkClick}>
-        <div className='project-div-text'>
-          <div className='project-name-arrow'>
-            <h2 className='name'>Checkt</h2>
-            <span className="arrow">→</span>
-          </div>
-          <p className='project-description'>Habit tracking with accountability</p>
-        </div>
         <img className='project-img' id='innod' src={checkt} />
+        <div>
+          <div className='project-div-text'>
+            <div className='project-name-arrow'>
+              <h2 className='name'>Checkt</h2>
+              <span className="left-arrow">→</span>
+            </div>
+            <p className='project-description'>Habit tracking with accountability</p>
+          </div>
+          <p>UX Design, Mobile App</p>
+        </div>
       </Link>
     </div>
 
-    <div className='project-div'>
-      <div className='tags'>
-        <div className='blue tag'>Product Design</div>
-        <div className='orange tag'>Web App</div>
-      </div>
+    <div className='project-div fade-in delay-1'>
       <Link className='project-link' to="/augene" onClick={handleLinkClick}>
-        <div className='project-div-text'>
-          <div className='project-name-arrow'>
-            <h2 className='name'>Augene Beauty</h2>
-            <span className="arrow">→</span>
+        <img className='project-img' id='innod' src={augene} />
+        <div>
+          <div className='project-div-text'>
+            <div className='project-name-arrow'>
+              <h2 className='name'>Augene Beauty</h2>
+              <span className="left-arrow">→</span>
+            </div>
+            <p className='project-description'>Simplifying skincare for clinics and their patients</p>
           </div>
-          <p className='project-description'>Simplifying skincare for clinics and their patients</p>
+          <p>UX Design, Web App</p>
         </div>
-        <img className='project-img' id='augene' src={augene} />
       </Link>
     </div>
 
-    <div className='project-div'>
-      <div className='tags'>
-        <div className='orange tag'>Web Design</div>
-        <div className='pink tag'>Web Development</div>
-      </div>
+    <div className='project-div fade-in delay-1'>
       <Link className='project-link' to="/innod" onClick={handleLinkClick}>
-        <div className='project-div-text'>
-          <div className='project-name-arrow'>
-            <h2 className='name'>Innovative Design</h2>
-            <span className="arrow">→</span>
-          </div>
-          <p className='project-description'>Fun and engaging webpages for club events</p>
-        </div>
         <img className='project-img' id='innod' src={innod} />
+        <div>
+          <div className='project-div-text'>
+            <div className='project-name-arrow'>
+              <h2 className='name'>Innovative Design</h2>
+              <span className="left-arrow">→</span>
+            </div>
+            <p className='project-description'>Fun and engaging webpages for club events</p>
+          </div>
+          <p>Web Design, Web Development</p>
+        </div>
       </Link>
     </div>
     </>
