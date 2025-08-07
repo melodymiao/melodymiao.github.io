@@ -1,8 +1,8 @@
 import Header from '../assets/components/Header'
+import Footer from '../assets/components/Footer'
 import { Link } from 'react-router-dom';
 import { HashLink } from "react-router-hash-link";
 import PortfolioGrid from '../assets/components/PortfolioGrid'
-import NewFooter from '../assets/components/NewFooter'
 import GradientCircles from "../assets/components/GradientCircles"
 import oski from '../assets/images/home/oski.png'
 import './Home.css'
@@ -35,7 +35,7 @@ const Home = () => {
         <div className='center-flexbox'>
             <HashLink className='nav-button' to="/#work" smooth>
                 <div className='project-arrow fade-in delay-4'>
-                    <p className='project-text'>
+                    <p className='project-arrow-text'>
                         Projects
                     </p>
                     <span className="arrow">↓</span>
@@ -46,7 +46,7 @@ const Home = () => {
         <PortfolioGrid />
     </section>
     
-    <NewFooter />
+    <Footer />
 
     
     <div class='background'>

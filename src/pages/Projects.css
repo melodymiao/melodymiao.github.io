@@ -16,6 +16,7 @@
     height: 90vh;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 }
 
 .header-img-wrapper .logo {
@@ -49,10 +50,6 @@
     height: 400px;
 }
 
-#innod-logo-icon {
-    padding: 0 100px;
-}
-
 
 /* text */
 .large-description {
@@ -76,23 +73,21 @@
 }
 
 /* new project overview section */
-.old-project-overview-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 80px;
-    padding-left: calc((100vw - 1120px)/2);
-    padding-right: calc((100vw - 1120px)/2);
-    background-color: white;
-}
-
 .project-overview-section {
     display: flex;
+    justify-content: center;
+    background-color: #F6F6F6;
+    padding: 80px 0;
+    margin-bottom: 80px;
+}
+
+.project-overview-wrapper {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 80px;
-    margin-bottom: 80px;
-    background-color: #F6F6F6;
+    width: 1200px;
+    max-width: 98vw;
+    gap: 40px;
 }
 
 .project-overview-description {
@@ -132,7 +127,8 @@
     flex-direction: row;
     gap: 6%;
     align-items: center;
-    width: 100%;
+    width: 1200px;
+    max-width: 94vw;
 }
 
 .two-column-text .left-column {
@@ -164,7 +160,8 @@
     flex-direction: row;
     gap: 4%;
     align-items: stretch;
-    width: 100%;
+    width: 1200px;
+    max-width: 94vw;
 }
 
 .preview-column {
@@ -197,6 +194,13 @@
 
 .centered-text .project-text {
     text-align: center;
+    width: 680px;
+    max-width: 98vw;
+}
+
+.centered-img-div img {
+    width: 1200px;
+    max-width: 98vw;
 }
 
 .centered-img-text {
@@ -216,9 +220,11 @@
 }
 
 .dark-big-statement-section {
-    padding: 80px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     background-color: #303030;
-    border-radius: 2rem;
+    height: 400px;
 }
 
 .dark-big-statement-section p {
@@ -234,9 +240,9 @@
 .innod-section {
     display: flex;
     flex-direction: column;
-    padding-left: calc((100vw - 1120px)/2);
-    padding-right: calc((100vw - 1120px)/2);
-    background-color: white;
+    width: 100vw;
+    align-items: center;
+    gap: 40px;
   }
 
 /* centered image */
@@ -254,17 +260,17 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    height: 580px;
+    height: 720px;
     max-height: fit-content;
 }
 
 .image-scroll-container {
-    width: 98%;
-    height: 580px;
-    max-height: fit-content;
     overflow-y: scroll;
-    border: 8px solid #B9B9B9;
-    border-radius: 40px;
+    border: 8px solid #F6F6F6;
+    border-radius: 20px;
+    width: 1200px;
+    max-height: fit-content;
+    max-width: 94vw;
 }
 
 .webpage-design {
@@ -300,9 +306,14 @@
 .solution-section {
     display: flex;
     flex-direction: column;
-    padding: 120px calc((100vw - 1120px)/2);
-    background-color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 80px;
     gap: 40px;
+}
+
+.checkt-solution-section h1 {
+    color: #ffffff;
 }
 
 .solution-section .app-name {
@@ -393,12 +404,17 @@
 
 /* next projects */
 .next-project-section {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.link-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-left: calc((100vw - 1120px)/2);
-    padding-right: calc((100vw - 1120px)/2);
-    background-color: white;
+    width: 1200px;
+    max-width: 94vw;
 }
 
 .next-project-link {
@@ -409,10 +425,6 @@
 
 
 /* images */
-#augene-logo {
-    padding: 0 100px;
-    width: 140px;
-}
 
 #skin-concerns {
     height: 400px;
@@ -422,22 +434,8 @@
     width: 50%;
 }
 
-#skin-products {
-    width: 90%;
-}
-
 #competitors {
     width: 100%;
-}
-
-.persona {
-    padding-top: 40px;
-    width: 100%;
-}
-
-#hmw {
-    width: 100%;
-    padding-top: 40px;
 }
 
 .innod-logo {
@@ -449,31 +447,44 @@
     text-align: center;
 }
 
-.img {
-    width: 100%;
+.checkt-preview {
+    height: 800px;
+    max-width: 100vw;
+    overflow: hidden;
 }
 
-#competitive-analysis {
-    width: 100%;
-    padding-top: 40px;
+.checkt-preview img {
+    height: 100%;
+    width: auto;
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
-
-#checkt-preview {
-    width: 100%;
-}
-
 
 #widget-preview {
     width: 90%;
 }
 
 #todays-photos {
-    max-width: 600px;
+    max-width: 640px;
 }
 
 .medium-gif {
     width: 600px;
     border-radius: 40px;
+}
+
+#habit-page {
+    height: 600px;
+}
+
+#recommended-text {
+    width: 400px;
+}
+
+#completed-today {
+    width: 400px;
 }
 
 /* next project section */
@@ -579,9 +590,10 @@
         justify-content: center;
     }
 
-    .project-overview-section {
+    .project-overview-wrapper {
         flex-direction: column;
         gap: 60px;
+        padding: 0 20px;
     }
 
     .project-overview-summaries {
@@ -596,6 +608,7 @@
 
     .two-column-text .left-column {
         width: 100%;
+        order: 1;
     }
 
     .two-column-text .right-column {
@@ -614,6 +627,7 @@
     .two-column-solution {
         flex-direction: column;
         align-items: center;
+        justify-content: center;
     }
 
     .two-column-solution .text-column {

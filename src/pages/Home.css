@@ -140,13 +140,13 @@
   transition: color 0.3s ease;
 }
 
-.project-text,
+.project-arrow-text,
 .arrow {
   color: #BBBBBB;
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.project-arrow:hover .project-text {
+.project-arrow:hover .project-arrow-text {
   color: #303030;
 }
 

@@ -1,5 +1,5 @@
 .div-line {
-    border: none;
+    border: solid;
     height: 1px;
     background-color: #e4e4e4;
 }

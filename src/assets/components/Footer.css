@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px;
     background: #ffffff;
+    padding-top: 80px;
 }
 
 .footer-wrap {
@@ -16,60 +16,26 @@
     align-items: center;
 }
 
-.footer-text {
-    color: #303030;
-    font-size: 16px;
-}
-
-.footer-icons {
+.footer-links {
     display: flex;
-    gap: 48px;
+    flex-direction: row;
+    gap: 40px;
 }
 
-.resume-link {
-    text-decoration: none;
-}
-
-.resume-text {
+.footer-link {
     color: #303030;
-    transition: all 0.25s ease;
-    font-size: 20px;
 }
 
-#linkedin-logo {
-    color: #303030;
-    height: 28px;
-}
+.footer-link:hover {
+    color: #989898;
+    transition: color 0.3s ease;
+  }
 
-.gg-mail,
-.gg-mail::after {
-    color: #303030;
-    display: block;
-    box-sizing: border-box;
-    height: 24px;
-    border: 3px solid;
-}
-
-.gg-mail {
-    overflow: hidden;
-    position: relative;
-    width: 30px;
-    border-radius: 3px;
-    margin-bottom: 20px;
-}
-
-.gg-mail::after {
-    content: "";
-    position: absolute;
-    border-radius: 3px;
-    width: 24px;
-    transform: rotate(-45deg);
-    bottom: 8px;
-} 
-
-@media (max-width: 1240px) {
-    .footer {
-      padding-right: 20px;
-      padding-left: 20px;
-    }
-}
+  .footer-link p {
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover p {
+    color: #989898;
+  }
