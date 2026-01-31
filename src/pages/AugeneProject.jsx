@@ -287,18 +287,13 @@ const AugeneProject = () => {
 
       <section className='next-project-section'>
         <div className='link-wrapper'>
-          <Link className='next-project-link' to="/checkt" onClick={handleLinkClick}>
-            <span className="left-arrow">←</span>
-            <div className='previous-project-text'>
-              <h3 className='project-stage'>PREVIOUS PROJECT</h3>
-              <h1 className='project-title'>CHECKT</h1>
-            </div>
-          </Link>
+          <div>
+          </div>
       
-          <Link className='next-project-link' to="/innod" onClick={handleLinkClick}>
+          <Link className='next-project-link' to="/checkt" onClick={handleLinkClick}>
             <div className='next-project-text'>
               <h3 className='project-stage'>NEXT PROJECT</h3>
-              <h1 className='project-title'>INNOVATIVE DESIGN</h1>
+              <h1 className='project-title'>CHECKT</h1>
             </div>
             <span className="right-arrow">→</span>
           </Link>

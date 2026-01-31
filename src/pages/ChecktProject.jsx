@@ -390,18 +390,23 @@ const ChecktProject = () => {
 
       <section className='next-project-section'>
         <div className='link-wrapper'>
-          <div>
-          </div>
-
+      
           <Link className='next-project-link' to="/augene" onClick={handleLinkClick}>
+              <span className="left-arrow">←</span>
+              <div className='previous-project-text'>
+              <h3 className='project-stage'>PREVIOUS PROJECT</h3>
+              <h1 className='project-title'>AUGENE BEAUTY</h1>
+              </div>
+          </Link>
+
+          <Link className='next-project-link' to="/innod" onClick={handleLinkClick}>
             <div className='next-project-text'>
               <h3 className='project-stage'>NEXT PROJECT</h3>
-              <h1 className='project-title'>AUGENE BEAUTY</h1>
+              <h1 className='project-title'>INNOVATIVE DESIGN</h1>
             </div>
             <span className="right-arrow">→</span>
           </Link>
         </div>
-      
         
       </section>
     </body>
