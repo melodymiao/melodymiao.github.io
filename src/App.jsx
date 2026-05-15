@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
 import ChecktProject from './pages/ChecktProject';
-import RecWellProject from './pages/RecWellProject';
 import AugeneProject from './pages/AugeneProject';
 import InnoDProject from './pages/InnoDProject';
 import Fun from './pages/Fun';

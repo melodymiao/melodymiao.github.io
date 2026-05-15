@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { HashLink } from "react-router-hash-link";
 import PortfolioGrid from '../assets/components/PortfolioGrid'
 import GradientCircles from "../assets/components/GradientCircles"
-import oski from '../assets/images/home/oski.png'
 import './Home.css'
 
 const Home = () => {
