@@ -70,4 +70,5 @@ body {
   gap: 120px;
   overflow-x: hidden;
   width: 100%;
+  background: transparent;
 }

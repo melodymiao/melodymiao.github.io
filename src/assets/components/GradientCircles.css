@@ -27,8 +27,8 @@
   position: fixed;
   z-index: -1;
   overflow: hidden;
-  /* high opacity so gradients are just a soft hint, text always readable */
-  background: rgba(255, 255, 255, 0.93);
+  /* light frosted base — circles bleed through */
+  background: rgba(235, 240, 255, 0.18);
   top: 0;
   left: 0;
 }

@@ -9,7 +9,8 @@ const BouncingPhrase = ({ text }) =>
     <span
       key={i}
       className="lift-letter"
-      style={{ animationDelay: `${i * 0.04}s` }}
+      data-char={char === ' ' ? '\u00A0' : char}
+      style={{ animationDelay: `${i * 0.04}s`, '--i': i }}
     >
       {char === ' ' ? '\u00A0' : char}
     </span>

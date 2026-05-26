@@ -9,13 +9,9 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.92) 0%,
-    rgba(255,255,255,1) 100%
-  );
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
+  background: rgba(248, 249, 255, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   padding: 120px 24px 40px;
   min-height: auto;
 }
@@ -137,6 +133,55 @@
   100% { transform: translateY(0); }
 }
 
+/* ─── Gradient color ripple on hover ────────────────── */
+/*
+  Each letter gets a ::before pseudo carrying the gradient.
+  On parent hover, it fades in then out (plays once).
+  The underlying letter stays black throughout — the gradient
+  sits on top via background-clip: text.
+  Bounce animation is untouched on the letter itself.
+*/
+
+.lift-letter {
+  position: relative;
+}
+
+.lift-letter::before {
+  content: attr(data-char);
+  position: absolute;
+  inset: -0.15em -0.1em; /* expand beyond tight layout box to catch ascenders/descenders like the f */
+  background: linear-gradient(
+    115deg,
+    #c084fc,   /* soft violet */
+    #f472b6,   /* warm pink   */
+    #fb923c,   /* orange      */
+    #fbbf24    /* amber-gold  */
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  pointer-events: none;
+  font: inherit;
+  letter-spacing: inherit;
+  white-space: pre;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes gradientRipple {
+  0%   { opacity: 0; }
+  30%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.headline-animated:hover .lift-letter::before {
+  animation: gradientRipple 0.75s ease calc(var(--i) * 0.04s) 1 forwards;
+}
+
 /* ─── Status line ───────────────────────────────────── */
 .landing-status {
   font-family: "DM Mono", monospace;
@@ -158,7 +203,9 @@
   align-items: stretch;
   padding: 0;
   margin-top: 0;
-  background: white;
+  background: rgba(248, 249, 255, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 /* ─── Entrance animations ───────────────────────────── */
