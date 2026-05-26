@@ -1,195 +1,174 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=LXGW+WenKai+TC&display=swap');
 
-* {
-  margin: 0;
-}
+* { margin: 0; }
 
+/* ─── Landing Section ─────────────────────────────── */
 #landing-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   position: relative;
-  background: linear-gradient(rgba(255, 255, 255, 0.5) 80%, rgba(255, 255, 255) 100%);
-  backdrop-filter: blur(160px);
-  padding: 0 calc((100vw - 1120px)/2);
-  height: 90vh;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.92) 0%,
+    rgba(255,255,255,1) 100%
+  );
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  padding: 120px 24px 40px;
+  min-height: auto;
 }
 
 .landing-text {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 8px;
+  max-width: 900px;
 }
 
-.landing-text h1 {
-  text-align: center;
+/* ─── "Hi! I'm 缪 Melody," ────────────────────────── */
+.landing-hi-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: nowrap;
+  cursor: default;
+  padding-bottom: 2px;
+  overflow: visible;
+}
+
+.landing-hi-row .gray-landing-text {
+  font-family: "Domine", serif;
+  font-weight: 400;
   font-size: 48px;
-  max-width: 770px;
-}
-
-.landing-text p {
-  text-align: center;
-}
-
-.gray-landing-text {
-  color: rgba(79, 79, 79, 0.3);
-}
-
-#blue-purple-text {
-    background-image: linear-gradient(to right, #5ebbe3, #9d86e7);
-    color: transparent;
-    background-clip: text;
-}
-
-#yellow-orange-text {
-  background-image: linear-gradient(to right, #F5CB73, #D27278);
-  color: transparent;
+  line-height: 1;
+  background: linear-gradient(
+    100deg,
+    rgba(41,41,41,0.28) 0%,
+    rgba(41,41,41,0.28) 35%,
+    rgba(180,180,180,0.75) 50%,
+    rgba(41,41,41,0.28) 65%,
+    rgba(41,41,41,0.28) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 130% 0;
+  -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.italic {
-  font-style: italic;
+.landing-hi-row:hover .gray-landing-text {
+  animation: shimmer 0.85s ease forwards;
 }
 
-#miao-hover {
-  width: 80px;
-  position: relative;
-  display: inline-block;
+@keyframes shimmer {
+  0%   { background-position: 130% 0; }
+  100% { background-position: -30% 0; }
 }
 
-#miao,
-#miao-text {
-  position: absolute;
-  left: 0;
-  top: 0;
-  transition: opacity 0.4s ease;
-  white-space: nowrap;
-  text-align: center;
-}
-
+/* ─── 缪 badge ─────────────────────────────────────── */
 #miao {
-  background-color: #F1591B;
+  background-color: #F2582D;
   color: #fff;
-  font-weight: 400;
-  padding: 8px 16px;
-  top: -6px;
-  border-radius: 32px;
-  font-size: 36px;
-  position: relative;
-  font-family: "LXGW WenKai TC", cursive;
-  font-weight: 400;
-  font-style: normal;
-  transition: opacity 0.4s ease;
-  white-space: nowrap;
-  opacity: 1;
-  z-index: 2;
-}
-
-#miao-text {
-  font-family: "Reenie Beanie", cursive;
-  font-weight: 400;
-  font-size: 52px;
-  font-style: normal;
-  transition: opacity 0.4s ease;
-  white-space: nowrap;
-  opacity: 0;
-  z-index: 1;
-}
-
-#miao-hover:hover #miao {
-  opacity: 0;
-}
-
-#miao-hover:hover #miao-text {
-  opacity: 1;
-}
-
-.teal-blue {
-  background: linear-gradient(to right, #2DC4B6, #3697B2);
-  margin: -50px 0 0 300px;
-  transform: rotate(-6deg);
-}
-
-.teal-blue p {
-  color: #FFFFFF;
+  padding: 4px 16px;
+  border-radius: 40px;
+  font-family: "Poppins", "LXGW WenKai TC", sans-serif;
+  font-weight: 600;
   font-size: 24px;
+  line-height: normal;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
 }
 
+#miao::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.55) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  animation: miaoSheen 6s ease-in-out infinite;
+}
+
+@keyframes miaoSheen {
+  0%   { left: -75%; opacity: 0; }
+  5%   { opacity: 1; }
+  20%  { left: 125%; opacity: 1; }
+  21%  { opacity: 0; }
+  100% { left: 125%; opacity: 0; }
+}
+
+/* ─── Headline ──────────────────────────────────────── */
+.landing-headline {
+  font-family: "Domine", serif;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 1.2;
+  color: #292929;
+  cursor: default;
+}
+
+.headline-first-line  { display: block; }
+.headline-second-line { display: block; white-space: nowrap; }
+.headline-animated    { display: inline; font-weight: 700; color: #292929; }
+.headline-period      { display: inline; font-weight: 400; color: #292929; }
+
+/* Per-letter bounce — stagger creates the ripple wave effect */
+.lift-letter {
+  display: inline-block;
+  color: #292929;
+  animation: letterBounce 6s ease-in-out infinite;
+}
+
+@keyframes letterBounce {
+  0%   { transform: translateY(0); }
+  5%   { transform: translateY(-6px); }
+  10%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+/* ─── Status line ───────────────────────────────────── */
+.landing-status {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0;
+  color: #BFBFBF;
+  text-transform: uppercase;
+  margin-top: 14px;
+}
+
+.landing-status em { font-style: italic; }
+
+/* ─── Work section ──────────────────────────────────── */
 #work {
-  background-color: white;
-  scroll-margin-top: 100px;
+  scroll-margin-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  padding: 0;
+  margin-top: 0;
+  background: white;
 }
 
-.center-flexbox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.arrow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.project-arrow-text,
-.arrow {
-  color: #BBBBBB;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.project-arrow:hover .project-arrow-text {
-  color: #303030;
-}
-
-.project-arrow:hover .arrow {
-  color: #303030;
-  transform: translateY(6px);
-}
-
+/* ─── Entrance animations ───────────────────────────── */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in {
-  opacity: 0;
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-.delay-1 {
-  animation-delay: 0.4s;
-}
-
-.delay-2 {
-  animation-delay: 0.8s;
-}
-
-.delay-3 {
-  animation-delay: 1.2s;
-}
-
-.delay-4 {
-  animation-delay: 1.8s;
-}
-
-@media (max-width: 1240px) {
-  #landing-section {
-    padding-right: 20px;
-    padding-left: 20px;
-  }
-}
+.fade-in { opacity: 0; animation: fadeInUp 0.7s ease forwards; }
+.delay-1 { animation-delay: 0.15s; }
+.delay-2 { animation-delay: 0.30s; }
+.delay-3 { animation-delay: 0.45s; }
+.delay-4 { animation-delay: 0.60s; }

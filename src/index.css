@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=DM+Mono:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
 
 :root {
-  font-family: "Inter", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 400;
   font-style: normal;
   color: #292929;
@@ -14,43 +13,41 @@
 }
 
 h1 {
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+  font-family: "Domine", serif;
+  font-weight: 400;
   font-size: 40px;
   line-height: 1.2;
+  color: #292929;
 }
 
 h2 {
-  font-family: "Instrument Sans", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 500;
-  font-style: normal;
   font-size: 28px;
   line-height: normal;
 }
 
 h3 {
-  font-family: "Inter", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 14px;
-  color: #B9B9B9;
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-size: 13px;
+  color: #BFBFBF;
   line-height: 1.8;
+  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 p {
-  font-family: "Instrument Sans", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 400;
-  font-style: normal;
   font-size: 18px;
   color: #6c6c6c;
   line-height: 1.8;
 }
 
 li {
-  font-family: "Instrument Sans", sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-weight: 400;
-  font-style: normal;
   font-size: 18px;
   color: #6c6c6c;
   line-height: 1.8;
@@ -64,13 +61,8 @@ li {
   gap: 40px;
 }
 
-.dark-text {
-  color: #303030;
-}
-
-.gray-text {
-  color: #989898;
-}
+.dark-text  { color: #292929; }
+.gray-text  { color: #BFBFBF; }
 
 body {
   display: flex;

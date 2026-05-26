@@ -1,58 +1,59 @@
 import Header from '../assets/components/Header'
 import Footer from '../assets/components/Footer'
-import { Link } from 'react-router-dom';
-import { HashLink } from "react-router-hash-link";
 import PortfolioGrid from '../assets/components/PortfolioGrid'
 import GradientCircles from "../assets/components/GradientCircles"
 import './Home.css'
 
-const Home = () => {
-    return (
-    <>
+const BouncingPhrase = ({ text }) =>
+  text.split('').map((char, i) => (
+    <span
+      key={i}
+      className="lift-letter"
+      style={{ animationDelay: `${i * 0.04}s` }}
+    >
+      {char === ' ' ? '\u00A0' : char}
+    </span>
+  ))
+
+const Home = () => (
+  <>
     <Header />
-    <section id="landing-section" className="sections">
-        <div className='landing-text'>
-            <div className='landing-large'>
-                <h1 className='gray-landing-text fade-in delay-1'>
-                    Hi! I'm <span id='miao-hover'>
-                        <span id='miao'>缪</span>
-                        <span id='miao-text'>Miao,</span>
-                    </span> Melody.
-                </h1>
-                
-                <h1 className='dark-text fade-in delay-2'>
-                    Product Designer creating <span id='blue-purple-text'>simple</span> &amp; <span id='yellow-orange-text'>enjoyable</span> user experiences
-                </h1>
-            </div>
-            
-            <p className='fade-in delay-3'>Currently <span className='italic'>open to work</span>.</p>
+
+    <section id="landing-section" className="fade-in delay-1">
+      <div className='landing-text'>
+
+        <div className='landing-hi-row'>
+          <span className='gray-landing-text'>Hi! I'm</span>
+          <span id='miao'>缪</span>
+          <span className='gray-landing-text'>Melody,</span>
         </div>
-        
+
+        <h1 className='landing-headline'>
+          <span className='headline-first-line'>a Product Designer making</span>
+          <span className='headline-second-line'>
+            <strong className='headline-animated'>
+              <BouncingPhrase text="designs that come to life" />
+            </strong><span className='headline-period'>.</span>
+          </span>
+        </h1>
+
+        <p className='landing-status'>
+          Currently <em>open to work</em>.
+        </p>
+
+      </div>
     </section>
 
-    <section id="work" className="section">
-        <div className='center-flexbox'>
-            <HashLink className='nav-button' to="/#work" smooth>
-                <div className='project-arrow fade-in delay-4'>
-                    <p className='project-arrow-text'>
-                        Projects
-                    </p>
-                    <span className="arrow">↓</span>
-                </div>
-            </HashLink>
-        </div>
-        
-        <PortfolioGrid />
+    <section id="work">
+      <PortfolioGrid />
     </section>
-    
+
     <Footer />
 
-    
-    <div class='background'>
-        <GradientCircles />
+    <div className='background'>
+      <GradientCircles />
     </div>
-    </>
-);
-}
-  
-  export default Home;
+  </>
+)
+
+export default Home
