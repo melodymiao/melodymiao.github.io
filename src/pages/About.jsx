@@ -49,6 +49,9 @@ const About = () => {
                 </div>
 
                 <div className='about-block'>
+                    <p className='about-subtext'>
+                        Open to full-time roles, freelance projects, and good conversations.
+                    </p>
                     <div className='about-links'>
                         <a href="mailto:melodymiao001@gmail.com" className='about-link'>Email ↗</a>
                         <a href="https://www.linkedin.com/in/melody-miao/" target='_blank' rel='noreferrer' className='about-link'>LinkedIn ↗</a>
@@ -61,7 +64,6 @@ const About = () => {
             <div className='about-right'>
                 <div className='photo-grid'>
                     <img className='photo-main' src={Portrait} alt="me!" />
-                    {/* swap these src values for additional photos when you have them */}
                     <img className='photo-secondary' src={Wagon} alt="beach day :)" />
                     <img className='photo-secondary' src={BTS} alt="me @ BTS Arirang Tour in Vegas" />
                 </div>

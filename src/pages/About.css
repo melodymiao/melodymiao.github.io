@@ -177,6 +177,7 @@
     object-fit: cover;
 }
 
+/* ── Photo column breakpoint ── */
 @media (max-width: 1100px) {
     .photo-grid {
         grid-template-columns: 1fr 1fr;
@@ -195,5 +196,23 @@
         grid-column: auto;
         grid-row: 2;
         height: 250px;
+    }
+}
+
+/* ── Column stack breakpoint ── */
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column;
+        padding: 100px 24px 80px;
+    }
+
+    .about-left {
+        flex: none;
+        width: 100%;
+    }
+
+    .about-right {
+        flex: none;
+        width: 100%;
     }
 }
