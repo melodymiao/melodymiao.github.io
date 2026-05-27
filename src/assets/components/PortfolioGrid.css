@@ -27,6 +27,7 @@
     width: 100%;
     border-radius: 4px;
     display: block;
+    object-fit: cover;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -37,11 +38,6 @@
 
 .thumb-tall  { height: 460px; }
 .thumb-short { height: 340px; }
-
-.thumb-augene { background-color: #7b7bf0; }
-.thumb-checkt { background-color: #d28cfe; }
-.thumb-innod  { background-color: #f968ea; }
-.thumb-drank  { background-color: #f0ede6; }
 
 .project-meta {
     display: flex;

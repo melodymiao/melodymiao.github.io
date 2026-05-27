@@ -1,6 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './PortfolioGrid.css';
+import drankThumb from '../images/portfolio-grid/drank thumbnail.jpg';
+import augeneThumb from '../images/portfolio-grid/augene thumbnail.jpg';
+import checktThumb from '../images/portfolio-grid/checkt thumbnail.jpg';
+import innodThumb from '../images/portfolio-grid/innod thumbnail.jpg';
 
 const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -13,6 +17,7 @@ const projects = [
     tag: 'Drank',
     thumbColor: 'thumb-drank',
     thumbHeight: 'thumb-tall',
+    thumb: drankThumb,
     to: 'https://drank.app',
     external: true,
     delay: 'delay-1',
@@ -23,6 +28,7 @@ const projects = [
     tag: 'Checkt',
     thumbColor: 'thumb-checkt',
     thumbHeight: 'thumb-short',
+    thumb: checktThumb,
     to: '/checkt',
     external: false,
     delay: 'delay-3',
@@ -33,6 +39,7 @@ const projects = [
     tag: 'Augene Beauty',
     thumbColor: 'thumb-augene',
     thumbHeight: 'thumb-short',
+    thumb: augeneThumb,
     to: '/augene',
     external: false,
     delay: 'delay-2',
@@ -43,6 +50,7 @@ const projects = [
     tag: 'Innovative Design',
     thumbColor: 'thumb-innod',
     thumbHeight: 'thumb-tall',
+    thumb: innodThumb,
     to: '/innod',
     external: false,
     delay: 'delay-4',
@@ -52,7 +60,11 @@ const projects = [
 const ProjectCard = ({ project }) => {
   const inner = (
     <>
-      <div className={`project-thumbnail ${project.thumbColor} ${project.thumbHeight}`} />
+      <img
+        className={`project-thumbnail ${project.thumbHeight}`}
+        src={project.thumb}
+        alt={project.tag}
+      />
       <div className='project-meta'>
         <span className='project-meta-name'>{project.name}</span>
         <span className='project-meta-tag'>{project.tag}</span>
