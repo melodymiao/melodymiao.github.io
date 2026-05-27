@@ -1,49 +1,77 @@
 import Header from '../assets/components/Header'
-import { Link } from 'react-router-dom';
-import { HashLink } from "react-router-hash-link";
-import PortfolioGrid from '../assets/components/PortfolioGrid'
 import Footer from '../assets/components/Footer'
 import Portrait from '../assets/images/about/portrait.jpg'
+import Balboa from '../assets/images/about/balboa.jpg'
+import BTS from '../assets/images/about/bts concert.jpg'
+import Wagon from '../assets/images/about/wagon.jpg'
 import './About.css'
 
 const About = () => {
     return (
     <>
     <Header />
-    <body>
+    <main>
         <section className='about-section'>
-            <section className='two-column-text'>
-            <div className='right-column'>
-                <img id='about-portrait' src={Portrait} />
-            </div>
-            <div className='left-column'>
-                <h1 className='stage-title'>Hi, I'm Melody!</h1>
-                <p class="project-text">
-                    I’m a recent UC Berkeley graduate with a degree in Data Science and Cognitive Science, 
-                    passionate about understanding how people interact with the world around them.
-                </p>
-                <p class="project-text">
-                I grew up in sunny San Diego, taco capital and surf city of America. I’ve always been 
-                fascinated by human behavior, always curious about the “why” behind the ways people think, 
-                feel, and act.
-                </p>
-                <p class="project-text">
-                When I discovered product design, I realized design could be more than just aesthetics. 
-                It could be a bridge between empathy and innovation, creating solutions that genuinely
-                improve people’s lives.
-                </p>
-                <p class="project-text">
-                Outside of design, I like to stay inspired through other creative outlets such as 
-                dancing, videography, and video editing. 
-                </p>
-            </div>
-            </section>
-        </section>  
 
-    </body>
+            {/* ── Left column ── */}
+            <div className='about-left'>
+
+                <div className='about-intro'>
+                    <h1 className='about-headline'>
+                    I'm a designer who builds what I design.
+                    </h1>
+                    <p className='about-subtext'>
+                        UC Berkeley grad, Data Science + Cognitive Science
+                    </p>
+                    <div className='about-status'>
+                        <span className='status-dot' />
+                        <span>Open to work</span>
+                    </div>
+                </div>
+
+                <div className='about-block'>
+                    <ul className='about-list'>
+                        <li>Grew up in San Diego around beaches and perpetual sunshine</li>
+                        <li>Exploring AI tools throughout my process: wireframing, rapid iteration, and pushing ideas faster</li>
+                        <li>Got into design because it combines empathy and craft</li>
+                    </ul>
+                </div>
+
+                <div className='about-block'>
+                    <p className='about-subtext'>
+                        Outside of design, I also enjoy...
+                    </p>
+                    <ul className='about-list'>
+                        <li>💃 Dancing (take my classes @ <a href="https://www.haappydaance.com/book-a-class" target='_blank' rel='noreferrer' className='haappy-link'>Haappy Daance</a>!)</li>
+                        <li>🎬 Videography & video editing</li>
+                        <li>🎤 Going to K-pop concerts</li>
+                    </ul>
+                </div>
+
+                <div className='about-block'>
+                    <div className='about-links'>
+                        <a href="mailto:melodymiao001@gmail.com" className='about-link'>Email ↗</a>
+                        <a href="https://www.linkedin.com/in/melody-miao/" target='_blank' rel='noreferrer' className='about-link'>LinkedIn ↗</a>
+                    </div>
+                </div>
+
+            </div>
+
+            {/* ── Right column: photos ── */}
+            <div className='about-right'>
+                <div className='photo-grid'>
+                    <img className='photo-main' src={Portrait} alt="me!" />
+                    {/* swap these src values for additional photos when you have them */}
+                    <img className='photo-secondary' src={Wagon} alt="beach day :)" />
+                    <img className='photo-secondary' src={BTS} alt="me @ BTS Arirang Tour in Vegas" />
+                </div>
+            </div>
+
+        </section>
+    </main>
     <Footer />
     </>
 );
 }
-  
-  export default About;
+
+export default About;
