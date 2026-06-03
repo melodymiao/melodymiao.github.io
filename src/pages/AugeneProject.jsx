@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import './AugeneProject.css';
 import './Projects.css';
 import Header from '../assets/components/Header';
 import Footer from '../assets/components/Footer';
@@ -56,20 +55,20 @@ const AugeneProject = () => {
       <Header />
 
       {/* ── Hero ── */}
-      <div className="aug-hero">
+      <div className="proj-hero">
         <img src={AugeneThumb} alt="Augene Beauty project" />
       </div>
 
       {/* ── Body: sidebar + content ── */}
-      <div className="aug-body">
+      <div className="proj-body">
 
         {/* Sticky sidebar */}
-        <nav className="aug-sidebar">
-          <div className="aug-sidebar-nav">
+        <nav className="proj-sidebar">
+          <div className="proj-sidebar-nav">
             {CHAPTERS.map(c => (
               <button
                 key={c.id}
-                className={`aug-sidebar-link ${activeId === c.id ? 'active' : ''}`}
+                className={`proj-sidebar-link ${activeId === c.id ? 'active' : ''}`}
                 onClick={() => scrollTo(c.id)}
                 style={{ background: activeId === c.id ? undefined : 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
               >
@@ -78,44 +77,44 @@ const AugeneProject = () => {
             ))}
           </div>
 
-          <div className="aug-sidebar-footer">
-            <a className="aug-sidebar-project-link" href="https://drank.vercel.app" target="_blank" rel="noreferrer">
+          <div className="proj-sidebar-footer">
+            <a className="proj-sidebar-project-link" href="https://drank.vercel.app" target="_blank" rel="noreferrer">
               ← Previous: Drank
             </a>
-            <Link className="aug-sidebar-project-link" to="/checkt" onClick={handleLinkClick}>
+            <Link className="proj-sidebar-project-link" to="/checkt" onClick={handleLinkClick}>
               → Next: Checkt
             </Link>
           </div>
         </nav>
 
         {/* Content */}
-        <main className="aug-content">
+        <main className="proj-content">
 
           {/* ── OVERVIEW ── */}
-          <section id="overview" className="aug-chapter">
+          <section id="overview" className="proj-chapter">
 
-            <div className="aug-project-intro">
+            <div className="proj-project-intro">
               <div>
-                <span className="aug-project-eyebrow">Augene Beauty</span>
-                <h1 className="aug-overview-title">Simplifying skincare for patients &amp; clinics</h1>
+                <span className="proj-project-eyebrow">Augene Beauty</span>
+                <h1 className="proj-overview-title">Simplifying skincare for patients &amp; clinics</h1>
               </div>
-              <div className="aug-overview-meta">
-                <div className="aug-meta-group">
+              <div className="proj-overview-meta">
+                <div className="proj-meta-group">
                   <h3>Role</h3>
                   <p>Research</p>
                   <p>Design</p>
                   <p>Prototype</p>
                 </div>
-                <div className="aug-meta-group">
+                <div className="proj-meta-group">
                   <h3>Team</h3>
                   <p>Solo designer</p>
                 </div>
-                <div className="aug-meta-group">
+                <div className="proj-meta-group">
                   <h3>Skills</h3>
                   <p>User Research</p>
                   <p>Product Design</p>
                 </div>
-                <div className="aug-meta-group">
+                <div className="proj-meta-group">
                   <h3>Timeline</h3>
                   <p>June – August 2024</p>
                   <p>(10 weeks)</p>
@@ -123,9 +122,9 @@ const AugeneProject = () => {
               </div>
             </div>
 
-            <div className="aug-text-block">
-              <div className="aug-heading">
-                <span className="aug-chapter-label">Overview</span>
+            <div className="proj-text-block">
+              <div className="proj-heading">
+                <span className="proj-chapter-label">Overview</span>
                 <h2>The 23andMe for your skin</h2>
               </div>
               <p>
@@ -137,12 +136,12 @@ const AugeneProject = () => {
               </p>
             </div>
 
-            <div className="aug-showcase">
+            <div className="proj-showcase">
               <img src={SkincareProducts} alt="Skincare products" />
             </div>
 
-            <div className="aug-text-block">
-              <div className="aug-heading">
+            <div className="proj-text-block">
+              <div className="proj-heading">
                 <h2>Generic advice doesn't work for everyone</h2>
               </div>
               <p>
@@ -161,11 +160,11 @@ const AugeneProject = () => {
           </section>
 
           {/* ── RESEARCH ── */}
-          <section id="research" className="aug-chapter">
+          <section id="research" className="proj-chapter">
 
-            <div className="aug-text-block">
-              <div className="aug-heading">
-                <span className="aug-chapter-label">Research</span>
+            <div className="proj-text-block">
+              <div className="proj-heading">
+                <span className="proj-chapter-label">Research</span>
                 <h2>What are competitors missing?</h2>
               </div>
               <p>
@@ -176,34 +175,34 @@ const AugeneProject = () => {
               </p>
             </div>
 
-            <div className="aug-showcase">
+            <div className="proj-showcase">
               <img src={CompetitiveAnalysis} alt="Competitive analysis matrix" />
-              <span className="aug-showcase-caption">Competitive analysis across skin testing companies</span>
+              <span className="proj-showcase-caption">Competitive analysis across skin testing companies</span>
             </div>
 
-            <div className="aug-text-block">
-              <div className="aug-heading">
+            <div className="proj-text-block">
+              <div className="proj-heading">
                 <h2>Three gaps worth designing for</h2>
               </div>
-              <div className="aug-insight-list">
-                <div className="aug-insight">
-                  <span className="aug-insight-number">01</span>
+              <div className="proj-insight-list">
+                <div className="proj-insight">
+                  <span className="proj-insight-number">01</span>
                   <div>
-                    <p className="aug-insight-title">Results without context</p>
+                    <p className="proj-insight-title">Results without context</p>
                     <p>Competitors showed scores but didn't explain what they meant or what to do about them. Patients were left to interpret data with no medical background.</p>
                   </div>
                 </div>
-                <div className="aug-insight">
-                  <span className="aug-insight-number">02</span>
+                <div className="proj-insight">
+                  <span className="proj-insight-number">02</span>
                   <div>
-                    <p className="aug-insight-title">No path to products</p>
+                    <p className="proj-insight-title">No path to products</p>
                     <p>Analysis and product recommendations weren't connected or didn't exist at all. The leap from "your skin is dry" to "here's what to buy" was left to the user.</p>
                   </div>
                 </div>
-                <div className="aug-insight">
-                  <span className="aug-insight-number">03</span>
+                <div className="proj-insight">
+                  <span className="proj-insight-number">03</span>
                   <div>
-                    <p className="aug-insight-title">One-time, not ongoing</p>
+                    <p className="proj-insight-title">One-time, not ongoing</p>
                     <p>Most experiences felt like a report you read once. There was no reason to track your skin progress over time.</p>
                   </div>
                 </div>
@@ -213,11 +212,11 @@ const AugeneProject = () => {
           </section>
 
           {/* ── SYNTHESIS ── */}
-          <section id="synthesis" className="aug-chapter">
+          <section id="synthesis" className="proj-chapter">
 
-            <div className="aug-text-block">
-              <div className="aug-heading">
-                <span className="aug-chapter-label">Synthesis</span>
+            <div className="proj-text-block">
+              <div className="proj-heading">
+                <span className="proj-chapter-label">Synthesis</span>
                 <h2>Two users, very different needs</h2>
               </div>
               <p>
@@ -228,13 +227,13 @@ const AugeneProject = () => {
               </p>
             </div>
 
-            <div className="aug-showcase">
+            <div className="proj-showcase">
               <img src={Persona} alt="User personas for clinician and patient" />
             </div>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <div className="aug-heading">
+            <div className="proj-row">
+              <div className="proj-row-label">
+                <div className="proj-heading">
                   <h2>Three pain points, three design questions</h2>
                 </div>
                 <p>
@@ -243,35 +242,35 @@ const AugeneProject = () => {
                   grounded in real friction rather than assumptions.
                 </p>
               </div>
-              <div className="aug-row-content">
+              <div className="proj-row-content">
                 <img src={HMW} alt="How Might We questions" />
               </div>
             </div>
 
-            <div className="aug-text-block">
-              <div className="aug-heading">
+            <div className="proj-text-block">
+              <div className="proj-heading">
                 <h2>Design principles before touching Figma</h2>
               </div>
               <p>Before wireframing, I established three principles to guide every decision:</p>
-              <div className="aug-principles">
-                <div className="aug-principle">
-                  <p className="aug-principle-title">Translate, don't display</p>
+              <div className="proj-principles">
+                <div className="proj-principle">
+                  <p className="proj-principle-title">Translate, don't display</p>
                   <p>Raw microbiome scores mean nothing to most patients. Every data point needed to be reframed as something actionable, such as a concern to address, an ingredient to look for, or a step to add.</p>
                 </div>
-                <div className="aug-principle">
-                  <p className="aug-principle-title">Connect results to routine</p>
+                <div className="proj-principle">
+                  <p className="proj-principle-title">Connect results to routine</p>
                   <p>The experience needed to feel like one continuous flow from test results to understanding to products to a routine.</p>
                 </div>
-                <div className="aug-principle">
-                  <p className="aug-principle-title">Give patients control</p>
+                <div className="proj-principle">
+                  <p className="proj-principle-title">Give patients control</p>
                   <p>Clinician recommendations should be a starting point, not a prescription. Users needed the flexibility to swap products, adjust steps, and build something that fit their real life.</p>
                 </div>
               </div>
             </div>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <div className="aug-heading">
+            <div className="proj-row">
+              <div className="proj-row-label">
+                <div className="proj-heading">
                   <h2>A dashboard that does more than show results</h2>
                 </div>
                 <p>
@@ -281,7 +280,7 @@ const AugeneProject = () => {
                   all screens that followed.
                 </p>
               </div>
-              <div className="aug-row-content">
+              <div className="proj-row-content">
                 <img src={AugeneMockup} alt="Early dashboard mockup" />
               </div>
             </div>
@@ -289,86 +288,86 @@ const AugeneProject = () => {
           </section>
 
           {/* ── SOLUTION ── */}
-          <section id="solution" className="aug-chapter">
+          <section id="solution" className="proj-chapter">
 
-            <div className="aug-solution-intro">
-              <span className="aug-chapter-label">Solution</span>
-              <h1 className="aug-solution-name">Augene Dashboard</h1>
-              <p className="aug-solution-tagline">Skincare, simplified</p>
+            <div className="proj-solution-intro">
+              <span className="proj-chapter-label">Solution</span>
+              <h1 className="proj-solution-name">Augene Dashboard</h1>
+              <p className="proj-solution-tagline">Skincare, simplified</p>
             </div>
 
-            <div className="aug-showcase">
+            <div className="proj-showcase">
               <img src={DashboardPreview} alt="Dashboard full overview" />
             </div>
 
-            <div className="aug-feature">
-              <div className="aug-feature-title-row">
-                <span className="aug-feature-emoji">🏠</span>
-                <h2 className="aug-feature-title">Everything you need to know, upfront</h2>
+            <div className="proj-feature">
+              <div className="proj-feature-title-row">
+                <span className="proj-feature-emoji">🏠</span>
+                <h2 className="proj-feature-title">Everything you need to know, upfront</h2>
               </div>
-              <p className="aug-feature-desc">
+              <p className="proj-feature-desc">
                 Skin type, key concerns, top recommended ingredients, and a note from
                 your clinician are all visible at first glance. The home screen is designed
                 to help quickly understand the user's current skin condition.
               </p>
-              <div className="aug-feature-img-wrap">
-                <img className="aug-feature-img" src={Dashboard1} alt="Dashboard home screen" />
+              <div className="proj-feature-img-wrap">
+                <img className="proj-feature-img" src={Dashboard1} alt="Dashboard home screen" />
               </div>
             </div>
 
-            <div className="aug-feature">
-              <div className="aug-feature-title-row">
-                <span className="aug-feature-emoji">🔬</span>
-                <h2 className="aug-feature-title">Understand the risks, not just the numbers</h2>
+            <div className="proj-feature">
+              <div className="proj-feature-title-row">
+                <span className="proj-feature-emoji">🔬</span>
+                <h2 className="proj-feature-title">Understand the risks, not just the numbers</h2>
               </div>
-              <p className="aug-feature-desc">
+              <p className="proj-feature-desc">
                 Rather than showing raw microbiome data, the analysis screen translates
                 results into plain language. Understand what conditions your skin is at risk for,
                 and what you can do about each one.
               </p>
-              <div className="aug-feature-img-wrap">
-                <img className="aug-feature-img" src={Dashboard2} alt="Skin analysis screen" />
+              <div className="proj-feature-img-wrap">
+                <img className="proj-feature-img" src={Dashboard2} alt="Skin analysis screen" />
               </div>
             </div>
 
-            <div className="aug-feature">
-              <div className="aug-feature-title-row">
-                <span className="aug-feature-emoji">🛍️</span>
-                <h2 className="aug-feature-title">Recommendations you can actually compare</h2>
+            <div className="proj-feature">
+              <div className="proj-feature-title-row">
+                <span className="proj-feature-emoji">🛍️</span>
+                <h2 className="proj-feature-title">Recommendations you can actually compare</h2>
               </div>
-              <p className="aug-feature-desc">
+              <p className="proj-feature-desc">
                 Instead of a single suggested product, users can browse and compare options
                 filtered to their skin profile so they can compare price, ingredients,
                 and reviews before committing to a routine.
               </p>
-              <div className="aug-feature-img-wrap">
-                <img className="aug-feature-img" src={Dashboard3} alt="Product recommendations screen" />
+              <div className="proj-feature-img-wrap">
+                <img className="proj-feature-img" src={Dashboard3} alt="Product recommendations screen" />
               </div>
             </div>
 
-            <div className="aug-feature">
-              <div className="aug-feature-title-row">
-                <span className="aug-feature-emoji">📋</span>
-                <h2 className="aug-feature-title">A routine built around your life, not a template</h2>
+            <div className="proj-feature">
+              <div className="proj-feature-title-row">
+                <span className="proj-feature-emoji">📋</span>
+                <h2 className="proj-feature-title">A routine built around your life, not a template</h2>
               </div>
-              <p className="aug-feature-desc">
+              <p className="proj-feature-desc">
                 The routine builder lets users select products step by step, with AM/PM
                 labeling and ordering built in. It's flexible to fit different budgets
                 while still reflecting what the microbiome data suggests.
               </p>
-              <div className="aug-feature-img-wrap">
-                <img className="aug-feature-img" src={Dashboard4} alt="Routine builder screen" />
+              <div className="proj-feature-img-wrap">
+                <img className="proj-feature-img" src={Dashboard4} alt="Routine builder screen" />
               </div>
             </div>
 
           </section>
 
           {/* ── REFLECTION ── */}
-          <section id="reflection" className="aug-chapter">
+          <section id="reflection" className="proj-chapter">
 
-            <div className="aug-text-block">
-              <div className="aug-heading">
-                <span className="aug-chapter-label">Reflection</span>
+            <div className="proj-text-block">
+              <div className="proj-heading">
+                <span className="proj-chapter-label">Reflection</span>
                 <h2>Designing from the inside out</h2>
               </div>
               <p>
@@ -391,7 +390,7 @@ const AugeneProject = () => {
               </p>
             </div>
 
-            <div className="aug-showcase">
+            <div className="proj-showcase">
               <img src={Picnic} alt="Augene team at a picnic" />
             </div>
 
