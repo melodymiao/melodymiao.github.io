@@ -1,274 +1,313 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Projects.css';
-import Header from '../assets/components/Header'
-import Footer from '../assets/components/Footer'
-import DividerLine from '../assets/components/DividerLine'
-import GradientCircles from '../assets/components/GradientCircles'
-import InnoD from '../assets/images/innod/innod logo.png'
-import InnoDPreview from '../assets/images/innod/innod preview.jpg'
-import SP24RecruitLogo from '../assets/images/innod/sp24 recruitment logo.png'
-import SP24RecruitPage from '../assets/images/innod/sp24 recruitment website.jpg'
-import SP24RecruitColors from '../assets/images/innod/sp24 recruitment colors.png'
-import SP24RGBLogo from '../assets/images/innod/sp24 rgb logo.png'
-import SP24RGB from '../assets/images/innod/sp24 rgb.jpg'
-import SP24HEXLogo from '../assets/images/innod/sp24 hex logo.png'
-import SP24HEX from '../assets/images/innod/sp24 hex small.jpg'
-import FA24RecruitLogo from '../assets/images/innod/fa24 recruitment logo.png'
-import FA24RecruitPage from '../assets/images/innod/fa24 recruitment.jpg'
-import FA24HEXLogo from '../assets/images/innod/fa24 hex logo.png'
-import FA24HEX from '../assets/images/innod/fa24 hex.jpg'
-import FA24CMYKLogo from '../assets/images/innod/fa24 cmyk logo.png'
-import FA24CMYK from '../assets/images/innod/fa24 cmyk.jpg'
+import Header from '../assets/components/Header';
+import Footer from '../assets/components/Footer';
+import InnoDPreview from '../assets/images/innod/innod preview.jpg';
+import SP24RecruitLogo from '../assets/images/innod/sp24 recruitment logo.png';
+import SP24RecruitPage from '../assets/images/innod/sp24 recruitment website.jpg';
+import SP24RGBLogo from '../assets/images/innod/sp24 rgb logo.png';
+import SP24RGB from '../assets/images/innod/sp24 rgb.jpg';
+import SP24HEXLogo from '../assets/images/innod/sp24 hex logo.png';
+import SP24HEX from '../assets/images/innod/sp24 hex small.jpg';
+import FA24RecruitLogo from '../assets/images/innod/fa24 recruitment logo.png';
+import FA24RecruitPage from '../assets/images/innod/fa24 recruitment.jpg';
+import FA24HEXLogo from '../assets/images/innod/fa24 hex logo.png';
+import FA24HEX from '../assets/images/innod/fa24 hex.jpg';
+import FA24CMYKLogo from '../assets/images/innod/fa24 cmyk logo.png';
+import FA24CMYK from '../assets/images/innod/fa24 cmyk.jpg';
 
+const CHAPTERS = [
+  { id: 'overview',     label: 'Overview'          },
+  { id: 'sp24-recruit', label: 'SP24 Recruitment'  },
+  { id: 'sp24-rgb',     label: 'SP24 RGB'          },
+  { id: 'sp24-hex',     label: 'SP24 HEX'          },
+  { id: 'fa24-recruit', label: 'FA24 Recruitment'  },
+  { id: 'fa24-hex',     label: 'FA24 HEX'          },
+  { id: 'fa24-cmyk',    label: 'FA24 CMYK'         },
+];
 
 const InnoDProject = () => {
-    const handleLinkClick = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth',
-        });
-    };
-    
+  const [activeId, setActiveId] = useState('overview');
+  const observerRef = useRef(null);
+
+  const handleLinkClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  useEffect(() => {
+    const sections = CHAPTERS.map(c => document.getElementById(c.id)).filter(Boolean);
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) setActiveId(visible[0].target.id);
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+    );
+    sections.forEach(s => observerRef.current.observe(s));
+    return () => observerRef.current?.disconnect();
+  }, []);
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
-    <Header />
+      <Header />
 
-    <section id="innod-project-landing-section" className="project-landing-section">
-        <div className='header-img-wrapper'>
-            <img className='logo' src={InnoD} />
-            <img className='header-preview' src={InnoDPreview} />
-        </div>
-    </section>
-
-    <section className='project-overview-section'>
-        <div className='project-overview-wrapper'>
-            <div className='project-overview-description'>
-                <h1 className='project-title'>Innovative Design</h1>
-                <p className='project-overview'>
-                As VP of Technology of UC Berkeley's Innovative Design club, I worked closely 
-                with our marketing team to create unique web pages for various club events, often 
-                under tight deadlines of 3-5 days. The marketing team provided the branding and the assets while
-                the tech team (us!) would design and develop the webpage.
-                </p>
-            </div>
-            <div className='project-overview-summaries'>
-                <div class='summary-vertical-sections'>
-                <h3 class='summary-titles'>ROLE</h3>
-                <p class='summary-text'>Web Design</p>
-                <p class='summary-text'>Web Development</p>
-            </div>
-            <div class='summary-vertical-sections'>
-                <h3 class='summary-titles'>TEAM</h3>
-                <p class='summary-text'>Melody Miao (SP24 & FA24)</p>
-                <p class='summary-text'>Eric Yang (SP24)</p>
-                <p class='summary-text'>JR Garbe (FA24)</p>
-            </div>
-        </div>
+      {/* ── Hero ── */}
+      <div className="proj-hero">
+        <img src={InnoDPreview} alt="Innovative Design project" />
       </div>
-    </section>
 
-    <body>
+      {/* ── Body: sidebar + content ── */}
+      <div className="proj-body">
 
-        <section className='innod-section'>
-            <section className='two-column-text'>
-                <div className='left-column'>
-                    <h3 className='project-stage'>SPRING 2024</h3>
-                    <h1 className='stage-title'>Club/DeCal Recruitment</h1>
-                    <p class="project-text">
-                    Every semester, our club opened applications to join the club and 
-                    the student-led classes (known as DeCals at UC Berkeley) we offer.
-                    This webpage provided the recruitment timeline as well as the links 
-                    to applications for each team and course. This page showcases vibrant
-                    artwork made by the marketing team and is often the first impression
-                    that people have of the club.
-                    </p>
-                    <p class="project-text">
-                    The theme for this recruitment season was a colorful, comic-book-inspired theme.
-                    </p>
+        {/* Sticky sidebar */}
+        <nav className="proj-sidebar">
+          <div className="proj-sidebar-nav">
+            {CHAPTERS.map(c => (
+              <button
+                key={c.id}
+                className={`proj-sidebar-link ${activeId === c.id ? 'active' : ''}`}
+                onClick={() => scrollTo(c.id)}
+                style={{ background: activeId === c.id ? undefined : 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="proj-sidebar-footer">
+            <Link className="proj-sidebar-project-link" to="/checkt" onClick={handleLinkClick}>
+              ← Previous: Checkt
+            </Link>
+          </div>
+        </nav>
+
+        {/* Content */}
+        <main className="proj-content">
+
+          {/* ── OVERVIEW ── */}
+          <section id="overview" className="proj-chapter">
+
+            <div className="proj-project-intro">
+              <div>
+                <span className="proj-project-eyebrow">Innovative Design</span>
+                <h1 className="proj-overview-title">Engaging event web pages under tight deadlines</h1>
+              </div>
+              <div className="proj-overview-meta">
+                <div className="proj-meta-group">
+                  <h3>Role</h3>
+                  <p>Web Design</p>
+                  <p>Web Development</p>
                 </div>
-                <div className='right-column'>
-                    <img className='innod-logo' src={SP24RecruitLogo} />
+                <div className="proj-meta-group">
+                  <h3>Team</h3>
+                  <p>Melody Miao</p>
+                  <p>Eric Yang (SP24)</p>
+                  <p>JR Garbe (FA24)</p>
                 </div>
-            </section>
-            
-            <div className='webpage-image-div'>
-                <h3>
-                    Scroll over image to see full page design
-                </h3>
-                <div className='image-scroll-container'>
-                    <img className='webpage-design' src={SP24RecruitPage} />
+                <div className="proj-meta-group">
+                  <h3>Timeline</h3>
+                  <p>Jan – Dec 2024</p>
                 </div>
+              </div>
             </div>
-        </section>
 
-        <section className='innod-section'>
-            <section className='two-column-text'>
-                <div className='left-column'>
-                    <h3 className='project-stage'>SPRING 2024</h3>
-                    <h1 className='stage-title'>Reach Grow Build</h1>
-                    <p class="project-text">
-                    Reach Grow Build (RGB) is a speaker series where professionals artists and photographers
-                    give workshops and speak about their experience, giving students learning and networking opportunities.
-                    </p>
-                    <p class="project-text">
-                    This theme was casino-inspired and featured elements of well-loved games around the world including
-                    chess, pool, roulette, mahjong, and more.
-                    </p>
-                </div>
-                <div className='right-column'>
-                    <img className='innod-logo' src={SP24RGBLogo} />
-                </div>
-            </section>
-            
-            <div className='webpage-image-div'>
-                <h3>
-                    Scroll over image to see full page design
-                </h3>
-                <div className='image-scroll-container'>
-                    <img className='webpage-design' src={SP24RGB} />
-                </div>
+            <div className="proj-text-block">
+              <div className="proj-heading">
+                <span className="proj-chapter-label">Overview</span>
+                <h2>Design and ship in 3–5 days</h2>
+              </div>
+              <p>
+                As VP of Technology of UC Berkeley's Innovative Design club, I worked closely
+                with the marketing team to create unique web pages for club events — often under
+                tight deadlines of 3–5 days. The marketing team provided branding and assets;
+                the tech team designed and built the page.
+              </p>
             </div>
-        </section>
 
-        <section className='innod-section'>
-            <section className='two-column-text'>
-                <div className='left-column'>
-                    <h3 className='project-stage'>SPRING 2024</h3>
-                    <h1 className='stage-title'>Hone and Explore</h1>
-                    <p class="project-text">
-                    Hone and Explore (HEX) is a weekend of free graphic design, photography, and website design workshops 
-                    hosted by InnoD club members where students learn various creative skills.
-                    </p>
-                    <p class="project-text">
-                    This theme was a chromecore, Y2K futurism aesthetic.
-                    </p>
+          </section>
+
+          {/* ── SP24 RECRUITMENT ── */}
+          <section id="sp24-recruit" className="proj-chapter">
+            <div className="proj-text-block">
+              <div className="proj-row">
+                <div className="proj-row-label">
+                  <div className="proj-heading">
+                    <span className="proj-chapter-label">Spring 2024</span>
+                    <h2>Club / DeCal Recruitment</h2>
+                  </div>
+                  <p>
+                    Every semester the club opens applications for teams and student-led DeCal courses.
+                    This page showcased the recruitment timeline and application links — often the first
+                    impression prospective members have of InnoD.
+                  </p>
+                  <p>Theme: colorful, comic-book-inspired.</p>
                 </div>
-                <div className='right-column'>
-                    <img className='innod-logo' src={SP24HEXLogo} />
+                <div className="proj-row-content">
+                  <img src={SP24RecruitLogo} alt="SP24 Recruitment logo" />
                 </div>
-            </section>
-            
-            <div className='webpage-image-div'>
-                <h3>
-                    Scroll over image to see full page design
-                </h3>
-                <div className='image-scroll-container'>
-                    <img className='webpage-design' src={SP24HEX} />
-                </div>
+              </div>
             </div>
-        </section>
-
-        <section className='innod-section'>
-            <section className='two-column-text'>
-                <div className='left-column'>
-                    <h3 className='project-stage'>FALL 2024</h3>
-                    <h1 className='stage-title'>Club/DeCal Recruitment</h1>
-                    <p class="project-text">
-                    Once again for our club's recruitment season, this webpage 
-                    provided the timeline as well as the links 
-                    to each team/Decal course application.
-                    </p>
-                    <p class="project-text">
-                    The theme for this recruitment season was a cozy, Animal Crossing-inspired bakery theme.
-                    </p>
-                </div>
-                <div className='right-column'>
-                    <img className='innod-logo' src={FA24RecruitLogo} />
-                </div>
-            </section>
-            
-            <div className='webpage-image-div'>
-                <h3>
-                    Scroll over image to see full page design
-                </h3>
-                <div className='image-scroll-container'>
-                    <img className='webpage-design' src={FA24RecruitPage} />
-                </div>
+            <div className="proj-page-preview">
+              <span className="proj-page-preview-label">Scroll to see full page</span>
+              <div className="proj-scroll-container">
+                <img src={SP24RecruitPage} alt="SP24 Recruitment full page design" />
+              </div>
             </div>
-        </section>
+          </section>
 
-        <section className='innod-section'>
-            <section className='two-column-text'>
-                <div className='left-column'>
-                    <h3 className='project-stage'>FALL 2024</h3>
-                    <h1 className='stage-title'>Hone and Explore</h1>
-                    <p class="project-text">
-                    Hone and Explore (HEX) is a weekend of free graphic design, photography, and website design workshops 
-                    hosted by InnoD club members where students learn various creative skills.
-                    </p>
-                    <p class="project-text">
-                    This theme featured a throwback 90s Windows theme with interactive, 3D jelly-like elements, 
-                    blending the nostalgic theme with a modern touch. The webpage also had clickable "file" buttons on the 
-                    upper-left corner of the design which displayed pop-ups of the schedule for each day.
-                    </p>
+          {/* ── SP24 RGB ── */}
+          <section id="sp24-rgb" className="proj-chapter">
+            <div className="proj-text-block">
+              <div className="proj-row">
+                <div className="proj-row-label">
+                  <div className="proj-heading">
+                    <span className="proj-chapter-label">Spring 2024</span>
+                    <h2>Reach Grow Build</h2>
+                  </div>
+                  <p>
+                    RGB is a speaker series where professional artists and photographers give workshops
+                    and share their experience, offering students learning and networking opportunities.
+                  </p>
+                  <p>Theme: casino-inspired — chess, pool, roulette, mahjong, and more.</p>
                 </div>
-                <div className='right-column'>
-                    <img className='innod-logo' src={FA24HEXLogo} />
+                <div className="proj-row-content">
+                  <img src={SP24RGBLogo} alt="SP24 RGB logo" />
                 </div>
-            </section>
-            
-            <div className='webpage-image-div'>
-                <h3>
-                    Scroll over image to see full page design
-                </h3>
-                <div className='image-scroll-container'>
-                    <img className='webpage-design' src={FA24HEX} />
-                </div>
+              </div>
             </div>
-        </section>
-
-        <section className='innod-section'>
-            <section className='two-column-text'>
-                <div className='left-column'>
-                    <h3 className='project-stage'>FALL 2024</h3>
-                    <h1 className='stage-title'>Come Make Your Mark</h1>
-                    <p class="project-text">
-                    Come Make Your Mark (CMYK) is a designathon and speaker series. Students have the opportunity
-                    to participate in workshops given by professionals in the design industry and compete in a 
-                    design competition with a design challenge created by a company/business. This year's designathon
-                    was in partnership with Problem Library.
-                    </p>
-                    <p class="project-text">
-                    This theme was inspired by KASAKII STORE graphics, featuring a grid background, bold black outlines
-                    and lettering, bright colors, and a mixture of minimalist and maximalist elements.
-                    </p>
-                </div>
-                <div className='right-column'>
-                    <img className='innod-logo' src={FA24CMYKLogo} />
-                </div>
-            </section>
-            
-            <div className='webpage-image-div'>
-                <h3>
-                    Scroll over image to see full page design
-                </h3>
-                <div className='image-scroll-container'>
-                    <img className='webpage-design' src={FA24CMYK} />
-                </div>
+            <div className="proj-page-preview">
+              <span className="proj-page-preview-label">Scroll to see full page</span>
+              <div className="proj-scroll-container">
+                <img src={SP24RGB} alt="SP24 RGB full page design" />
+              </div>
             </div>
-        </section>
+          </section>
 
-        <section className='next-project-section'>
-            <div className='link-wrapper'>
-                <Link className='next-project-link' to="/checkt" onClick={handleLinkClick}>
-                    <span className="left-arrow">←</span>
-                    <div className='previous-project-text'>
-                    <h3 className='project-stage'>PREVIOUS PROJECT</h3>
-                    <h1 className='project-title'>CHECKT</h1>
-                    </div>
-                </Link>
-
-                <div>
+          {/* ── SP24 HEX ── */}
+          <section id="sp24-hex" className="proj-chapter">
+            <div className="proj-text-block">
+              <div className="proj-row">
+                <div className="proj-row-label">
+                  <div className="proj-heading">
+                    <span className="proj-chapter-label">Spring 2024</span>
+                    <h2>Hone and Explore</h2>
+                  </div>
+                  <p>
+                    HEX is a weekend of free graphic design, photography, and web design workshops
+                    hosted by InnoD members — a space for students to pick up new creative skills.
+                  </p>
+                  <p>Theme: chromecore, Y2K futurism.</p>
                 </div>
+                <div className="proj-row-content">
+                  <img src={SP24HEXLogo} alt="SP24 HEX logo" />
+                </div>
+              </div>
             </div>
-        </section>
-    </body>
+            <div className="proj-page-preview">
+              <span className="proj-page-preview-label">Scroll to see full page</span>
+              <div className="proj-scroll-container">
+                <img src={SP24HEX} alt="SP24 HEX full page design" />
+              </div>
+            </div>
+          </section>
 
-    <Footer />
-      
+          {/* ── FA24 RECRUITMENT ── */}
+          <section id="fa24-recruit" className="proj-chapter">
+            <div className="proj-text-block">
+              <div className="proj-row">
+                <div className="proj-row-label">
+                  <div className="proj-heading">
+                    <span className="proj-chapter-label">Fall 2024</span>
+                    <h2>Club / DeCal Recruitment</h2>
+                  </div>
+                  <p>
+                    The fall recruitment page again provided the timeline and application links
+                    for all teams and DeCal courses.
+                  </p>
+                  <p>Theme: cozy Animal Crossing-inspired bakery.</p>
+                </div>
+                <div className="proj-row-content">
+                  <img src={FA24RecruitLogo} alt="FA24 Recruitment logo" />
+                </div>
+              </div>
+            </div>
+            <div className="proj-page-preview">
+              <span className="proj-page-preview-label">Scroll to see full page</span>
+              <div className="proj-scroll-container">
+                <img src={FA24RecruitPage} alt="FA24 Recruitment full page design" />
+              </div>
+            </div>
+          </section>
+
+          {/* ── FA24 HEX ── */}
+          <section id="fa24-hex" className="proj-chapter">
+            <div className="proj-text-block">
+              <div className="proj-row">
+                <div className="proj-row-label">
+                  <div className="proj-heading">
+                    <span className="proj-chapter-label">Fall 2024</span>
+                    <h2>Hone and Explore</h2>
+                  </div>
+                  <p>
+                    The fall HEX page featured a throwback 90s Windows theme with interactive,
+                    3D jelly-like elements — blending nostalgia with a modern touch. Clickable
+                    "file" buttons in the corner triggered pop-ups showing the schedule for each day.
+                  </p>
+                </div>
+                <div className="proj-row-content">
+                  <img src={FA24HEXLogo} alt="FA24 HEX logo" />
+                </div>
+              </div>
+            </div>
+            <div className="proj-page-preview">
+              <span className="proj-page-preview-label">Scroll to see full page</span>
+              <div className="proj-scroll-container">
+                <img src={FA24HEX} alt="FA24 HEX full page design" />
+              </div>
+            </div>
+          </section>
+
+          {/* ── FA24 CMYK ── */}
+          <section id="fa24-cmyk" className="proj-chapter">
+            <div className="proj-text-block">
+              <div className="proj-row">
+                <div className="proj-row-label">
+                  <div className="proj-heading">
+                    <span className="proj-chapter-label">Fall 2024</span>
+                    <h2>Come Make Your Mark</h2>
+                  </div>
+                  <p>
+                    CMYK is a designathon and speaker series where students compete in a design
+                    challenge set by an industry partner — this year, Problem Library. Workshops
+                    from design professionals ran alongside the competition.
+                  </p>
+                  <p>Theme: KASAKII STORE-inspired — grid backgrounds, bold outlines, bright colors, maximalist energy.</p>
+                </div>
+                <div className="proj-row-content">
+                  <img src={FA24CMYKLogo} alt="FA24 CMYK logo" />
+                </div>
+              </div>
+            </div>
+            <div className="proj-page-preview">
+              <span className="proj-page-preview-label">Scroll to see full page</span>
+              <div className="proj-scroll-container">
+                <img src={FA24CMYK} alt="FA24 CMYK full page design" />
+              </div>
+            </div>
+          </section>
+
+        </main>
+      </div>
+
+      <Footer />
     </>
   );
-}
+};
 
 export default InnoDProject;
