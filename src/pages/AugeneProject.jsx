@@ -4,10 +4,8 @@ import './AugeneProject.css';
 import './Projects.css';
 import Header from '../assets/components/Header';
 import Footer from '../assets/components/Footer';
-import AugeneThumb from '../images/portfolio-grid/augene thumbnail.jpg';
-import AugeneLogo from '../assets/images/augene/Augene Logo.jpg';
-import SkincareProducts from '../assets/images/augene/skincare products.jpg';
-import Competitors from '../assets/images/augene/augene competitors.jpg';
+import AugeneThumb from '../assets/images/portfolio-grid/augene thumbnail.jpg';
+import SkincareProducts from '../assets/images/augene/skincare products.png';
 import CompetitiveAnalysis from '../assets/images/augene/competitive analysis.jpg';
 import Persona from '../assets/images/augene/persona.jpg';
 import HMW from '../assets/images/augene/hmw.jpg';
@@ -35,10 +33,8 @@ const AugeneProject = () => {
 
   useEffect(() => {
     const sections = CHAPTERS.map(c => document.getElementById(c.id)).filter(Boolean);
-
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        // find the topmost intersecting section
         const visible = entries
           .filter(e => e.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
@@ -46,7 +42,6 @@ const AugeneProject = () => {
       },
       { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
     );
-
     sections.forEach(s => observerRef.current.observe(s));
     return () => observerRef.current?.disconnect();
   }, []);
@@ -88,7 +83,6 @@ const AugeneProject = () => {
           {/* ── OVERVIEW ── */}
           <section id="overview" className="aug-chapter">
 
-            {/* Project intro */}
             <div className="aug-project-intro">
               <h1 className="aug-overview-title">Augene Beauty</h1>
               <div className="aug-overview-meta">
@@ -99,96 +93,140 @@ const AugeneProject = () => {
                   <p>Prototype</p>
                 </div>
                 <div className="aug-meta-group">
+                  <h3>Team</h3>
+                  <p>Solo designer</p>
+                </div>
+                <div className="aug-meta-group">
+                  <h3>Skills</h3>
+                  <p>User Research</p>
+                  <p>Product Design</p>
+                </div>
+                <div className="aug-meta-group">
                   <h3>Timeline</h3>
-                  <p>June 2024 –</p>
-                  <p>August 2024</p>
+                  <p>June – August 2024</p>
                   <p>(10 weeks)</p>
                 </div>
               </div>
-              <p className="aug-overview-desc">
-                During my 10-week internship at Augene Beauty, I designed a new website and
-                created a comprehensive dashboard to allow clinicians and patients to view results
-                about their skin, learn about specific skincare ingredients for their skin concerns,
-                and discover the most optimal skincare regimen catered to their skin microbiome
-                and lifestyle.
+            </div>
+
+            <div className="aug-text-block">
+              <div className="aug-heading">
+                <span className="aug-chapter-label">Overview</span>
+                <h2>The 23andMe for your skin</h2>
+              </div>
+              <p>
+                Augene Beauty analyzes the facial microbiome to help clinicians make
+                evidence-based skincare recommendations, rather than generic advice,
+                toward routines that actually match each patient's biology. My job was
+                to design the product that sits between the lab results and the patient 
+                and make complex data feel clear, personal, and actionable.
               </p>
             </div>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <h2>Background</h2>
-                <p>
-                  Augene Beauty is the "23andMe" for the facial microbiome — helping clinicians
-                  make informed skincare recommendations using microbiome analysis.
-                </p>
-              </div>
-              <div className="aug-row-content">
-                <img src={AugeneLogo} alt="Augene logo" />
-              </div>
+            <div className="aug-showcase">
+              <img src={SkincareProducts} alt="Skincare products" />
             </div>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <h2>Problem</h2>
-                <p>
-                  Skincare recommendations online are often generic and fail to account for
-                  the unique microbiome of an individual's skin, leading to ineffective
-                  treatments and frustration.
-                </p>
+            <div className="aug-text-block">
+              <div className="aug-heading">
+                <h2>Generic advice doesn't work for everyone</h2>
               </div>
-              <div className="aug-row-content">
-                <img src={SkincareProducts} alt="Skincare products" />
-              </div>
+              <p>
+                The skincare internet is full of recommendations, but most are one-size-fits-all 
+                (best products for oily skin, best routine for beginners, etc.). For people with
+                complex or sensitive skin, this noise is overwhelming and confusing. Augene's
+                microbiome analysis offers something personalized and useful, but only if the results
+                are actually understandable and actionable for the person reading them.
+              </p>
+              <p>
+                The question I was designing for wasn't <em>"how do we show test results?"</em>,
+                it was <em>"how do we make someone feel confident about their skin and their routines?"</em>
+              </p>
             </div>
+
           </section>
 
           {/* ── RESEARCH ── */}
           <section id="research" className="aug-chapter">
-            <p className="aug-chapter-label">Research</p>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <h2>Competitor Analysis</h2>
-                <p>
-                  I analyzed multiple skin testing companies to understand how they delivered
-                  results to users — looking at testing methods, data presentation, and
-                  recommendation flows.
-                </p>
+            <div className="aug-text-block">
+              <div className="aug-heading">
+                <span className="aug-chapter-label">Research</span>
+                <h2>What are competitors missing?</h2>
               </div>
-              <div className="aug-row-content">
-                <img src={Competitors} alt="Competitor logos" />
-              </div>
+              <p>
+                I analyzed skin testing companies across four dimensions: how they collected
+                samples, how they displayed results, how they made product recommendations,
+                and how they educated users. Most delivered a PDF report or a simple score 
+                without next steps or something to build understanding over time.
+              </p>
             </div>
 
             <div className="aug-showcase">
               <img src={CompetitiveAnalysis} alt="Competitive analysis matrix" />
               <span className="aug-showcase-caption">Competitive analysis across skin testing companies</span>
             </div>
+
+            <div className="aug-text-block">
+              <div className="aug-heading">
+                <h2>Three gaps worth designing for</h2>
+              </div>
+              <div className="aug-insight-list">
+                <div className="aug-insight">
+                  <span className="aug-insight-number">01</span>
+                  <div>
+                    <p className="aug-insight-title">Results without context</p>
+                    <p>Competitors showed scores but didn't explain what they meant or what to do about them. Patients were left to interpret data with no medical background.</p>
+                  </div>
+                </div>
+                <div className="aug-insight">
+                  <span className="aug-insight-number">02</span>
+                  <div>
+                    <p className="aug-insight-title">No path to products</p>
+                    <p>Analysis and product recommendations weren't connected or didn't exist at all. The leap from "your skin is dry" to "here's what to buy" was left to the user.</p>
+                  </div>
+                </div>
+                <div className="aug-insight">
+                  <span className="aug-insight-number">03</span>
+                  <div>
+                    <p className="aug-insight-title">One-time, not ongoing</p>
+                    <p>Most experiences felt like a report you read once. There was no reason to track your skin progress over time.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </section>
 
           {/* ── SYNTHESIS ── */}
           <section id="synthesis" className="aug-chapter">
-            <p className="aug-chapter-label">Synthesis</p>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <h2>Personas</h2>
-                <p>
-                  I created personas to represent clinicians and patients to understand their
-                  distinct needs when interacting with the Augene app.
-                </p>
+            <div className="aug-text-block">
+              <div className="aug-heading">
+                <span className="aug-chapter-label">Synthesis</span>
+                <h2>Two users, very different needs</h2>
               </div>
-              <div className="aug-row-content">
-                <img src={Persona} alt="User personas" />
-              </div>
+              <p>
+                The Augene dashboard serves two distinct users: the clinician who interprets
+                results and the patient who acts on them. I built personas for both to keep
+                their different mental models visible throughout the design process:
+                a clinician wants density and precision, and a patient needs clarity and confidence.
+              </p>
+            </div>
+
+            <div className="aug-showcase">
+              <img src={Persona} alt="User personas for clinician and patient" />
             </div>
 
             <div className="aug-row">
               <div className="aug-row-label">
-                <h2>How Might We</h2>
+                <div className="aug-heading">
+                  <h2>Three pain points, three design questions</h2>
+                </div>
                 <p>
-                  From research, I identified three core pain points and translated them into
-                  "How Might We" questions to guide design decisions.
+                  From the competitor gaps and persona needs, I distilled three core problems
+                  and framed each as a "How Might We" question to keep design decisions
+                  grounded in real friction rather than assumptions.
                 </p>
               </div>
               <div className="aug-row-content">
@@ -196,23 +234,49 @@ const AugeneProject = () => {
               </div>
             </div>
 
+            <div className="aug-text-block">
+              <div className="aug-heading">
+                <h2>Design principles before touching Figma</h2>
+              </div>
+              <p>Before wireframing, I established three principles to guide every decision:</p>
+              <div className="aug-principles">
+                <div className="aug-principle">
+                  <p className="aug-principle-title">Translate, don't display</p>
+                  <p>Raw microbiome scores mean nothing to most patients. Every data point needed to be reframed as something actionable, such as a concern to address, an ingredient to look for, or a step to add.</p>
+                </div>
+                <div className="aug-principle">
+                  <p className="aug-principle-title">Connect results to routine</p>
+                  <p>The experience needed to feel like one continuous flow from test results to understanding to products to a routine.</p>
+                </div>
+                <div className="aug-principle">
+                  <p className="aug-principle-title">Give patients control</p>
+                  <p>Clinician recommendations should be a starting point, not a prescription. Users needed the flexibility to swap products, adjust steps, and build something that fit their real life.</p>
+                </div>
+              </div>
+            </div>
+
             <div className="aug-row">
               <div className="aug-row-label">
-                <h2>Hypothesis</h2>
+                <div className="aug-heading">
+                  <h2>A dashboard that does more than show results</h2>
+                </div>
                 <p>
-                  By offering a place to view skin results, navigate a skincare routine, and
-                  learn about recommendations, Augene Beauty can stand out among its
-                  competitors.
+                  A dashboard doesn't just display test data, it creates
+                  a place where patients could understand their skin, explore product
+                  options, and follow a personalized routine. This framing shaped
+                  all screens that followed.
                 </p>
               </div>
               <div className="aug-row-content">
-                <img src={AugeneMockup} alt="Early mockup" />
+                <img src={AugeneMockup} alt="Early dashboard mockup" />
               </div>
             </div>
+
           </section>
 
           {/* ── SOLUTION ── */}
           <section id="solution" className="aug-chapter">
+
             <div className="aug-solution-intro">
               <span className="aug-chapter-label">Solution</span>
               <h1 className="aug-solution-name">Augene Dashboard</h1>
@@ -220,86 +284,103 @@ const AugeneProject = () => {
             </div>
 
             <div className="aug-showcase">
-              <img src={DashboardPreview} alt="Dashboard overview" />
+              <img src={DashboardPreview} alt="Dashboard full overview" />
             </div>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <p className="aug-feature-label">Home</p>
-                <h2 className="aug-feature-title">Skin Health Summary</h2>
-                <p className="aug-feature-desc">
-                  View skin diagnostics, top skincare ingredients, and clinician notes to
-                  understand the skin's needs at a glance.
-                </p>
+            <div className="aug-feature">
+              <div className="aug-feature-title-row">
+                <span className="aug-feature-emoji">🏠</span>
+                <h2 className="aug-feature-title">Everything you need to know, upfront</h2>
               </div>
-              <div className="aug-row-content">
-                <img src={Dashboard1} alt="Dashboard home screen" />
-              </div>
-            </div>
-
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <p className="aug-feature-label">Skin Analysis</p>
-                <h2 className="aug-feature-title">Learn About Your Skin</h2>
-                <p className="aug-feature-desc">
-                  Understand your skin's risks and how to protect it from potential conditions.
-                </p>
-              </div>
-              <div className="aug-row-content">
-                <img src={Dashboard2} alt="Skin analysis screen" />
+              <p className="aug-feature-desc">
+                Skin type, key concerns, top recommended ingredients, and a note from
+                your clinician are all visible at first glance. The home screen is designed
+                to help quickly understand the user's current skin condition.
+              </p>
+              <div className="aug-feature-img-wrap">
+                <img className="aug-feature-img" src={Dashboard1} alt="Dashboard home screen" />
               </div>
             </div>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <p className="aug-feature-label">Products for You</p>
-                <h2 className="aug-feature-title">The Best Products for Your Skin</h2>
-                <p className="aug-feature-desc">
-                  Compare and select products tailored to your skin profile and routine.
-                </p>
+            <div className="aug-feature">
+              <div className="aug-feature-title-row">
+                <span className="aug-feature-emoji">🔬</span>
+                <h2 className="aug-feature-title">Understand the risks, not just the numbers</h2>
               </div>
-              <div className="aug-row-content">
-                <img src={Dashboard3} alt="Products screen" />
+              <p className="aug-feature-desc">
+                Rather than showing raw microbiome data, the analysis screen translates
+                results into plain language. Understand what conditions your skin is at risk for,
+                and what you can do about each one.
+              </p>
+              <div className="aug-feature-img-wrap">
+                <img className="aug-feature-img" src={Dashboard2} alt="Skin analysis screen" />
               </div>
             </div>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <p className="aug-feature-label">Build Your Routine</p>
-                <h2 className="aug-feature-title">Your Personalized Routine</h2>
-                <p className="aug-feature-desc">
-                  See your step-by-step, personalized skincare routine built around your
-                  microbiome data.
-                </p>
+            <div className="aug-feature">
+              <div className="aug-feature-title-row">
+                <span className="aug-feature-emoji">🛍️</span>
+                <h2 className="aug-feature-title">Recommendations you can actually compare</h2>
               </div>
-              <div className="aug-row-content">
-                <img src={Dashboard4} alt="Routine builder screen" />
+              <p className="aug-feature-desc">
+                Instead of a single suggested product, users can browse and compare options
+                filtered to their skin profile so they can compare price, ingredients,
+                and reviews before committing to a routine.
+              </p>
+              <div className="aug-feature-img-wrap">
+                <img className="aug-feature-img" src={Dashboard3} alt="Product recommendations screen" />
               </div>
             </div>
+
+            <div className="aug-feature">
+              <div className="aug-feature-title-row">
+                <span className="aug-feature-emoji">📋</span>
+                <h2 className="aug-feature-title">A routine built around your life, not a template</h2>
+              </div>
+              <p className="aug-feature-desc">
+                The routine builder lets users select products step by step, with AM/PM
+                labeling and ordering built in. It's flexible to fit different budgets
+                while still reflecting what the microbiome data suggests.
+              </p>
+              <div className="aug-feature-img-wrap">
+                <img className="aug-feature-img" src={Dashboard4} alt="Routine builder screen" />
+              </div>
+            </div>
+
           </section>
 
           {/* ── REFLECTION ── */}
           <section id="reflection" className="aug-chapter">
-            <p className="aug-chapter-label">Reflection</p>
 
-            <div className="aug-row">
-              <div className="aug-row-label">
-                <h2>Empathizing with the User</h2>
-                <p>
-                  Designing this dashboard required deeply empathizing with skincare users.
-                  Instead of a rigid routine, I designed a routine builder that lets users
-                  balance budget and personal preferences.
-                </p>
-                <p style={{ marginTop: '16px' }}>
-                  Drawing on my own confusion as a skincare beginner, I added clear AM/PM
-                  labeling and routine ordering — details I likely would have missed without
-                  that lived experience.
-                </p>
+            <div className="aug-text-block">
+              <div className="aug-heading">
+                <span className="aug-chapter-label">Reflection</span>
+                <h2>Designing from the inside out</h2>
               </div>
-              <div className="aug-row-content">
-                <img src={Picnic} alt="Augene team picnic" />
-              </div>
+              <p>
+                The most useful thing I brought to this project wasn't a design process, 
+                it was having been a confused skincare beginner myself. That experience
+                pushed me toward AM/PM labels, flexible routine ordering, and plain-language
+                explanations that I wouldn't have prioritized otherwise.
+              </p>
+              <p>
+                If I had more time, I would have run usability tests with real patients, 
+                especially with the routine builder, which had the most interaction
+                complexity. I made a lot of calls based on personal intuition and competitor
+                gaps, and real user feedback would have stress-tested those assumptions in
+                ways that design reviews alone couldn't.
+              </p>
+              <p>
+                This internship also showed me how much good design depends on the people
+                around you. The team's energy made it easier to push ideas further, ask the
+                dumb questions, and actually enjoy the process.
+              </p>
             </div>
+
+            <div className="aug-showcase">
+              <img src={Picnic} alt="Augene team at a picnic" />
+            </div>
+
           </section>
 
         </main>

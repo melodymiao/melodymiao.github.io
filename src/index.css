@@ -12,47 +12,6 @@
   margin: 0;
 }
 
-h1 {
-  font-family: "Domine", serif;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 1.2;
-  color: #292929;
-}
-
-h2 {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: normal;
-}
-
-h3 {
-  font-family: "DM Mono", monospace;
-  font-weight: 400;
-  font-size: 13px;
-  color: #BFBFBF;
-  line-height: 1.8;
-  text-transform: uppercase;
-  letter-spacing: 0;
-}
-
-p {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #6c6c6c;
-  line-height: 1.8;
-}
-
-li {
-  font-family: "DM Sans", sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: #6c6c6c;
-  line-height: 1.8;
-}
-
 .section {
   display: flex;
   flex-direction: column;
@@ -61,7 +20,7 @@ li {
   gap: 40px;
 }
 
-.dark-text  { color: #292929; }
+.dark-text { color: #292929; }
 .gray-text  { color: #BFBFBF; }
 
 body {
