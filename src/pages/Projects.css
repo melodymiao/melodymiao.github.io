@@ -1114,3 +1114,33 @@
     min-height: 260px;
   }
 }
+
+/* ─── InnoD scrollable page preview ────────────────── */
+.proj-page-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.proj-page-preview-label {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  font-weight: 400;
+  color: #BFBFBF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.proj-scroll-container {
+  overflow-y: scroll;
+  border: 6px solid #f4f4f4;
+  border-radius: 12px;
+  max-height: 560px;
+  width: 100%;
+}
+
+.proj-scroll-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
