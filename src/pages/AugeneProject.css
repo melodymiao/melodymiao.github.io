@@ -61,9 +61,9 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px;
+  /* no max-width / margin:auto here — we want the sidebar's left edge to
+     sit at exactly the same 24px as the header wordmark */
+  padding: 0 24px 0 24px;
   box-sizing: border-box;
   align-items: flex-start;
 }
@@ -72,35 +72,93 @@
 .aug-sidebar {
   position: sticky;
   top: 80px;
-  width: 180px;
+  width: 200px;
   flex-shrink: 0;
-  padding: 80px 0 80px;
+  padding: 80px 0 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  height: calc(100vh - 160px);
+  justify-content: flex-start;
+}
+
+.aug-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .aug-sidebar-link {
   font-family: "DM Mono", monospace;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #BFBFBF;
   text-decoration: none;
-  padding: 7px 0 7px 16px;
-  border-left: 2px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
   line-height: 1;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
 }
 
 .aug-sidebar-link:hover {
   color: #292929;
+  background-color: #f4f4f4;
 }
 
 .aug-sidebar-link.active {
   color: #2A68FB;
-  border-left-color: #2A68FB;
+  background-color: #EEF3FF;
+}
+
+/* ─── Sidebar bottom nav (prev / next) ──────────────── */
+.aug-sidebar-footer {
+  margin-top: auto;
+  padding-top: 20px;
+  padding-bottom: 24px;
+  border-top: 1px solid #e8e8e8;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.aug-sidebar-project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  font-weight: 400;
+  color: #292929;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  padding: 8px 12px 8px 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  /* align text with header — sidebar already sits at body 24px left edge,
+     so no extra left padding needed on the pill itself */
+  margin-left: 0;
+}
+
+.aug-sidebar-project-link:hover {
+  background-color: #e4e4e4;
+  color: #292929;
+}
+
+/* hide the old label/name sub-elements — pill is one line now */
+.aug-sidebar-project-label,
+.aug-sidebar-project-name {
+  display: none;
 }
 
 /* ─── Content area ──────────────────────────────────── */
@@ -378,22 +436,22 @@
   line-height: 1.8;
 }
 
-/* ─── Next project nav ──────────────────────────────── */
-.aug-next {
-  display: flex;
-  justify-content: flex-end;
-  padding: 80px 24px;
-  border-top: 1px solid #e8e8e8;
-  max-width: 1400px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+/* ─── Project eyebrow label (gray mono above title) ─── */
+.aug-project-eyebrow {
+  font-family: "DM Mono", monospace;
+  font-size: 15px;
+  font-weight: 400;
+  color: #BFBFBF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  display: block;
 }
 
 /* ─── Mobile ────────────────────────────────────────── */
 @media (max-width: 900px) {
   .aug-sidebar {
-    display: none;
+    display: none !important;
   }
 
   .aug-body {

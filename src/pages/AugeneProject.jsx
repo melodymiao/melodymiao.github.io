@@ -65,16 +65,27 @@ const AugeneProject = () => {
 
         {/* Sticky sidebar */}
         <nav className="aug-sidebar">
-          {CHAPTERS.map(c => (
-            <button
-              key={c.id}
-              className={`aug-sidebar-link ${activeId === c.id ? 'active' : ''}`}
-              onClick={() => scrollTo(c.id)}
-              style={{ background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
-            >
-              {c.label}
-            </button>
-          ))}
+          <div className="aug-sidebar-nav">
+            {CHAPTERS.map(c => (
+              <button
+                key={c.id}
+                className={`aug-sidebar-link ${activeId === c.id ? 'active' : ''}`}
+                onClick={() => scrollTo(c.id)}
+                style={{ background: activeId === c.id ? undefined : 'none', border: 'none', cursor: 'pointer', textAlign: 'left' }}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="aug-sidebar-footer">
+            <a className="aug-sidebar-project-link" href="https://drank.vercel.app" target="_blank" rel="noreferrer">
+              ← Previous: Drank
+            </a>
+            <Link className="aug-sidebar-project-link" to="/checkt" onClick={handleLinkClick}>
+              → Next: Checkt
+            </Link>
+          </div>
         </nav>
 
         {/* Content */}
@@ -84,7 +95,10 @@ const AugeneProject = () => {
           <section id="overview" className="aug-chapter">
 
             <div className="aug-project-intro">
-              <h1 className="aug-overview-title">Augene Beauty</h1>
+              <div>
+                <span className="aug-project-eyebrow">Augene Beauty</span>
+                <h1 className="aug-overview-title">Simplifying skincare for patients &amp; clinics</h1>
+              </div>
               <div className="aug-overview-meta">
                 <div className="aug-meta-group">
                   <h3>Role</h3>
@@ -386,16 +400,6 @@ const AugeneProject = () => {
         </main>
       </div>
 
-      {/* ── Next project ── */}
-      <div className="aug-next">
-        <Link className="next-project-link" to="/checkt" onClick={handleLinkClick}>
-          <div className="next-project-text">
-            <h3 className="project-stage">Next Project</h3>
-            <h1 className="project-title">CHECKT</h1>
-          </div>
-          <span className="right-arrow">→</span>
-        </Link>
-      </div>
 
       <Footer />
     </>
