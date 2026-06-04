@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { HashLink } from "react-router-hash-link";
 import { Link } from 'react-router-dom';
 import './Header.css';
-import Resume from '../documents/Melody Miao - Product Designer.pdf'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +28,7 @@ const Header = () => {
           <Link to="/about" className='nav-button' onClick={scrollToTop}>
             About
           </Link>
-          <a href={Resume} className='nav-button' target='_blank'>
+          <a href="/Melody_Miao_Product_Designer.pdf" className='nav-button' target='_blank'>
             Resume
           </a>
         </div>
