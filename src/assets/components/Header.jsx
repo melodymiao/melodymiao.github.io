@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { HashLink } from "react-router-hash-link";
 import { Link } from 'react-router-dom';
 import './Header.css';
 
@@ -22,9 +21,11 @@ const Header = () => {
         </button>
 
         <div className={`nav-buttons ${isMenuOpen ? 'open' : ''}`}>
-          <HashLink className='nav-button' to="/#work" smooth>
-            Work
-          </HashLink>
+        <a className='nav-button' href="#work" onClick={() => {
+          if (window.location.pathname !== '/') {
+            window.location.href = '/#work';
+          }
+        }}>Work</a>
           <Link to="/about" className='nav-button' onClick={scrollToTop}>
             About
           </Link>
