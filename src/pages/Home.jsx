@@ -17,7 +17,7 @@ const BouncingPhrase = ({ text }) =>
   ))
 
 const Home = () => (
-  <>
+  <div className="home-page">
     <Header />
 
     <section id="landing-section" className="fade-in delay-1">
@@ -54,7 +54,7 @@ const Home = () => (
     <div className='background'>
       <GradientCircles />
     </div>
-  </>
+  </div>
 )
 
 export default Home

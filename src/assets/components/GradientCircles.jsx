@@ -43,6 +43,9 @@ const GradientCircles = () => {
         <div className="gradient4" />
         <div className="gradient5" />
       </div>
+      {/* frosted white wash — lives on this fixed, viewport-sized layer
+          so it covers the page uniformly regardless of scroll height */}
+      <div className="gradient-overlay" />
       {/* cursor-following white glow orb */}
       <div className="cursor-orb" ref={orbRef} />
     </div>

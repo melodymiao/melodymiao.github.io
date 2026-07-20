@@ -2,6 +2,16 @@
 
 * { margin: 0; }
 
+/* ─── Whole-page frosted background ─────────────────
+ The white wash itself lives on GradientCircles' fixed, viewport-sized
+ layer (.gradient-overlay) so it covers the page uniformly regardless
+ of scroll height — backdrop-filter over an element taller than the
+ viewport rendered inconsistently top-to-bottom. This just makes sure
+ nothing here re-introduces an opaque section background. */
+.home-page .footer {
+  background: transparent;
+}
+
 /* ─── Landing Section ─────────────────────────────── */
 #landing-section {
   display: flex;
@@ -9,9 +19,6 @@
   justify-content: center;
   align-items: flex-start;
   position: relative;
-  background: rgba(248, 249, 255, 0.55);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
   padding: 120px 24px 40px;
   min-height: auto;
 }
@@ -203,9 +210,6 @@
   align-items: stretch;
   padding: 0;
   margin-top: 0;
-  background: rgba(248, 249, 255, 0.55);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
 }
 
 /* ─── Entrance animations ───────────────────────────── */

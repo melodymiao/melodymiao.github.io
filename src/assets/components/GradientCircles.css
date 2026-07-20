@@ -39,6 +39,13 @@
   position: relative;
 }
 
+.gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(248, 249, 255, 0.55);
+  pointer-events: none;
+}
+
 .gradient1 {
   position: absolute;
   width: var(--circle-size); height: var(--circle-size);

@@ -5,7 +5,7 @@
   display: flex;
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(12px);
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0.4);
   mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   transition: background-color 0.3s ease;
