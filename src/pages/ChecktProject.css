@@ -1,0 +1,22 @@
+/* ═══════════════════════════════════════════════════════
+ CHECKT CASE STUDY — accent color override
+ Layout/typography lives in the shared EDITORIAL PROJECT PAGE
+ LAYOUT section of Projects.css. This file only overrides the
+ accent color, matching Checkt's brand purple.
+ ═══════════════════════════════════════════════════════ */
+
+/* ─── Accent palette ───
+ Requested brand purple (#B377D8) is too light for text (~3.2:1 on
+ white); darkened along the same hue to #9E51CD (~4.65:1) so it stays
+ legible. #FAF3FF is a lighter pale tint, for the active sidebar
+ background. */
+
+.checkt-case-study .proj-chapter-label,
+.checkt-case-study .proj-solution-tagline {
+  color: #9E51CD;
+}
+
+.checkt-case-study .proj-sidebar-link.active {
+  color: #9E51CD;
+  background-color: #FAF3FF;
+}

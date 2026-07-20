@@ -1,7 +1,10 @@
 /* ═══════════════════════════════════════════════════════
- DRANK CASE STUDY — layout & typography overrides
- Scoped to .drank-case-study so other case studies (Augene,
- Checkt, InnoD) keep using the shared styles in Projects.css.
+ DRANK CASE STUDY — accent color override
+ Layout/typography (wider content, heading hierarchy, lighter body
+ text, sidebar sizing/alignment, boxed hero) now live in the shared
+ EDITORIAL PROJECT PAGE LAYOUT section of Projects.css. This file
+ only overrides the accent color, since each case study gets its
+ own — Augene/Checkt/InnoD currently default to the shared blue.
  ═══════════════════════════════════════════════════════ */
 
 /* ─── Accent palette ───
@@ -11,62 +14,6 @@
  legible against white while staying distinct from the near-black
  heading text. */
 
-/* ─── Wider content column, less dead whitespace ────── */
-.drank-case-study .proj-content {
-  max-width: 900px;
-}
-
-/* ─── Body text: lighter so it competes less with headings ─── */
-.drank-case-study .proj-text-block p,
-.drank-case-study .proj-meta-group p {
-  color: #7a7a7a;
-}
-
-/* ─── Type hierarchy ─────────────────────────────────
- Two different h2 roles were sharing one style:
- - chapter headings (paired with a chapter-label eyebrow)
- - inline sub-headings inside a chapter
- Sizing (not weight) is what separates them now. */
-
-.drank-case-study .proj-heading:has(.proj-chapter-label) h2 {
-  font-size: 36px;
-  line-height: 1.2;
-}
-
-.drank-case-study .proj-heading:not(:has(.proj-chapter-label)) h2 {
-  font-size: 23px;
-  color: #3a3a3a;
-  line-height: 1.35;
-}
-
-/* ─── Sidebar nav: align text with the "Melody Miao" wordmark ───
- Links have 10px left padding for their hover background; shift the
- whole nav block left by that amount so the *text* lines up at the
- same edge as the header title, not the invisible hit-box. */
-.drank-case-study .proj-sidebar-nav,
-.drank-case-study .proj-sidebar-footer {
-  margin-left: -10px;
-}
-
-/* ─── "Next" link: plain gray text like the other sidebar links ─── */
-.drank-case-study .proj-sidebar-project-link {
-  background-color: transparent;
-  color: #BFBFBF;
-  padding: 8px 10px;
-}
-
-.drank-case-study .proj-sidebar-project-link:hover {
-  background-color: #f4f4f4;
-  color: #292929;
-}
-
-/* ─── Sidebar type: match the header/footer wordmark size ─── */
-.drank-case-study .proj-sidebar-link,
-.drank-case-study .proj-sidebar-project-link {
-  font-size: 14px;
-}
-
-/* ─── Accent color: green instead of the shared blue ─── */
 .drank-case-study .proj-chapter-label,
 .drank-case-study .proj-solution-tagline {
   color: #7C7A27;
@@ -75,19 +22,4 @@
 .drank-case-study .proj-sidebar-link.active {
   color: #7C7A27;
   background-color: #F7F5DE;
-}
-
-/* ─── Hero: shrunk to sit inside the content column instead of
- spanning the full page above the sidebar ─── */
-.drank-case-study .proj-hero {
-  height: 400px;
-  min-height: unset;
-  border-radius: 12px;
-}
-
-@media (max-width: 600px) {
-  .drank-case-study .proj-hero {
-    height: 50vw;
-    min-height: 200px;
-  }
 }

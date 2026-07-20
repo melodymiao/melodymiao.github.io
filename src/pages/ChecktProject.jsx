@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Projects.css';
+import './ChecktProject.css';
 import Header from '../assets/components/Header';
 import Footer from '../assets/components/Footer';
 import PhoneHeader from '../assets/images/checkt/checkt header.jpg';
@@ -64,13 +65,8 @@ const ChecktProject = () => {
   };
 
   return (
-    <>
+    <div className="checkt-case-study">
       <Header />
-
-      {/* ── Hero ── */}
-      <div className="proj-hero">
-        <img src={PhoneHeader} alt="Checkt project" />
-      </div>
 
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
@@ -102,6 +98,11 @@ const ChecktProject = () => {
 
         {/* Content */}
         <main className="proj-content">
+
+          {/* ── Hero ── */}
+          <div className="proj-hero">
+            <img src={PhoneHeader} alt="Checkt project" />
+          </div>
 
           {/* ── OVERVIEW ── */}
           <section id="overview" className="proj-chapter">
@@ -457,7 +458,7 @@ const ChecktProject = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 

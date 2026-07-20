@@ -1,0 +1,40 @@
+/* ═══════════════════════════════════════════════════════
+ INNOD CASE STUDY — accent color override
+ Layout/typography lives in the shared EDITORIAL PROJECT PAGE
+ LAYOUT section of Projects.css. This file only overrides the
+ accent color, matching InnoD's brand pink/magenta.
+ ═══════════════════════════════════════════════════════ */
+
+/* ─── Accent palette ───
+ Requested brand pink (#E05ED3) is too light for text (~3.1:1 on
+ white); darkened along the same hue to #CD28BD (~4.53:1) so it stays
+ legible. #FEF0FD is a lighter pale tint, for the active sidebar
+ background. */
+
+.innod-case-study .proj-chapter-label,
+.innod-case-study .proj-solution-tagline {
+  color: #CD28BD;
+}
+
+.innod-case-study .proj-sidebar-link.active {
+  color: #CD28BD;
+  background-color: #FEF0FD;
+}
+
+/* ─── Event logos: shared .proj-row-content is used elsewhere for
+ full-size screenshots, so this only scopes down InnoD's small
+ logo-beside-text rows. The shared grid gives the label a fixed
+ 240px and the logo the rest (620px), which — even shrunk — left a
+ large empty gap between them. Sizing the logo column to its content
+ lets the text column grow to fill the space up to the logo instead. */
+.innod-case-study .proj-row {
+  grid-template-columns: 1fr auto;
+}
+
+.innod-case-study .proj-row-content img {
+  width: 310px;
+}
+
+.innod-case-study .proj-row-content {
+  align-items: flex-end;
+}

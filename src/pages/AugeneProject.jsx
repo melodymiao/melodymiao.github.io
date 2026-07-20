@@ -58,11 +58,6 @@ const AugeneProject = () => {
     <>
       <Header />
 
-      {/* ── Hero ── */}
-      <div className="proj-hero">
-        <img src={AugeneThumb} alt="Augene Beauty project" />
-      </div>
-
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
 
@@ -93,6 +88,11 @@ const AugeneProject = () => {
 
         {/* Content */}
         <main className="proj-content">
+
+          {/* ── Hero ── */}
+          <div className="proj-hero">
+            <img src={AugeneThumb} alt="Augene Beauty project" />
+          </div>
 
           {/* ── OVERVIEW ── */}
           <section id="overview" className="proj-chapter">

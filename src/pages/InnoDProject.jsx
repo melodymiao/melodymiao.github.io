@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Projects.css';
+import './InnoDProject.css';
 import Header from '../assets/components/Header';
 import Footer from '../assets/components/Footer';
 import InnoDPreview from '../assets/images/innod/innod preview.jpg';
@@ -54,13 +55,8 @@ const InnoDProject = () => {
   };
 
   return (
-    <>
+    <div className="innod-case-study">
       <Header />
-
-      {/* ── Hero ── */}
-      <div className="proj-hero">
-        <img src={InnoDPreview} alt="Innovative Design project" />
-      </div>
 
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
@@ -89,6 +85,11 @@ const InnoDProject = () => {
 
         {/* Content */}
         <main className="proj-content">
+
+          {/* ── Hero ── */}
+          <div className="proj-hero">
+            <img src={InnoDPreview} alt="Innovative Design project" />
+          </div>
 
           {/* ── OVERVIEW ── */}
           <section id="overview" className="proj-chapter">
@@ -306,7 +307,7 @@ const InnoDProject = () => {
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 };
 
