@@ -4,6 +4,13 @@
  Checkt, InnoD) keep using the shared styles in Projects.css.
  ═══════════════════════════════════════════════════════ */
 
+/* ─── Accent palette ───
+ Pale olive-cream tint (#F7F5DE) is lifted from the sugar/ice button
+ screenshots. The foreground olive (#7C7A27) sits on the same hue as
+ the app's dark (#727025) and pale (#E0DE96) olives, just lighter —
+ legible against white while staying distinct from the near-black
+ heading text. */
+
 /* ─── Wider content column, less dead whitespace ────── */
 .drank-case-study .proj-content {
   max-width: 900px;
@@ -19,25 +26,15 @@
  Two different h2 roles were sharing one style:
  - chapter headings (paired with a chapter-label eyebrow)
  - inline sub-headings inside a chapter
- Giving each its own size/weight makes the hierarchy readable. */
-
-.drank-case-study .proj-overview-title {
-  font-weight: 700;
-}
-
-.drank-case-study .proj-solution-name {
-  font-weight: 700;
-}
+ Sizing (not weight) is what separates them now. */
 
 .drank-case-study .proj-heading:has(.proj-chapter-label) h2 {
   font-size: 36px;
-  font-weight: 700;
   line-height: 1.2;
 }
 
 .drank-case-study .proj-heading:not(:has(.proj-chapter-label)) h2 {
   font-size: 23px;
-  font-weight: 400;
   color: #3a3a3a;
   line-height: 1.35;
 }
@@ -61,4 +58,36 @@
 .drank-case-study .proj-sidebar-project-link:hover {
   background-color: #f4f4f4;
   color: #292929;
+}
+
+/* ─── Sidebar type: match the header/footer wordmark size ─── */
+.drank-case-study .proj-sidebar-link,
+.drank-case-study .proj-sidebar-project-link {
+  font-size: 14px;
+}
+
+/* ─── Accent color: green instead of the shared blue ─── */
+.drank-case-study .proj-chapter-label,
+.drank-case-study .proj-solution-tagline {
+  color: #7C7A27;
+}
+
+.drank-case-study .proj-sidebar-link.active {
+  color: #7C7A27;
+  background-color: #F7F5DE;
+}
+
+/* ─── Hero: shrunk to sit inside the content column instead of
+ spanning the full page above the sidebar ─── */
+.drank-case-study .proj-hero {
+  height: 400px;
+  min-height: unset;
+  border-radius: 12px;
+}
+
+@media (max-width: 600px) {
+  .drank-case-study .proj-hero {
+    height: 50vw;
+    min-height: 200px;
+  }
 }

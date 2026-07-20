@@ -62,14 +62,6 @@ const DrankProject = () => {
     <div className="drank-case-study">
       <Header />
 
-      {/* ── Hero ── */}
-      <div className="proj-hero">
-        {/* <img src={DrankHero} alt="drank project" /> */}
-        <div style={{ width: '100%', height: '100%', background: '#F5EFE6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '20px', color: '#BFBFBF' }}>[ Hero image ]</span>
-        </div>
-      </div>
-
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
 
@@ -98,6 +90,14 @@ const DrankProject = () => {
         {/* Content */}
         <main className="proj-content">
 
+          {/* ── Hero ── */}
+          <div className="proj-hero">
+            {/* <img src={DrankHero} alt="drank project" /> */}
+            <div style={{ width: '100%', height: '100%', background: '#F5EFE6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '20px', color: '#BFBFBF' }}>[ Hero image ]</span>
+            </div>
+          </div>
+
           {/* ── OVERVIEW ── */}
           <section id="overview" className="proj-chapter">
 
@@ -124,7 +124,7 @@ const DrankProject = () => {
                 </div>
                 <div className="proj-meta-group">
                   <h3>Links</h3>
-                  <p><a href="https://drank.vercel.app" target="_blank" rel="noreferrer" style={{ color: '#2A68FB', textDecoration: 'none' }}>drank.vercel.app ↗</a></p>
+                  <p><a href="https://drank.vercel.app" target="_blank" rel="noreferrer" style={{ color: '#7C7A27', textDecoration: 'none' }}>drank.vercel.app ↗</a></p>
                 </div>
               </div>
             </div>
