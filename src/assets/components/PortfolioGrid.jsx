@@ -18,7 +18,7 @@ const projects = [
     thumbColor: 'thumb-drank',
     thumbHeight: 'thumb-tall',
     thumb: drankThumb,
-    to: 'https://drank.vercel.app',
+    to: '/drank',
     external: true,
     delay: 'delay-1',
   },

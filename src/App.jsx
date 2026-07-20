@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home';
+import DrankProject from './pages/DrankProject';
 import ChecktProject from './pages/ChecktProject';
 import AugeneProject from './pages/AugeneProject';
 import InnoDProject from './pages/InnoDProject';
@@ -15,6 +16,9 @@ function App() {
       <Routes>
         {/* Home Page */}
         <Route path="/" element={<Home />} />
+
+        {/* Drank */}
+        <Route path="/drank" element={<DrankProject />} />
 
         {/* Checkt */}
         <Route path="/checkt" element={<ChecktProject />} />

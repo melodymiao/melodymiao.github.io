@@ -261,7 +261,9 @@ const ChecktProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <img src={InfoHierarchy} alt="Information hierarchy exploration" />
+              <div className="proj-showcase-media">
+                <img src={InfoHierarchy} alt="Information hierarchy exploration" />
+              </div>
             </div>
 
             <div className="proj-text-block">
@@ -341,7 +343,9 @@ const ChecktProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <img src={Preview} alt="Checkt app overview" />
+              <div className="proj-showcase-media">
+                <img src={Preview} alt="Checkt app overview" />
+              </div>
             </div>
 
             <div className="proj-row">
@@ -442,7 +446,9 @@ const ChecktProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <img src={Learnings} alt="Learnings" />
+              <div className="proj-showcase-media">
+                <img src={Learnings} alt="Learnings" />
+              </div>
             </div>
 
           </section>

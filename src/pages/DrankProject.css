@@ -1,0 +1,64 @@
+/* ═══════════════════════════════════════════════════════
+ DRANK CASE STUDY — layout & typography overrides
+ Scoped to .drank-case-study so other case studies (Augene,
+ Checkt, InnoD) keep using the shared styles in Projects.css.
+ ═══════════════════════════════════════════════════════ */
+
+/* ─── Wider content column, less dead whitespace ────── */
+.drank-case-study .proj-content {
+  max-width: 900px;
+}
+
+/* ─── Body text: lighter so it competes less with headings ─── */
+.drank-case-study .proj-text-block p,
+.drank-case-study .proj-meta-group p {
+  color: #7a7a7a;
+}
+
+/* ─── Type hierarchy ─────────────────────────────────
+ Two different h2 roles were sharing one style:
+ - chapter headings (paired with a chapter-label eyebrow)
+ - inline sub-headings inside a chapter
+ Giving each its own size/weight makes the hierarchy readable. */
+
+.drank-case-study .proj-overview-title {
+  font-weight: 700;
+}
+
+.drank-case-study .proj-solution-name {
+  font-weight: 700;
+}
+
+.drank-case-study .proj-heading:has(.proj-chapter-label) h2 {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.drank-case-study .proj-heading:not(:has(.proj-chapter-label)) h2 {
+  font-size: 23px;
+  font-weight: 400;
+  color: #3a3a3a;
+  line-height: 1.35;
+}
+
+/* ─── Sidebar nav: align text with the "Melody Miao" wordmark ───
+ Links have 10px left padding for their hover background; shift the
+ whole nav block left by that amount so the *text* lines up at the
+ same edge as the header title, not the invisible hit-box. */
+.drank-case-study .proj-sidebar-nav,
+.drank-case-study .proj-sidebar-footer {
+  margin-left: -10px;
+}
+
+/* ─── "Next" link: plain gray text like the other sidebar links ─── */
+.drank-case-study .proj-sidebar-project-link {
+  background-color: transparent;
+  color: #BFBFBF;
+  padding: 8px 10px;
+}
+
+.drank-case-study .proj-sidebar-project-link:hover {
+  background-color: #f4f4f4;
+  color: #292929;
+}

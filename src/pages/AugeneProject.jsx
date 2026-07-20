@@ -9,6 +9,10 @@ import CompetitiveAnalysis from '../assets/images/augene/competitive analysis.jp
 import Persona from '../assets/images/augene/persona.jpg';
 import HMW from '../assets/images/augene/hmw.jpg';
 import AugeneMockup from '../assets/images/augene/augene mockup.png';
+import LoFi1 from '../assets/images/augene/lofi 1.png';
+import LoFi2 from '../assets/images/augene/lofi 2.png';
+import LoFi2b from '../assets/images/augene/lofi 2b.png';
+import HiFi1 from '../assets/images/augene/hifi 1.png';
 import DashboardPreview from '../assets/images/augene/dashboard preview.jpg';
 import Dashboard1 from '../assets/images/augene/dashboard 1.jpg';
 import Dashboard2 from '../assets/images/augene/kap dashboard 2.gif';
@@ -131,13 +135,15 @@ const AugeneProject = () => {
                 Augene Beauty analyzes the facial microbiome to help clinicians make
                 evidence-based skincare recommendations, rather than generic advice,
                 toward routines that actually match each patient's biology. My job was
-                to design the product that sits between the lab results and the patient 
+                to design the product that sits between the lab results and the patient
                 and make complex data feel clear, personal, and actionable.
               </p>
             </div>
 
             <div className="proj-showcase">
-              <img src={SkincareProducts} alt="Skincare products" />
+              <div className="proj-showcase-media">
+                <img src={SkincareProducts} alt="Skincare products" />
+              </div>
             </div>
 
             <div className="proj-text-block">
@@ -145,7 +151,7 @@ const AugeneProject = () => {
                 <h2>Generic advice doesn't work for everyone</h2>
               </div>
               <p>
-                The skincare internet is full of recommendations, but most are one-size-fits-all 
+                The skincare internet is full of recommendations, but most are one-size-fits-all
                 (best products for oily skin, best routine for beginners, etc.). For people with
                 complex or sensitive skin, this noise is overwhelming and confusing. Augene's
                 microbiome analysis offers something personalized and useful, but only if the results
@@ -170,13 +176,15 @@ const AugeneProject = () => {
               <p>
                 I analyzed skin testing companies across four dimensions: how they collected
                 samples, how they displayed results, how they made product recommendations,
-                and how they educated users. Most delivered a PDF report or a simple score 
+                and how they educated users. Most delivered a PDF report or a simple score
                 without next steps or something to build understanding over time.
               </p>
             </div>
 
             <div className="proj-showcase">
-              <img src={CompetitiveAnalysis} alt="Competitive analysis matrix" />
+              <div className="proj-showcase-media">
+                <img src={CompetitiveAnalysis} alt="Competitive analysis matrix" />
+              </div>
               <span className="proj-showcase-caption">Competitive analysis across skin testing companies</span>
             </div>
 
@@ -228,7 +236,9 @@ const AugeneProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <img src={Persona} alt="User personas for clinician and patient" />
+              <div className="proj-showcase-media">
+                <img src={Persona} alt="User personas for clinician and patient" />
+              </div>
             </div>
 
             <div className="proj-row">
@@ -268,6 +278,69 @@ const AugeneProject = () => {
               </div>
             </div>
 
+            <div className="proj-text-block">
+              <div className="proj-heading">
+                <h2>From wireframes to decisions</h2>
+              </div>
+              <p>
+                Before touching high-fidelity design, I wireframed the core screens to pressure-test
+                the layout and information hierarchy. Two decisions ended up shaping the whole product.
+              </p>
+            </div>
+
+            {/* Decision 1: data visualization */}
+            <div className="aug-decision">
+              <div className="aug-decision-label">
+                <span className="aug-decision-tag">Decision 01</span>
+                <h3 className="aug-decision-title">Gauge meters instead of a pie chart</h3>
+                <p>
+                  The early wireframe used a pie chart to show overall skin composition. In practice,
+                  it made the data feel like a chemistry breakdown — technically precise but impossible
+                  to act on. A pie chart compares slices against each other, which isn't the question
+                  a patient is asking. They want to know: <em>is my water level low? Is my oil level
+                  normal?</em> Gauge meters answer that directly, showing each metric against a healthy
+                  range rather than against the other metrics.
+                </p>
+              </div>
+              <div className="aug-decision-images">
+                <div className="aug-decision-img-group">
+                  <img src={LoFi1} alt="Early wireframe with pie chart" />
+                  <span className="aug-decision-caption">Early wireframe</span>
+                </div>
+                <div className="aug-decision-img-group">
+                  <img src={HiFi1} alt="Revised design with gauge meters" />
+                  <span className="aug-decision-caption">Revised direction</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Decision 2: page structure */}
+            <div className="aug-decision">
+              <div className="aug-decision-label">
+                <span className="aug-decision-tag">Decision 02</span>
+                <h3 className="aug-decision-title">Breaking one page into four</h3>
+                <p>
+                  The first wireframe crammed Products and Clinician Notes onto the home screen
+                  as secondary sections. It worked as a checklist but not as an experience —
+                  everything felt equal, so nothing felt important. Choosing a product isn't a
+                  quick scan, it's a decision. Users needed space to compare options, read
+                  ingredient lists, and understand why something was recommended for their skin.
+                  Splitting into four dedicated pages — Home, Skin Analysis, Products for You,
+                  and Build Your Routine — gave each job room to do its job.
+                </p>
+              </div>
+              <div className="aug-decision-images">
+                <div className="aug-decision-img-group">
+                  <img src={LoFi2} alt="Early wireframe: skin analysis page" />
+                  <span className="aug-decision-caption">Skin Analysis wireframe</span>
+                </div>
+                <div className="aug-decision-img-group">
+                  <img src={LoFi2b} alt="Revised wireframe: expanded skin analysis with detail panel" />
+                  <span className="aug-decision-caption">With detail panel added</span>
+                </div>
+              </div>
+            </div>
+
             <div className="proj-row">
               <div className="proj-row-label">
                 <div className="proj-heading">
@@ -297,7 +370,9 @@ const AugeneProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <img src={DashboardPreview} alt="Dashboard full overview" />
+              <div className="proj-showcase-media">
+                <img src={DashboardPreview} alt="Dashboard full overview" />
+              </div>
             </div>
 
             <div className="proj-feature">
@@ -371,13 +446,13 @@ const AugeneProject = () => {
                 <h2>Designing from the inside out</h2>
               </div>
               <p>
-                The most useful thing I brought to this project wasn't a design process, 
+                The most useful thing I brought to this project wasn't a design process,
                 it was having been a confused skincare beginner myself. That experience
                 pushed me toward AM/PM labels, flexible routine ordering, and plain-language
                 explanations that I wouldn't have prioritized otherwise.
               </p>
               <p>
-                If I had more time, I would have run usability tests with real patients, 
+                If I had more time, I would have run usability tests with real patients,
                 especially with the routine builder, which had the most interaction
                 complexity. I made a lot of calls based on personal intuition and competitor
                 gaps, and real user feedback would have stress-tested those assumptions in
@@ -391,14 +466,15 @@ const AugeneProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <img src={Picnic} alt="Augene team at a picnic" />
+              <div className="proj-showcase-media">
+                <img src={Picnic} alt="Augene team at a picnic" />
+              </div>
             </div>
 
           </section>
 
         </main>
       </div>
-
 
       <Footer />
     </>

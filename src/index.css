@@ -24,10 +24,13 @@
 .gray-text  { color: #BFBFBF; }
 
 body {
-  display: flex;
-  flex-direction: column;
-  gap: 120px;
   overflow-x: hidden;
   width: 100%;
   background: transparent;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
 }
