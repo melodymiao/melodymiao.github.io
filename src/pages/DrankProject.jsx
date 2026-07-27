@@ -6,22 +6,24 @@ import Header from '../assets/components/Header';
 import Footer from '../assets/components/Footer';
 
 
+import DrankHero        from '../assets/images/drank/hero.jpg';
+import DrankCompAnalysis from '../assets/images/drank/subject-vs-share.jpg';
 import DrankUpload      from '../assets/images/drank/upload step.gif';
 import DrankRank        from '../assets/images/drank/rank step.gif';
 import DrankShare       from '../assets/images/drank/share step.gif';
+import DrankV0          from '../assets/images/drank/v0-prototypes.jpg';
 import DrankWireframes  from '../assets/images/drank/initial-wireframes.jpg';
 import DrankFigma       from '../assets/images/drank/figma-explorations.jpg';
+import DrankSystem      from '../assets/images/drank/design-system.jpg';
 import DrankAccordion   from '../assets/images/drank/accordion.jpg';
 import DrankAccordionDemo   from '../assets/images/drank/accordion-layout.gif';
 import DrankSugar       from '../assets/images/drank/sugar-ice-button-group.jpg';
 import DrankLoading     from '../assets/images/drank/sticker-loading.gif';
-import DrankHistory     from '../assets/images/drank/history-page.jpg';
+import DrankHistory     from '../assets/images/drank/history-page.gif';
 
 // ─── Replace these import paths with your actual image/gif files ───────────
-// import DrankHero        from '../assets/images/drank/hero.jpg';
 // import DrankAutofill    from '../assets/images/drank/autofill.gif';
 // import DrankFigma       from '../assets/images/drank/figma-explorations.jpg';
-// import DrankSystem      from '../assets/images/drank/design-system.jpg';
 // ──────────────────────────────────────────────────────────────────────────
 
 const CHAPTERS = [
@@ -92,10 +94,7 @@ const DrankProject = () => {
 
           {/* ── Hero ── */}
           <div className="proj-hero">
-            {/* <img src={DrankHero} alt="drank project" /> */}
-            <div style={{ width: '100%', height: '100%', background: '#F5EFE6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <span style={{ fontFamily: '"DM Sans", sans-serif', fontSize: '20px', color: '#BFBFBF' }}>[ Hero image ]</span>
-            </div>
+            <img src={DrankHero} alt="drank project" />
           </div>
 
           {/* ── OVERVIEW ── */}
@@ -142,9 +141,15 @@ const DrankProject = () => {
               <p>
                 People love sharing a good find, especially when they customized it perfectly.
                 But there's no easy way to post that online. drank gives you something cute to
-                share on your existing social media pages. Getting friends to download a new app
-                to see your drink ranking is tough — but getting them to tap your story isn't.
+                share on your existing social media circles. Getting friends to download a new app
+                to see your drink recommendations is tough, but getting them to tap your story isn't.
               </p>
+            </div>
+
+            <div className="proj-showcase">
+              <div className="proj-showcase-media">
+                <img src={DrankCompAnalysis} alt="Review subject vs share format of popular food/drink ranking apps" />
+              </div>
             </div>
 
           </section>
@@ -181,9 +186,7 @@ const DrankProject = () => {
                 <h2>Fill in the details</h2>
               </div>
               <p>
-                Next, fill out your receipt. BASICS covers the essentials: rating, café, beverage,
-                location, date, time, and notes. CUSTOMIZATIONS is where you log how you ordered
-                it — sugar level, ice level, milk type, toppings, and any modifications. A live
+                Next, fill out your receipt. Fill in your rating, order details, and notes. A live
                 receipt preview updates as you type.
               </p>
             </div>
@@ -199,10 +202,8 @@ const DrankProject = () => {
                 <h2>Customize and share</h2>
               </div>
               <p>
-                Once your receipt is filled out, you can further customize it with text stickers —
-                dragging, scaling, and rotating them wherever you want. If you uploaded a photo,
-                toggle the drink sticker to strip the background and drop a cutout of your drink
-                directly into the receipt. Export as a receipt card or a 9:16 story image.
+                Customize your receipt with text stickers or make a drink sticker 
+                from your photo. Export as a receipt card or a 9:16 story image.
               </p>
             </div>
 
@@ -223,11 +224,17 @@ const DrankProject = () => {
                 <h2>From rough prompt to production</h2>
               </div>
               <p>
-                I started with a rough prompt in v0 describing the pages and structure I wanted,
-                which gave me a working prototype. From there I moved into Figma to generate layout
-                explorations and compare options, especially focusing on how the same page should
-                feel differently on mobile vs desktop.
+                I started with a rough prompt in v0 describing the structure and functions I wanted on each page,
+                which gave me a working prototype with uploadable images and live receipt previews. From there I moved into Figma to generate layout
+                explorations and compare options, allowing me to explore how the same page should
+                feel on mobile vs desktop.
               </p>
+            </div>
+
+            <div className="proj-showcase">
+              <div className="proj-showcase-media">
+                <img src={DrankV0} alt="v0 prompts and initial prototypes" />
+              </div>
             </div>
 
             <div className="proj-showcase">
@@ -247,17 +254,14 @@ const DrankProject = () => {
                 <h2>Warm, handcrafted, like a cozy café</h2>
               </div>
               <p>
-                Once the layout decisions were settled, I created a design system and designed
-                a component set by hand, including the hand-drawn SVG elements that run throughout
-                the app. The app uses soft, warm colors throughout: off-white and deep brown as
-                the base, with pops of olive, blue, and pink for interactive elements. The goal
-                was to feel handcrafted — like a cozy café.
+                Once the layouts were settled, I created a design system and designed
+                components, including hand-drawn elements used throughout
+                the app. The app uses soft, warm colors throughout to create a handcrafted, cozy feeling.
               </p>
             </div>
 
             <div className="proj-showcase">
-              {/* <img src={DrankSystem} alt="Design system — color palette, type specimen, SVG borders" /> */}
-              <div className="proj-img-placeholder">[ Design system ]</div>
+              <img src={DrankSystem} alt="Design system — color, typography, UI elements" />
             </div>
 
           </section>
@@ -278,11 +282,10 @@ const DrankProject = () => {
               </div>
               <p>
                 The original layout had BASICS and CUSTOMIZATIONS as side-by-side tabs. Users
-                kept finishing BASICS and hitting "Finish Ranking" without ever opening
-                CUSTOMIZATIONS — the tab just didn't register as something they needed to check.
-                I switched to two stacked accordions. On mobile, both open by default so all
-                fields are visible as you scroll. On desktop, only one is open at a time so both
-                titles stay visible without scrolling. The layout is different by device on purpose.
+                kept missing the CUSTOMIZATIONS tab, so
+                I switched to two stacked accordions. On mobile, both are open by default so all
+                fields become visible as you scroll. On desktop, only one is open at a time so both
+                sections stay visible on the page without scrolling. The layout is different by device on purpose.
               </p>
             </div>
 
@@ -294,7 +297,7 @@ const DrankProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <div className="proj-showcase-media">
+              <div className="proj-showcase-media proj-showcase-media--accordion-demo">
                 <img src={DrankAccordionDemo} alt="Accordion layouts - desktop and mobile" />
               </div>
             </div>
@@ -305,10 +308,9 @@ const DrankProject = () => {
               </div>
               <p>
                 Sugar and ice were originally free-form text inputs. Beyond being slower to fill
-                in, they caused data inconsistency — someone typing "Light Ice" would show up as
-                "Light Ice Ice" on the receipt since the field label was already there. Milk type
-                already used a button group and was noticeably faster to complete, so I applied
-                the same pattern to ice and sugar.
+                in, they caused data inconsistency (someone typing "Light Ice" would show up as
+                "Light Ice Ice"). Milk type used a button group and was faster to complete, so I applied
+                the same pattern to the sugar and ice fields.
               </p>
             </div>
 
@@ -341,8 +343,8 @@ const DrankProject = () => {
                 <h2>History page</h2>
               </div>
               <p>
-                There was no way to look back at past rankings or compare drinks you'd tried.
-                The history page adds a scrollable list of past receipts with previous ratings.
+                There was no way to look back at previous rankings or compare drinks.
+                The history page adds a list of past receipts and ratings.
                 Tapping one opens a full preview, and any receipt can be edited by going back
                 through the rank and share flow with the original data pre-filled.
               </p>
@@ -366,7 +368,7 @@ const DrankProject = () => {
               </div>
               <p>
                 The most useful thing about AI prototyping tools was having something real to test
-                much sooner. The accordion layout, the loading messages, and the open-by-default
+                much quicker. The accordion layout, the loading messages, and the open-by-default
                 mobile fields all came from watching the app get used and noticing what wasn't
                 working.
               </p>
@@ -377,11 +379,11 @@ const DrankProject = () => {
                 <h2>Design and engineering are the same job</h2>
               </div>
               <p>
-                Some of the best UX decisions I made — like keeping both accordions open on mobile
-                or having prefilled photo metadata input — came directly from being in the code.
+                Some of the best UX decisions I made, like keeping both accordions open on mobile
+                or having prefilled photo metadata input, came directly from being in the code.
                 I could test a behavior, feel how it worked, and change it the same day. The line
                 between design and engineering is blurring, and I think the products that benefit
-                most from that are the ones where the feedback loop is tight enough to actually
+                most from this are the ones where the feedback loop is tight enough to
                 feel what you're building.
               </p>
             </div>

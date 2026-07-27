@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './PortfolioGrid.css';
-import drankThumb from '../images/portfolio-grid/drank thumbnail.jpg';
+import drankThumb from '../images/portfolio-grid/drank-thumbnail.jpg';
 import augeneThumb from '../images/portfolio-grid/augene thumbnail.jpg';
 import checktThumb from '../images/portfolio-grid/checkt thumbnail.jpg';
 import innodThumb from '../images/portfolio-grid/innod thumbnail.jpg';
