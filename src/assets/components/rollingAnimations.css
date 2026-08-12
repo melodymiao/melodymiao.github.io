@@ -1,0 +1,46 @@
+.rolling-viewport {
+  position: relative;
+  overflow: hidden;
+  display: inline-grid;
+  height: 1.2em;
+  vertical-align: baseline;
+}
+
+.rolling-word-viewport {
+  transition: width 420ms ease;
+}
+
+.rolling-word-viewport.is-fast {
+  transition: width 90ms linear;
+}
+
+.rolling-slot {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+@keyframes rollUpOut   { from { transform: translateY(0);     opacity: 1; } to { transform: translateY(-100%); opacity: 0; } }
+@keyframes rollUpIn    { from { transform: translateY(100%);  opacity: 0; } to { transform: translateY(0);     opacity: 1; } }
+@keyframes rollDownOut { from { transform: translateY(0);     opacity: 1; } to { transform: translateY(100%);  opacity: 0; } }
+@keyframes rollDownIn  { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0);     opacity: 1; } }
+
+.rolling-enter-up   { animation: rollUpIn 420ms ease forwards; }
+.rolling-out-up     { animation: rollUpOut 420ms ease forwards; }
+.rolling-enter-down { animation: rollDownIn 420ms ease forwards; }
+.rolling-out-down   { animation: rollDownOut 420ms ease forwards; }
+
+.rolling-viewport.is-fast .rolling-enter-up,
+.rolling-viewport.is-fast .rolling-out-up,
+.rolling-viewport.is-fast .rolling-enter-down,
+.rolling-viewport.is-fast .rolling-out-down {
+  animation-duration: 90ms;
+  animation-timing-function: linear;
+}
+
+.rolling-number {
+  display: inline-flex;
+  align-items: center;
+}

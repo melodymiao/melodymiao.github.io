@@ -1,215 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=LXGW+WenKai+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400;1,500&display=swap');
 
 * { margin: 0; }
 
-/* ─── Whole-page frosted background ─────────────────
- The white wash itself lives on GradientCircles' fixed, viewport-sized
- layer (.gradient-overlay) so it covers the page uniformly regardless
- of scroll height — backdrop-filter over an element taller than the
- viewport rendered inconsistently top-to-bottom. This just makes sure
- nothing here re-introduces an opaque section background. */
-.home-page .footer {
-  background: transparent;
+/* ─── Whole-page background ──────────────────────────
+ Plain (gradient-off) theme: flat light background so nav/text can use
+ dark colors. Gradient theme: GradientCircles supplies the colorful
+ fixed background and text switches to white — see theme rules below. */
+.home-page.theme-plain {
+  background: #f9f9f9;
 }
 
 /* ─── Landing Section ─────────────────────────────── */
 #landing-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  gap: 24px;
   position: relative;
-  padding: 120px 24px 40px;
-  min-height: auto;
+  padding: 176px 24px 64px;
+  text-align: center;
 }
 
-.landing-text {
+/* ─── Weather / city line ───────────────────────────── */
+.landing-weather {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 8px;
-  max-width: 900px;
 }
 
-/* ─── "Hi! I'm 缪 Melody," ────────────────────────── */
-.landing-hi-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: nowrap;
-  cursor: default;
-  padding-bottom: 2px;
-  overflow: visible;
-}
-
-.landing-hi-row .gray-landing-text {
-  font-family: "Domine", serif;
+.landing-weather-text {
+  font-family: "DM Mono", monospace;
   font-weight: 400;
-  font-size: 48px;
-  line-height: 1;
-  background: linear-gradient(
-    100deg,
-    rgba(41,41,41,0.28) 0%,
-    rgba(41,41,41,0.28) 35%,
-    rgba(180,180,180,0.75) 50%,
-    rgba(41,41,41,0.28) 65%,
-    rgba(41,41,41,0.28) 100%
-  );
-  background-size: 250% 100%;
-  background-position: 130% 0;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.landing-hi-row:hover .gray-landing-text {
-  animation: shimmer 0.85s ease forwards;
-}
-
-@keyframes shimmer {
-  0%   { background-position: 130% 0; }
-  100% { background-position: -30% 0; }
-}
-
-/* ─── 缪 badge ─────────────────────────────────────── */
-#miao {
-  background-color: #F2582D;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: uppercase;
   color: #fff;
-  padding: 4px 16px;
-  border-radius: 40px;
-  font-family: "Poppins", "LXGW WenKai TC", sans-serif;
-  font-weight: 600;
-  font-size: 24px;
-  line-height: normal;
-  display: inline-flex;
-  align-items: center;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-  cursor: default;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.18), 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
-#miao::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.55) 50%,
-    rgba(255,255,255,0) 100%
-  );
-  animation: miaoSheen 6s ease-in-out infinite;
+.landing-city-pill {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px 10px;
+  border-radius: 10px;
 }
 
-@keyframes miaoSheen {
-  0%   { left: -75%; opacity: 0; }
-  5%   { opacity: 1; }
-  20%  { left: 125%; opacity: 1; }
-  21%  { opacity: 0; }
-  100% { left: 125%; opacity: 0; }
+.theme-plain .landing-weather-text,
+.theme-plain .landing-city-pill {
+  color: #2e2f3b;
+  text-shadow: none;
+}
+
+.temp-toggle {
+  font: inherit;
+  color: inherit;
+  text-shadow: inherit;
+  text-transform: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.theme-plain .landing-city-pill {
+  background: #f1f1f1;
 }
 
 /* ─── Headline ──────────────────────────────────────── */
 .landing-headline {
-  font-family: "Domine", serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: 48px;
-  line-height: 1.2;
-  color: #292929;
+  letter-spacing: -2.4px;
+  line-height: 1.05;
+  color: #fff;
   cursor: default;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15), 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-.headline-first-line  { display: block; }
-.headline-second-line { display: block; white-space: nowrap; }
-.headline-animated    { display: inline; font-weight: 700; color: #292929; }
-.headline-period      { display: inline; font-weight: 400; color: #292929; }
-
-/* Per-letter bounce — stagger creates the ripple wave effect */
-.lift-letter {
-  display: inline-block;
-  color: #292929;
-  animation: letterBounce 6s ease-in-out infinite;
+.theme-plain .landing-headline {
+  color: #2e2f3b;
+  text-shadow: none;
 }
 
-@keyframes letterBounce {
-  0%   { transform: translateY(0); }
-  5%   { transform: translateY(-6px); }
-  10%  { transform: translateY(0); }
-  100% { transform: translateY(0); }
+.landing-headline span {
+  display: block;
 }
-
-/* ─── Gradient color ripple on hover ────────────────── */
-/*
-  Each letter gets a ::before pseudo carrying the gradient.
-  On parent hover, it fades in then out (plays once).
-  The underlying letter stays black throughout — the gradient
-  sits on top via background-clip: text.
-  Bounce animation is untouched on the letter itself.
-*/
-
-.lift-letter {
-  position: relative;
-}
-
-.lift-letter::before {
-  content: attr(data-char);
-  position: absolute;
-  inset: -0.15em -0.1em; /* expand beyond tight layout box to catch ascenders/descenders like the f */
-  background: linear-gradient(
-    115deg,
-    #c084fc,   /* soft violet */
-    #f472b6,   /* warm pink   */
-    #fb923c,   /* orange      */
-    #fbbf24    /* amber-gold  */
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  opacity: 0;
-  pointer-events: none;
-  font: inherit;
-  letter-spacing: inherit;
-  white-space: pre;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@keyframes gradientRipple {
-  0%   { opacity: 0; }
-  30%  { opacity: 1; }
-  70%  { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-.headline-animated:hover .lift-letter::before {
-  animation: gradientRipple 0.75s ease calc(var(--i) * 0.04s) 1 forwards;
-}
-
-/* ─── Status line ───────────────────────────────────── */
-.landing-status {
-  font-family: "DM Mono", monospace;
-  font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 0;
-  color: #BFBFBF;
-  text-transform: uppercase;
-  margin-top: 14px;
-}
-
-.landing-status em { font-style: italic; }
 
 /* ─── Work section ──────────────────────────────────── */
 #work {
   scroll-margin-top: 80px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  padding: 0;
+  align-items: center;
+  padding: 20px 24px 60px;
   margin-top: 0;
+}
+
+.work-card {
+  width: 100%;
+  max-width: 1367px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 720px) {
+  #work {
+    padding: 12px 16px 40px;
+  }
+
+  .work-card {
+    border-radius: 16px;
+    padding: 12px;
+  }
 }
 
 /* ─── Entrance animations ───────────────────────────── */

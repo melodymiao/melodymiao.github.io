@@ -1,0 +1,52 @@
+.gradient-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  background: rgba(239, 239, 239, 0.25);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+  transition: background 0.25s ease;
+}
+
+.gradient-toggle-track {
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 16px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.18);
+  transition: background 0.25s ease;
+}
+
+.gradient-toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s ease;
+}
+
+.gradient-toggle[aria-checked="true"] .gradient-toggle-track {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.gradient-toggle[aria-checked="true"] .gradient-toggle-knob {
+  transform: translateX(16px);
+  background: #F2582D;
+}
+
+/* ─── Plain (gradient-off) theme ─────────────────────── */
+.theme-plain .gradient-toggle {
+  background: rgba(182, 182, 182, 0.25);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.theme-plain .gradient-toggle-track {
+  background: rgba(0, 0, 0, 0.12);
+}

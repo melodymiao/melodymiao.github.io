@@ -42,7 +42,7 @@
 .gradient-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(248, 249, 255, 0.55);
+  background: rgba(248, 249, 255, 0.15);
   pointer-events: none;
 }
 
@@ -115,4 +115,13 @@
   transform: translate(-50%, -50%);
   pointer-events: none;
   will-change: left, top;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient1, .gradient2, .gradient3, .gradient4, .gradient5 {
+    animation-play-state: paused;
+  }
+  .cursor-orb {
+    display: none;
+  }
 }

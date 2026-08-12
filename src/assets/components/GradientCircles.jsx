@@ -1,8 +1,22 @@
 import React, { useEffect, useRef } from 'react';
+import { getPaletteForHour, paletteToCssVars } from '../lib/gradientPalette';
 import './GradientCircles.css';
 
-const GradientCircles = () => {
-  const orbRef = useRef(null);
+// Most visitors only load the page once, so tying colors to real wall-clock
+// time would make the "moving gradient" look static during any one visit.
+// This fast-forwards a virtual clock through a full 24h palette lap every
+// DAY_CYCLE_MS, starting from the visitor's actual local hour, and writes
+// the resulting CSS custom properties straight to the DOM every frame
+// (bypassing React state/re-renders, same as the cursor-orb below) so the
+// color drift stays smooth instead of stepping visibly once a second.
+const DAY_CYCLE_MS = 4 * 60 * 1000;
+
+// parallaxFactor: fraction of scroll distance the background drifts by.
+// 0 (default) keeps it fully fixed — already the case via `position: fixed`
+// below. Bump to e.g. 0.15 for a subtle "moves slower than content" effect.
+const GradientCircles = ({ parallaxFactor = 0 }) => {
+  const bgRef   = useRef(null);
+  const orbRef  = useRef(null);
   const target  = useRef({ x: typeof window !== 'undefined' ? window.innerWidth  / 2 : 0,
                             y: typeof window !== 'undefined' ? window.innerHeight / 2 : 0 });
   const current = useRef({ x: target.current.x, y: target.current.y });
@@ -34,8 +48,49 @@ const GradientCircles = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const now = new Date();
+    const startHour = now.getHours() + now.getMinutes() / 60;
+    const startedAt = performance.now();
+    let paletteRafId;
+
+    const tick = () => {
+      const elapsedMs = performance.now() - startedAt;
+      const virtualHour = startHour + (elapsedMs / DAY_CYCLE_MS) * 24;
+      const vars = paletteToCssVars(getPaletteForHour(virtualHour));
+      if (bgRef.current) {
+        for (const key in vars) {
+          bgRef.current.style.setProperty(key, vars[key]);
+        }
+      }
+      paletteRafId = requestAnimationFrame(tick);
+    };
+
+    paletteRafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(paletteRafId);
+  }, []);
+
+  useEffect(() => {
+    if (!parallaxFactor) return undefined;
+
+    let rafId2;
+    const onScroll = () => {
+      rafId2 = requestAnimationFrame(() => {
+        if (bgRef.current) {
+          bgRef.current.style.transform = `translateY(${window.scrollY * parallaxFactor}px)`;
+        }
+      });
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      cancelAnimationFrame(rafId2);
+    };
+  }, [parallaxFactor]);
+
   return (
-    <div className="gradient-bg">
+    <div className="gradient-bg" ref={bgRef}>
       <div className="gradients-container">
         <div className="gradient1" />
         <div className="gradient2" />

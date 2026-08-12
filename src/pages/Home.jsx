@@ -1,60 +1,62 @@
-import Header from '../assets/components/Header'
-import Footer from '../assets/components/Footer'
+import { useEffect, useState } from 'react'
+import HomeNav from '../assets/components/HomeNav'
+import HomeFooter from '../assets/components/HomeFooter'
 import PortfolioGrid from '../assets/components/PortfolioGrid'
 import GradientCircles from "../assets/components/GradientCircles"
+import GradientToggle from '../assets/components/GradientToggle'
+import CityRotator from '../assets/components/CityRotator'
+import { useWeather } from '../assets/lib/useWeather'
+import { PRESET_CITIES } from '../assets/lib/cities'
 import './Home.css'
 
-const BouncingPhrase = ({ text }) =>
-  text.split('').map((char, i) => (
-    <span
-      key={i}
-      className="lift-letter"
-      data-char={char === ' ' ? '\u00A0' : char}
-      style={{ animationDelay: `${i * 0.04}s`, '--i': i }}
-    >
-      {char === ' ' ? '\u00A0' : char}
-    </span>
-  ))
+const GRADIENT_PREF_KEY = 'gradientEnabled'
 
-const Home = () => (
-  <div className="home-page">
-    <Header />
+const readStoredPreference = () => {
+  if (typeof window === 'undefined') return true
+  const stored = window.localStorage.getItem(GRADIENT_PREF_KEY)
+  return stored === null ? true : stored === 'true'
+}
 
-    <section id="landing-section" className="fade-in delay-1">
-      <div className='landing-text'>
+const Home = () => {
+  const [gradientOn, setGradientOn] = useState(readStoredPreference)
+  const [city, setCity] = useState(PRESET_CITIES[0])
+  const activeWeather = useWeather(city)
+  const theme = gradientOn ? 'theme-gradient' : 'theme-plain'
 
-        <div className='landing-hi-row'>
-          <span className='gray-landing-text'>Hi! I'm</span>
-          <span id='miao'>缪</span>
-          <span className='gray-landing-text'>Melody,</span>
-        </div>
+  useEffect(() => {
+    window.localStorage.setItem(GRADIENT_PREF_KEY, String(gradientOn))
+  }, [gradientOn])
 
-        <h1 className='landing-headline'>
-          <span className='headline-first-line'>a Product Designer making</span>
-          <span className='headline-second-line'>
-            <strong className='headline-animated'>
-              <BouncingPhrase text="designs that come to life" />
-            </strong><span className='headline-period'>.</span>
-          </span>
+  return (
+    <div className={`home-page ${theme}`}>
+      <HomeNav />
+
+      <section id="landing-section" className="fade-in delay-1">
+        <CityRotator onSelect={setCity} activeWeather={activeWeather} />
+
+        <h1 className="landing-headline">
+          <span>I&apos;m Melody, a Product Designer</span>
+          <span>making designs that come to life.</span>
         </h1>
 
-        <p className='landing-status'>
-          Currently <em>open to work</em>.
-        </p>
+        <GradientToggle checked={gradientOn} onChange={setGradientOn} />
+      </section>
 
-      </div>
-    </section>
+      <section id="work">
+        <div className="work-card">
+          <PortfolioGrid />
+        </div>
+      </section>
 
-    <section id="work">
-      <PortfolioGrid />
-    </section>
+      <HomeFooter />
 
-    <Footer />
-
-    <div className='background'>
-      <GradientCircles />
+      {gradientOn && (
+        <div className='background'>
+          <GradientCircles />
+        </div>
+      )}
     </div>
-  </div>
-)
+  )
+}
 
 export default Home

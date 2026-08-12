@@ -1,0 +1,63 @@
+.city-rotator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.city-rotator-pill {
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.city-rotator-locate {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.2s ease;
+}
+
+.city-rotator-locate:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.city-rotator-locate:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.city-rotator-error {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: #ffb4b4;
+  white-space: nowrap;
+}
+
+.theme-plain .city-rotator-locate {
+  color: #2e2f3b;
+  background: #f1f1f1;
+}
+
+.theme-plain .city-rotator-locate:hover {
+  background: #e5e5e5;
+}
+
+.theme-plain .city-rotator-error {
+  color: #d9534f;
+}
