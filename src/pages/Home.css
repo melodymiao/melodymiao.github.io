@@ -4,10 +4,19 @@
 
 /* ─── Whole-page background ──────────────────────────
  Plain (gradient-off) theme: flat light background so nav/text can use
- dark colors. Gradient theme: GradientCircles supplies the colorful
+ dark colors. Gradient theme: ShaderBackground supplies the colorful
  fixed background and text switches to white — see theme rules below. */
 .home-page.theme-plain {
   background: #f9f9f9;
+}
+
+/* Forces the browser to composite all foreground content as one explicit
+   layer above the ShaderGradient WebGL canvas — relying on implicit
+   z-index:0 stacking alone was unreliable against the canvas's own
+   compositor layer (worsened by the backdrop-filter layers in the nav). */
+.home-content {
+  position: relative;
+  z-index: 1;
 }
 
 /* ─── Landing Section ─────────────────────────────── */
@@ -45,11 +54,21 @@
   letter-spacing: 0;
   text-transform: uppercase;
   color: #fff;
+  align-items: center;
+}
+
+/* The visible pill "chrome" (background/blur/padding/shape) lives on an
+   inner span that can shrink independently of the button's own hoverable
+   box — see CityRotator.jsx for why those need to be decoupled. */
+.city-rotator-pill-chrome {
+  display: inline-flex;
+  justify-content: center;
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   padding: 6px 10px;
   border-radius: 10px;
+  transition: min-width 0.3s ease;
 }
 
 .theme-plain .landing-weather-text,
@@ -69,7 +88,7 @@
   cursor: pointer;
 }
 
-.theme-plain .landing-city-pill {
+.theme-plain .city-rotator-pill-chrome {
   background: #f1f1f1;
 }
 

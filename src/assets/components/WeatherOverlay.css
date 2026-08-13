@@ -1,0 +1,82 @@
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(-14%);
+  }
+  100% {
+    transform: translateX(14%);
+  }
+}
+
+@keyframes rainFall {
+  0% {
+    background-position-y: 0px;
+  }
+  100% {
+    background-position-y: 240px;
+  }
+}
+
+@keyframes snowFall {
+  0% {
+    background-position-y: 0px;
+  }
+  100% {
+    background-position-y: 320px;
+  }
+}
+
+.weather-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.weather-stars {
+  /* Screen blend keeps stars punching through as bright white regardless
+     of the haze blob sitting underneath, instead of getting muddied by it. */
+  mix-blend-mode: screen;
+}
+
+.weather-twinkle-a {
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.weather-twinkle-b {
+  animation: twinkle 4.8s ease-in-out 1.3s infinite;
+}
+
+.weather-haze {
+  position: absolute;
+  width: 80%;
+  height: 40%;
+  left: -20%;
+  top: 10%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  filter: blur(50px);
+  animation: cloudDrift 32s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.weather-rain {
+  background-repeat: repeat-y;
+  background-position-y: 0;
+  mix-blend-mode: screen;
+  animation: rainFall 1.8s linear infinite;
+}
+
+.weather-snow {
+  background-repeat: repeat-y;
+  background-position-y: 0;
+  animation: snowFall 8s linear infinite;
+}
