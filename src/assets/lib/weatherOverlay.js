@@ -36,8 +36,8 @@ export function overlayForCondition(label) {
 export const HAZE_OPACITY = {
   clear: 0,
   partly: 0.22,
-  overcast: 0.42,
-  fog: 0.62,
+  overcast: 0.62,
+  fog: 0.85,
   rain: 0.38,
   storm: 0.55,
   snow: 0.3,

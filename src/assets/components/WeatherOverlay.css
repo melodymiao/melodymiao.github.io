@@ -1,9 +1,13 @@
-@keyframes twinkle {
+/* Sits at its own resting opacity for the bulk of the cycle, then pulses
+   up to full brightness and back over a short window — the same shape as
+   the old always-on twinkle, just rare instead of continuous. */
+@keyframes starPulse {
   0%,
+  92%,
   100% {
-    opacity: 0.25;
+    opacity: var(--base-op, 0.6);
   }
-  50% {
+  96% {
     opacity: 1;
   }
 }
@@ -35,6 +39,29 @@
   }
 }
 
+/* Sits invisible for almost the whole cycle, then pops in and streaks
+   across in one quick, continuous motion — opacity fades out across the
+   exact same window as the flight (96%-100%) rather than reaching full
+   distance first and only fading afterward, so it looks like it's burning
+   out mid-flight instead of stopping dead and dissolving in place. The
+   window is intentionally tiny (4% of the cycle) so the flight itself
+   stays fast regardless of how long the per-star rest period is. */
+@keyframes shootingStar {
+  0%,
+  95% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(0);
+  }
+  96% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(var(--distance));
+  }
+}
+
 .weather-layer {
   position: absolute;
   inset: 0;
@@ -47,12 +74,15 @@
   mix-blend-mode: screen;
 }
 
-.weather-twinkle-a {
-  animation: twinkle 2.6s ease-in-out infinite;
-}
-
-.weather-twinkle-b {
-  animation: twinkle 4.8s ease-in-out 1.3s infinite;
+.star-twinkle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: var(--base-op, 0.6);
+  animation-name: starPulse;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 .weather-haze {
@@ -79,4 +109,23 @@
   background-repeat: repeat-y;
   background-position-y: 0;
   animation: snowFall 8s linear infinite;
+}
+
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  /* transform-origin sits at the left edge, and the fly animation moves
+     the element outward along translateX — since rotation pivots around
+     that anchored left edge, the RIGHT edge is what actually leads the
+     motion (it sweeps furthest from the pivot). So the bright end of the
+     gradient needs to be on the right, not the left, or the streak reads
+     as flying tail-first. */
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95));
+  border-radius: 2px;
+  transform-origin: left center;
+  pointer-events: none;
+  opacity: 0;
+  animation-name: shootingStar;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }

@@ -37,14 +37,13 @@ const Home = () => {
 
   return (
     <div className={`home-page ${theme}`}>
-      {gradientOn && (
-        <ShaderBackground
-          mood={previewMood}
-          tempF={preview.tempF ?? 70}
-          city={preview.city}
-          condition={preview.condition}
-        />
-      )}
+      <ShaderBackground
+        mood={previewMood}
+        tempF={preview.tempF ?? 70}
+        city={preview.city}
+        condition={preview.condition}
+        gradientOn={gradientOn}
+      />
 
       <div className="home-content">
         <HomeNav />

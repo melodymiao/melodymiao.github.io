@@ -1,8 +1,15 @@
 // Time-of-day + weather → ShaderGradient's color1/color2/color3.
 //
-// 3 moods (Clear, Partly Cloudy, Cloudy — Cloudy also covers Fog, plus
-// drizzle/rain/snow/showers/storms) × 6 times of day = 18 hand-authored
-// color triples. Mood switches just switch which keyframe set is read.
+// 2 moods (Clear, Cloudy) × 6 times of day = 12 hand-authored color
+// triples. Mood switches just switch which keyframe set is read.
+//
+// There's no distinct "partly cloudy" palette — it reads the same colors
+// as Clear, with the WeatherOverlay's light haze layer (see
+// weatherOverlay.js) doing the work of showing it's not fully clear. An
+// earlier version had a dedicated in-between "partly" palette, but sitting
+// between the vivid Clear colors and the (deliberately muted/grayed)
+// Cloudy colors made it read as muddy rather than as its own weather
+// mood — plain Clear + a light cloud overlay reads better.
 //
 // The 6 time-of-day keyframes (night/dawn/morning/midday/sunset/dusk) are
 // NOT fixed clock hours — a fixed "sunset = 5pm" would be wrong most of
@@ -17,34 +24,28 @@ const TIME_ORDER = ['night', 'dawn', 'morning', 'midday', 'sunset', 'dusk'];
 
 const PALETTES = {
   'dawn-clear': ['#9B7FD1', '#F28FAE', '#FFD873'],
-  'dawn-partly': ['#8F7FC2', '#E0A0B8', '#F0CE8A'],
-  'dawn-cloudy': ['#8A83A8', '#C2A8B0', '#DDC9A0'],
+  'dawn-cloudy': ['#8F7FC2', '#E0A0B8', '#F0CE8A'],
 
   'morning-clear': ['#2E8FE0', '#4FC9C4', '#FFDE7A'],
-  'morning-partly': ['#4C93CC', '#7DC2BE', '#E8D9A0'],
-  'morning-cloudy': ['#6B87A0', '#93ACAA', '#C7C3A8'],
+  'morning-cloudy': ['#4C93CC', '#7DC2BE', '#E8D9A0'],
 
   'midday-clear': ['#33A0FF', '#B06FE0', '#FFC53D'],
-  'midday-partly': ['#4FA0E0', '#A87FC7', '#F0CE7A'],
-  'midday-cloudy': ['#6E8CB0', '#9C8FB0', '#D6C9A0'],
+  'midday-cloudy': ['#4FA0E0', '#A87FC7', '#F0CE7A'],
 
   'sunset-clear': ['#FF7A33', '#33A0FF', '#FFC53D'],
-  'sunset-partly': ['#E87A4A', '#4F93D6', '#F0C169'],
-  'sunset-cloudy': ['#B87560', '#6E7E96', '#C9AA79'],
+  'sunset-cloudy': ['#E87A4A', '#4F93D6', '#F0C169'],
 
   'dusk-clear': ['#2B2452', '#A8478C', '#FF7A50'],
-  'dusk-partly': ['#332C58', '#8C4C82', '#D97960'],
-  'dusk-cloudy': ['#362F4A', '#6B5470', '#967868'],
+  'dusk-cloudy': ['#332C58', '#8C4C82', '#D97960'],
 
   'night-clear': ['#0B1230', '#4A2E78', '#1FA8A0'],
-  'night-partly': ['#10163A', '#3D2E68', '#2A7A78'],
-  'night-cloudy': ['#16151F', '#322A3E', '#2E4A48'],
+  'night-cloudy': ['#10163A', '#3D2E68', '#2A7A78'],
 };
 
 const CONDITION_TO_MOOD = {
   clear: 'clear',
   'mostly clear': 'clear',
-  'partly cloudy': 'partly',
+  'partly cloudy': 'clear',
   overcast: 'cloudy',
   foggy: 'cloudy',
   'light drizzle': 'cloudy',
