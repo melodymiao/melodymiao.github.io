@@ -5,32 +5,36 @@ import './HomeNav.css';
 const HomeNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOverCard, setIsOverCard] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // The white project-grid card scrolls up underneath this fixed nav —
-  // once it reaches the nav's bottom edge, white nav text is unreadable
-  // against it, so switch to dark text for as long as they overlap.
+  // Nav is `position: fixed` (see HomeNav.css) so it stays pinned through
+  // scroll on every page, not just Home — this listener always attaches
+  // and drives the shrink-on-scroll pill width (`isScrolled`); the
+  // white-project-grid-card overlap check (`isOverCard`, only relevant
+  // on Home, where white nav text would go unreadable against the card)
+  // just no-ops when `.work-card` isn't on the page.
   useEffect(() => {
     const card = document.querySelector('.work-card');
-    if (!card) return undefined;
-
     let rafId;
-    const checkOverlap = () => {
+    const check = () => {
+      setIsScrolled(window.scrollY > 8);
       const nav = navRef.current;
-      if (!nav) return;
-      const navBottom = nav.getBoundingClientRect().bottom;
-      const cardTop = card.getBoundingClientRect().top;
-      setIsOverCard(cardTop <= navBottom);
+      if (card && nav) {
+        const navBottom = nav.getBoundingClientRect().bottom;
+        const cardTop = card.getBoundingClientRect().top;
+        setIsOverCard(cardTop <= navBottom);
+      }
     };
 
     const onScroll = () => {
-      rafId = requestAnimationFrame(checkOverlap);
+      rafId = requestAnimationFrame(check);
     };
 
-    checkOverlap();
+    check();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
     return () => {
@@ -41,7 +45,10 @@ const HomeNav = () => {
   }, []);
 
   return (
-    <header className={`home-nav ${isOverCard ? 'is-over-card' : ''}`} ref={navRef}>
+    <header
+      className={`home-nav ${isOverCard ? 'is-over-card' : ''} ${isScrolled ? 'is-scrolled' : ''}`}
+      ref={navRef}
+    >
       <div className="home-nav-pill">
         <Link to="/" className="home-nav-wordmark" onClick={scrollToTop}>
           Melody Miao
@@ -69,7 +76,7 @@ const HomeNav = () => {
           </Link>
           <a
             href="/Melody_Miao_Product_Designer.pdf"
-            className="home-nav-link"
+            className="home-nav-link home-nav-resume"
             target="_blank"
             rel="noreferrer"
           >

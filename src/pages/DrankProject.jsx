@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Projects.css';
 import './DrankProject.css';
-import Header from '../assets/components/Header';
-import Footer from '../assets/components/Footer';
+import HomeNav from '../assets/components/HomeNav';
+import HomeFooter from '../assets/components/HomeFooter';
 
 
 import DrankHero        from '../assets/images/drank/hero.jpg';
@@ -61,8 +61,8 @@ const DrankProject = () => {
   };
 
   return (
-    <div className="drank-case-study">
-      <Header />
+    <div className="drank-case-study theme-plain">
+      <HomeNav />
 
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
@@ -393,7 +393,7 @@ const DrankProject = () => {
         </main>
       </div>
 
-      <Footer />
+      <HomeFooter />
     </div>
   );
 };

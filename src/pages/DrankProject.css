@@ -1,11 +1,49 @@
 /* ═══════════════════════════════════════════════════════
- DRANK CASE STUDY — accent color override
- Layout/typography (wider content, heading hierarchy, lighter body
- text, sidebar sizing/alignment, boxed hero) now live in the shared
- EDITORIAL PROJECT PAGE LAYOUT section of Projects.css. This file
- only overrides the accent color, since each case study gets its
- own — Augene/Checkt/InnoD currently default to the shared blue.
+ DRANK CASE STUDY — accent color + layout override
+ Heading hierarchy, lighter body text, and boxed hero still come from
+ the shared EDITORIAL PROJECT PAGE LAYOUT section of Projects.css —
+ Augene/Checkt/InnoD keep that as-is. This file overrides the accent
+ color, plus (below) a narrower sidebar / wider content column that's
+ specific to this page's format.
  ═══════════════════════════════════════════════════════ */
+
+/* ─── Narrower sidebar, wider content, aligned to the header pill ───
+ `.proj-body` gets the exact same box model as `.home-nav-pill` and
+ `.work-card` — box-sizing:border-box, max-width:1367px, centered — so
+ its outer left/right edges land on the identical two points those do
+ at any viewport width (centering via padding/flex-center cancels out
+ symmetrically, so the extra `padding-left` below doesn't shift the
+ outer edges, only what's inset within them).
+
+ padding-left matches the pill's own 20px left padding (see
+ .home-nav-pill in HomeNav.css) — combined with .proj-sidebar-nav's
+ existing -10px/+10px cancellation (see Projects.css), that puts the
+ sidebar link *text* exactly under the wordmark's text, not just the
+ sidebar's box edge under the pill's.
+
+ padding-right is 0, and .proj-content's max-width is removed (it's
+ flex:1, so it now grows to fill exactly what's left after the
+ sidebar) so content's own right edge reaches all the way to
+ .proj-body's right edge — same point as the pill's right edge.
+
+ Scoped to >900px so it doesn't fight the shared mobile reset, which
+ hides the sidebar and gives .proj-body its own simpler padding. */
+@media (min-width: 901px) {
+  .drank-case-study .proj-body {
+    max-width: 1367px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 0;
+  }
+
+  .drank-case-study .proj-sidebar {
+    width: 160px;
+  }
+
+  .drank-case-study .proj-content {
+    max-width: none;
+  }
+}
 
 /* ─── Accent palette ───
  Pale olive-cream tint (#F7F5DE) is lifted from the sugar/ice button

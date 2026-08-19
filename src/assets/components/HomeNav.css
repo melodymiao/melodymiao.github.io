@@ -1,5 +1,5 @@
 .home-nav {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 5;
@@ -12,16 +12,39 @@
 
 .home-nav-pill {
   width: 100%;
-  max-width: 1156px;
+  /* Matches .work-card's max-width + box-sizing (see Home.css) exactly,
+     so the pill's outer edges land on the same two points as the
+     portfolio grid's outer edges at any viewport width — until scrolled,
+     see .is-scrolled below, which shrinks it to half that. */
+  max-width: 1367px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
-  border-radius: 12px;
+  /* Vertical padding trimmed from 12px to 8px — Resume (see
+     .home-nav-resume) is the pill's tallest child, and its own height
+     plus this padding is what sets the pill's overall height, so
+     shrinking this by exactly as much as Resume grew keeps the pill
+     itself the same height as before while giving Resume more of that
+     height to fill (less empty space around it, not a taller pill). */
+  padding: 8px 20px;
+  /* Large enough to stay a full capsule regardless of the pill's actual
+     height (which changes with font-size/padding), instead of a fixed
+     px value that would only look right at one specific height. */
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  /* justify-content:center on .home-nav keeps the pill centered as this
+     animates, so it shrinks toward the middle rather than toward one
+     edge. */
+  transition: max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Half of 1367px — shrinks the pill once the page has scrolled past the
+   very top, animated by the transition above. */
+.home-nav.is-scrolled .home-nav-pill {
+  max-width: 683.5px;
 }
 
 .home-nav-wordmark {
@@ -30,7 +53,6 @@
   letter-spacing: -1px;
   color: #fff;
   text-decoration: none;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
   transition: color 0.25s ease;
 }
 
@@ -55,16 +77,56 @@
 
 .home-nav-link {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
+  /* Sized down from the wordmark's 20px — matching it made Work/About/
+     Resume read as oversized next to the wordmark instead of secondary
+     to it. */
+  font-size: 14px;
   color: #fff;
   text-decoration: none;
   opacity: 0.85;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.15);
   transition: opacity 0.25s ease, color 0.25s ease;
 }
 
 .home-nav-link:hover {
   opacity: 1;
+}
+
+/* Resume gets its own solid pill so it reads as the call-to-action,
+   distinct from the plain Work/About links. Its fill flips instead of
+   staying white everywhere: white with dark text by default (sitting on
+   the colorful gradient, where the nav's own text is white), and dark
+   with white text for the plain theme / scrolled-over-the-white-card
+   states — a white pill on top of the nav's already-near-white pill
+   there would have no contrast against it. */
+.home-nav-link.home-nav-resume {
+  background: #fff;
+  color: #2e2f3b !important;
+  text-shadow: none !important;
+  /* Taller than the wordmark/links via vertical padding alone — side
+     padding is untouched, and so is every other element's own sizing
+     (wordmark/Work/About keep their exact font-size and padding). The
+     pill row's rendered height does grow to fit this button since it's
+     now the tallest child, but that's the row adapting to it, not
+     another element being resized. */
+  padding: 10px 14px;
+  border-radius: 999px;
+  opacity: 1;
+  /* Pulls Resume 12px closer to the pill's right edge — the pill's own
+     right padding (20px) left a bigger gap there than its top padding
+     (8px). This only nudges Resume itself (not .home-nav-pill's padding,
+     which Work/About/the wordmark all still rely on), so the wordmark
+     and Work/About stay exactly where they were. */
+  margin-right: -12px;
+}
+
+.home-nav-link.home-nav-resume:hover {
+  opacity: 0.85;
+}
+
+.theme-plain .home-nav-resume,
+.home-nav.is-over-card .home-nav-resume {
+  background: #2e2f3b;
+  color: #fff !important;
 }
 
 .home-nav-toggle {
@@ -95,10 +157,6 @@
   .home-nav-links.open {
     display: flex;
     align-items: center;
-  }
-
-  .home-nav-link {
-    font-size: 16px;
   }
 
   .home-nav-toggle {
