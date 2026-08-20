@@ -18,7 +18,7 @@
 
 .innod-case-study .proj-sidebar-link.active {
   color: #CD28BD;
-  background-color: #FEF0FD;
+  background-color: transparent;
 }
 
 /* ─── Event logos: shared .proj-row-content is used elsewhere for

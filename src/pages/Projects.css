@@ -670,7 +670,7 @@ border-bottom: 1px solid #e8e8e8;
 }
 
 .proj-overview-title {
-font-family: "Domine", serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-weight: 400;
 font-size: 40px;
 color: #292929;
@@ -695,7 +695,7 @@ letter-spacing: 0.05em;
 }
 
 .proj-meta-group p {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 15px;
 color: #7a7a7a;
 line-height: 1.7;
@@ -738,12 +738,17 @@ gap: 2px;
 margin-left: -10px;
 }
 
+/* Font/case/tracking match Home.css's Helvetica Neue direction — sentence
+   case ("Overview", not "OVERVIEW") reads as a normal nav list instead of
+   a leftover mono-style label; letter-spacing is dropped alongside it
+   since 0.05em tracking is meant for all-caps mono text and reads as
+   loose/odd on normal sentence case. */
 .proj-sidebar-link {
-font-family: "DM Mono", monospace;
-font-size: 14px;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 16px;
 font-weight: 400;
-text-transform: uppercase;
-letter-spacing: 0.05em;
+text-transform: none;
+letter-spacing: normal;
 color: #BFBFBF;
 text-decoration: none;
 padding: 8px 10px;
@@ -762,9 +767,13 @@ color: #292929;
 background-color: #f4f4f4;
 }
 
+/* Active chapter reads via text color alone — no background pill — so
+   each case study's own accent color (this file's default blue, or a
+   page-specific override) stays legible against the plain page instead
+   of sitting in a tinted box. */
 .proj-sidebar-link.active {
 color: #2A68FB;
-background-color: #EEF3FF;
+background-color: transparent;
 }
 
 /* ─── Sidebar bottom nav (prev / next) ──────────────── */
@@ -772,13 +781,25 @@ background-color: #EEF3FF;
 margin-top: auto;
 padding-top: 20px;
 padding-bottom: 24px;
-border-top: 1px solid #e8e8e8;
 display: flex;
 flex-direction: column;
 gap: 8px;
 align-items: flex-start;
 }
 
+/* A filled, rounded-corner button (font stays DM Mono/uppercase/tracked,
+   matching the chapter-label eyebrows) instead of a bare text link, so
+   prev/next reads as a distinct tappable action rather than another row
+   in the chapter list.
+
+   Padding is even on all sides (6px) for a small, tight button. That
+   alone would leave the label sitting 4px right of where the chapter
+   list above it starts, since the sidebar's shared -10px shift (see
+   .proj-sidebar-nav/.proj-sidebar-footer above) assumes a 10px
+   padding-left to land text flush with the sidebar's edge — margin-left
+   here adds back the difference (10px - 6px) so the *box* sits 4px
+   further right than the shift alone would put it, while the padding
+   keeps the *text* lined up with the chapter list above. */
 .proj-sidebar-project-link {
 display: inline-flex;
 align-items: center;
@@ -788,20 +809,31 @@ cursor: pointer;
 font-family: "DM Mono", monospace;
 font-size: 14px;
 font-weight: 400;
-color: #BFBFBF;
+color: #6b6b6b;
 text-transform: uppercase;
 letter-spacing: 0.05em;
-background-color: transparent;
-border-radius: 6px;
-padding: 8px 10px;
+background-color: #f1f1f1;
+border: 1px solid #e8e8e8;
+border-radius: 8px;
+padding: 6px;
 transition: background-color 0.2s ease, color 0.2s ease;
 white-space: nowrap;
-margin-left: 0;
+margin-left: 4px;
 }
 
 .proj-sidebar-project-link:hover {
-background-color: #f4f4f4;
+background-color: #ececec;
 color: #292929;
+}
+
+/* The → / ← arrow glyph sits lower than the surrounding text's x-height
+   in this font, so centering it purely via the button's shared
+   align-items:center (which centers each flex child's own box, not
+   individual glyphs) isn't quite enough — nudged up slightly to read as
+   vertically centered against the label text next to it. */
+.proj-sidebar-project-arrow {
+position: relative;
+top: -1px;
 }
 
 .proj-sidebar-project-label,
@@ -818,6 +850,48 @@ padding: 80px 0 80px 60px;
 display: flex;
 flex-direction: column;
 gap: 120px;
+}
+
+/* ─── Narrower sidebar, wider content, aligned to the header pill ───
+ `.proj-body` gets the exact same box model as `.home-nav-pill` and
+ `.work-card` — box-sizing:border-box, max-width:1367px, centered — so
+ its outer left/right edges land on the identical two points those do at
+ any viewport width (centering via padding/flex-center cancels out
+ symmetrically, so the extra `padding-left` below doesn't shift the outer
+ edges, only what's inset within them).
+
+ padding-left/right both match the pill's own 20px left padding (see
+ .home-nav-pill in HomeNav.css) — combined with .proj-sidebar-nav's
+ -10px/+10px cancellation above, that puts the sidebar link *text*
+ exactly under the wordmark's text, not just the sidebar's box edge under
+ the pill's. Matching padding-right to it (rather than 0, flush with
+ .proj-body's own right edge) is what makes the outer margins on the two
+ sides of the page read as even.
+
+ .proj-content's max-width is reduced from 900px to 875px and no longer
+ grows to fill whatever's left after the sidebar (it's flex:1, so
+ uncapped it would stretch to ~1167px on a full-width viewport, too wide
+ for body text) — 875px is close to the original 900px while leaving
+ .proj-content's own right edge just short of .proj-body's, same as a
+ narrower article column normally would.
+
+ Scoped to >900px so it doesn't fight the shared mobile reset below,
+ which hides the sidebar and gives .proj-body its own simpler padding. */
+@media (min-width: 901px) {
+  .proj-body {
+    max-width: 1367px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .proj-sidebar {
+    width: 160px;
+  }
+
+  .proj-content {
+    max-width: 875px;
+  }
 }
 
 /* ─── Chapter section ───────────────────────────────── */
@@ -847,7 +921,7 @@ flex-direction: column;
 }
 
 .proj-heading h2 {
-font-family: "Domine", serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-weight: 400;
 color: #292929;
 }
@@ -874,7 +948,7 @@ gap: 16px;
 }
 
 .proj-text-block p {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 16px;
 color: #7a7a7a;
 line-height: 1.8;
@@ -900,7 +974,7 @@ padding-top: 4px;
 }
 
 .proj-row-label p {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 16px;
 color: #7a7a7a;
 line-height: 1.8;
@@ -925,6 +999,28 @@ flex-direction: column;
 gap: 16px;
 }
 
+/* ─── Tighter gap above showcase images ───
+ .proj-chapter uses a single flex `gap: 64px` (see above) between all of
+ its direct children — fine between genuinely separate blocks (e.g. the
+ end of one chapter section and the start of the next text block), but
+ too loose both between a paragraph and the image illustrating it, and
+ between back-to-back images in the same sequence — both should read as
+ one grouped unit rather than evenly-spaced unrelated blocks. */
+.proj-text-block + .proj-showcase,
+.proj-showcase + .proj-showcase {
+margin-top: -40px;
+}
+
+/* .proj-content's own `gap: 120px` sits between every direct child —
+   right between chapters, but too loose specifically between the cover
+   image and the title/intro right below it. Pulling just the first
+   chapter up (not touching the general 120px, which still applies
+   between every other pairing) tightens that one gap down to ~56px
+   without affecting spacing anywhere else on the page. */
+.proj-hero + .proj-chapter {
+margin-top: -64px;
+}
+
 .proj-showcase-media {
 overflow: hidden;
 border-radius: 8px;
@@ -937,7 +1033,7 @@ display: block;
 }
 
 .proj-showcase-caption {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 color: #BFBFBF;
 text-align: center;
@@ -961,7 +1057,7 @@ border-bottom: 1px solid #e8e8e8;
 }
 
 .proj-insight-number {
-font-family: "Domine", serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 28px;
 font-weight: 400;
 color: #e8e8e8;
@@ -970,7 +1066,7 @@ padding-top: 4px;
 }
 
 .proj-insight-title.proj-insight-title {
-font-family: "Domine", serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 22px;
 font-weight: 400;
 color: #292929;
@@ -979,7 +1075,7 @@ line-height: 1.3;
 }
 
 .proj-insight div > p {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 16px;
 color: #7a7a7a;
 line-height: 1.8;
@@ -1003,7 +1099,7 @@ border-bottom: 1px solid #e8e8e8;
 }
 
 .proj-principle-title.proj-principle-title {
-font-family: "Domine", serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 24px;
 font-weight: 400;
 color: #292929;
@@ -1012,7 +1108,7 @@ margin-bottom: 0;
 }
 
 .proj-principle p:not(.proj-principle-title) {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 16px;
 color: #7a7a7a;
 line-height: 1.8;
@@ -1027,7 +1123,7 @@ padding-bottom: 16px;
 }
 
 .proj-solution-name {
-font-family: "Domine", serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-weight: 400;
 font-size: 48px;
 color: #292929;
@@ -1035,7 +1131,7 @@ line-height: 1.1;
 }
 
 .proj-solution-tagline {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 20px;
 color: #2A68FB;
 font-weight: 400;
@@ -1061,7 +1157,7 @@ flex-shrink: 0;
 }
 
 .proj-feature-title {
-font-family: "Domine", serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-weight: 400;
 font-size: 26px;
 color: #292929;
@@ -1069,7 +1165,7 @@ line-height: 1.3;
 }
 
 .proj-feature-desc {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 16px;
 color: #7a7a7a;
 line-height: 1.8;
@@ -1193,7 +1289,7 @@ letter-spacing: 0.05em;
 }
 
 .aug-decision-title {
-font-family: "Domine", serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-weight: 400;
 font-size: 26px;
 color: #292929;
@@ -1201,7 +1297,7 @@ line-height: 1.3;
 }
 
 .aug-decision-label p {
-font-family: "DM Sans", sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 16px;
 color: #6c6c6c;
 line-height: 1.8;

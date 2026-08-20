@@ -1,57 +1,13 @@
 /* ═══════════════════════════════════════════════════════
- DRANK CASE STUDY — accent color + layout override
- Heading hierarchy, lighter body text, and boxed hero still come from
- the shared EDITORIAL PROJECT PAGE LAYOUT section of Projects.css —
- Augene/Checkt/InnoD keep that as-is. This file overrides the accent
- color, plus (below) a narrower sidebar / wider content column that's
- specific to this page's format.
+ DRANK CASE STUDY — page-specific overrides
+ The narrower-sidebar/wider-content layout, Helvetica Neue typography,
+ rounded "Next"/"Previous" button, and tighter chapter-image spacing
+ that used to live here are now the shared default for every case study
+ — see the EDITORIAL PROJECT PAGE LAYOUT section of Projects.css. This
+ file only keeps what's actually specific to *this* page: its accent
+ color, its GIF hero (height + the nav's dark-frame text swap), and the
+ custom comparison-image rows built for this case study's content.
  ═══════════════════════════════════════════════════════ */
-
-/* ─── Narrower sidebar, wider content, aligned to the header pill ───
- `.proj-body` gets the exact same box model as `.home-nav-pill` and
- `.work-card` — box-sizing:border-box, max-width:1367px, centered — so
- its outer left/right edges land on the identical two points those do
- at any viewport width (centering via padding/flex-center cancels out
- symmetrically, so the extra `padding-left` below doesn't shift the
- outer edges, only what's inset within them).
-
- padding-left/right both match the pill's own 20px left padding (see
- .home-nav-pill in HomeNav.css) — combined with .proj-sidebar-nav's
- existing -10px/+10px cancellation (see Projects.css), that puts the
- sidebar link *text* exactly under the wordmark's text, not just the
- sidebar's box edge under the pill's. Matching padding-right to it (it
- used to be 0, flush with .proj-body's own right edge) is what makes the
- outer margins on the two sides of the page read as even — a 0 right
- inset paired with a 20px left inset put more visible whitespace on the
- left than the right, even though .proj-body's own outer box is
- perfectly centered.
-
- .proj-content's max-width is removed (it's flex:1, so it grows to fill
- exactly what's left after the sidebar and this padding).
-
- Scoped to >900px so it doesn't fight the shared mobile reset, which
- hides the sidebar and gives .proj-body its own simpler padding. */
-@media (min-width: 901px) {
-  .drank-case-study .proj-body {
-    max-width: 1367px;
-    margin: 0 auto;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .drank-case-study .proj-sidebar {
-    width: 160px;
-  }
-
-  /* Content used to grow uncapped (flex:1) to fill everything left after
-     the sidebar — ~1167px on a full-width viewport, which read as too
-     wide for body text. Capped back down to ~3/4 of that (875px); it no
-     longer reaches .proj-body's own right edge, leaving whitespace
-     there instead, same as a narrower article column normally would. */
-  .drank-case-study .proj-content {
-    max-width: 875px;
-  }
-}
 
 /* ─── Accent palette ───
  Pale olive-cream tint (#F7F5DE) is lifted from the sugar/ice button
@@ -59,9 +15,9 @@
  the app's dark (#727025) and pale (#E0DE96) olives, just lighter —
  legible against white while staying distinct from the near-black
  heading text. */
-
 .drank-case-study .proj-chapter-label,
-.drank-case-study .proj-solution-tagline {
+.drank-case-study .proj-solution-tagline,
+.drank-case-study .proj-sidebar-link.active {
   color: #7C7A27;
 }
 
@@ -105,116 +61,12 @@
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.45);
 }
 
-/* Active chapter reads via text color alone now — no background pill —
-   so it stays the accent olive instead of the shared layout's blue
-   highlight (background-color is set explicitly since the shared
-   .proj-sidebar-link.active rule in Projects.css already sets one; a
-   more-specific selector that didn't mention it wouldn't cancel it). */
-.drank-case-study .proj-sidebar-link.active {
-  color: #7C7A27;
-  background-color: transparent;
-}
-
-/* ─── Typography — Helvetica Neue, matching the redesigned home page ───
- The shared editorial layout pairs a serif (Domine) for headings with
- DM Sans for body copy; this page drops both in favor of Helvetica Neue
- everywhere text isn't meant to read as a small monospace label/eyebrow
- (.proj-chapter-label, .proj-meta-group h3, .proj-project-eyebrow, and
- the sidebar's "Next" button all keep DM Mono — same role Home.css uses
- it for, e.g. the weather readout). Only selectors this page actually
- renders are listed. */
-.drank-case-study .proj-overview-title,
-.drank-case-study .proj-meta-group p,
-.drank-case-study .proj-sidebar-link,
-.drank-case-study .proj-heading h2,
-.drank-case-study .proj-text-block p,
-.drank-case-study .proj-solution-name,
-.drank-case-study .proj-solution-tagline {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-/* Sidebar chapter links: larger, sentence case ("Overview" instead of
-   the shared layout's uppercase "OVERVIEW") to match the Helvetica Neue
-   switch above instead of reading like a leftover mono-style label, and
-   no letter-spacing — 0.05em tracking is meant for all-caps mono text,
-   and reads as loose/odd once the text is normal sentence case. */
-.drank-case-study .proj-sidebar-link {
-  font-size: 16px;
-  text-transform: none;
-  letter-spacing: normal;
-}
-
-/* ─── "Next" link → rounded rectangle button ───
- Was a bare mono/uppercase text link with a divider above it; now a
- filled, rounded-corner button (no divider) so it reads as a distinct
- tappable action instead of another row in the chapter list — font stays
- DM Mono/uppercase/tracked, matching the chapter-label eyebrows.
-
- Padding is even on all sides (6px) for a smaller, tighter button. That
- alone would leave "NEXT: AUGENE" sitting 4px right of where "Overview"
- etc. above it start, since the sidebar's shared -10px shift (see
- .proj-sidebar-nav/.proj-sidebar-footer in Projects.css) assumes a 10px
- padding-left to land text flush with the sidebar's edge — margin-left
- here adds back the difference (10px - 6px) so the *box* sits 4px
- further right than the shift alone would put it, while the padding
- keeps the *text* lined up with the chapter list above. */
-.drank-case-study .proj-sidebar-footer {
-  border-top: none;
-}
-
-.drank-case-study .proj-sidebar-project-link {
-  color: #6b6b6b;
-  background-color: #f1f1f1;
-  border: 1px solid #e8e8e8;
-  border-radius: 8px;
-  padding: 6px;
-  margin-left: 4px;
-}
-
-/* The → arrow's glyph sits lower than the surrounding text's x-height in
-   this font, so centering it purely via the button's shared
-   align-items:center (which centers each flex child's own box, not
-   individual glyphs) isn't quite enough — nudged up slightly to read as
-   vertically centered against "Next: Augene" next to it. */
-.drank-case-study .proj-sidebar-project-arrow {
-  position: relative;
-  top: -1px;
-}
-
-/* ─── Tighter gap above showcase images ───
- .proj-chapter uses a single flex `gap: 64px` (see Projects.css) between
- all of its direct children — fine between genuinely separate blocks
- (e.g. the end of one chapter section and the start of the next text
- block), but too loose both between a paragraph and the image
- illustrating it, and between back-to-back images in the same sequence
- (e.g. the v0 → wireframes → Figma run in PROCESS) — both should read as
- one grouped unit rather than evenly-spaced unrelated blocks. */
-.drank-case-study .proj-text-block + .proj-showcase,
-.drank-case-study .proj-showcase + .proj-showcase {
-  margin-top: -40px;
-}
-
-.drank-case-study .proj-sidebar-project-link:hover {
-  background-color: #ececec;
-  color: #292929;
-}
-
 /* ─── Hero ───
  Taller than the shared layout's 400px now that it's showing the
  portfolio grid's animated thumbnail (see DrankProject.jsx) instead of a
  static hero photo — more height gives the animation more room to read. */
 .drank-case-study .proj-hero {
   height: 480px;
-}
-
-/* .proj-content's shared `gap: 120px` (Projects.css) sits between every
-   direct child — right between chapters, but too loose specifically
-   between the cover image and the title/intro right below it. Pulling
-   just the first chapter up (not touching the general 120px, which still
-   applies between every other pairing) tightens that one gap down to
-   ~56px without affecting spacing anywhere else on the page. */
-.drank-case-study .proj-hero + .proj-chapter {
-  margin-top: -64px;
 }
 
 /* ─── Accordion demo: crop out baked-in blank header ───

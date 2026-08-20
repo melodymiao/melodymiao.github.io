@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Projects.css';
 import './ChecktProject.css';
-import Header from '../assets/components/Header';
-import Footer from '../assets/components/Footer';
+import HomeNav from '../assets/components/HomeNav';
+import HomeFooter from '../assets/components/HomeFooter';
 import PhoneHeader from '../assets/images/checkt/checkt header.jpg';
 import ToDoList from '../assets/images/checkt/to do list.jpg';
 import TasksVSHabits from '../assets/images/checkt/tasks vs habits.jpg';
@@ -65,8 +65,8 @@ const ChecktProject = () => {
   };
 
   return (
-    <div className="checkt-case-study">
-      <Header />
+    <div className="checkt-case-study theme-plain">
+      <HomeNav />
 
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
@@ -88,10 +88,10 @@ const ChecktProject = () => {
 
           <div className="proj-sidebar-footer">
             <Link className="proj-sidebar-project-link" to="/augene" onClick={handleLinkClick}>
-              ← Previous: Augene
+              <span className="proj-sidebar-project-arrow">←</span> Previous: Augene
             </Link>
             <Link className="proj-sidebar-project-link" to="/innod" onClick={handleLinkClick}>
-              → Next: InnoD
+              <span className="proj-sidebar-project-arrow">→</span> Next: InnoD
             </Link>
           </div>
         </nav>
@@ -457,7 +457,7 @@ const ChecktProject = () => {
         </main>
       </div>
 
-      <Footer />
+      <HomeFooter />
     </div>
   );
 };

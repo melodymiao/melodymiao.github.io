@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Projects.css';
-import Header from '../assets/components/Header';
-import Footer from '../assets/components/Footer';
+import HomeNav from '../assets/components/HomeNav';
+import HomeFooter from '../assets/components/HomeFooter';
 import AugeneThumb from '../assets/images/portfolio-grid/augene thumbnail.jpg';
 import SkincareProducts from '../assets/images/augene/skincare products.png';
 import CompetitiveAnalysis from '../assets/images/augene/competitive analysis.jpg';
@@ -55,8 +55,8 @@ const AugeneProject = () => {
   };
 
   return (
-    <>
-      <Header />
+    <div className="augene-case-study theme-plain">
+      <HomeNav />
 
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
@@ -78,10 +78,10 @@ const AugeneProject = () => {
 
           <div className="proj-sidebar-footer">
             <a className="proj-sidebar-project-link" href="https://drank.vercel.app" target="_blank" rel="noreferrer">
-              ← Previous: Drank
+              <span className="proj-sidebar-project-arrow">←</span> Previous: Drank
             </a>
             <Link className="proj-sidebar-project-link" to="/checkt" onClick={handleLinkClick}>
-              → Next: Checkt
+              <span className="proj-sidebar-project-arrow">→</span> Next: Checkt
             </Link>
           </div>
         </nav>
@@ -476,8 +476,8 @@ const AugeneProject = () => {
         </main>
       </div>
 
-      <Footer />
-    </>
+      <HomeFooter />
+    </div>
   );
 };
 

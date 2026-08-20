@@ -2,8 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Projects.css';
 import './InnoDProject.css';
-import Header from '../assets/components/Header';
-import Footer from '../assets/components/Footer';
+import HomeNav from '../assets/components/HomeNav';
+import HomeFooter from '../assets/components/HomeFooter';
 import InnoDPreview from '../assets/images/innod/innod preview.jpg';
 import SP24RecruitLogo from '../assets/images/innod/sp24 recruitment logo.png';
 import SP24RecruitPage from '../assets/images/innod/sp24 recruitment website.jpg';
@@ -55,8 +55,8 @@ const InnoDProject = () => {
   };
 
   return (
-    <div className="innod-case-study">
-      <Header />
+    <div className="innod-case-study theme-plain">
+      <HomeNav />
 
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
@@ -78,7 +78,7 @@ const InnoDProject = () => {
 
           <div className="proj-sidebar-footer">
             <Link className="proj-sidebar-project-link" to="/checkt" onClick={handleLinkClick}>
-              ← Previous: Checkt
+              <span className="proj-sidebar-project-arrow">←</span> Previous: Checkt
             </Link>
           </div>
         </nav>
@@ -97,7 +97,7 @@ const InnoDProject = () => {
             <div className="proj-project-intro">
               <div>
                 <span className="proj-project-eyebrow">Innovative Design</span>
-                <h1 className="proj-overview-title">Engaging event web pages under tight deadlines</h1>
+                <h1 className="proj-overview-title">Engaging event web pages</h1>
               </div>
               <div className="proj-overview-meta">
                 <div className="proj-meta-group">
@@ -110,6 +110,7 @@ const InnoDProject = () => {
                   <p>Melody Miao</p>
                   <p>Eric Yang (SP24)</p>
                   <p>JR Garbe (FA24)</p>
+                  <p>+ SP24/FA24 Marketing Team</p>
                 </div>
                 <div className="proj-meta-group">
                   <h3>Timeline</h3>
@@ -306,7 +307,7 @@ const InnoDProject = () => {
         </main>
       </div>
 
-      <Footer />
+      <HomeFooter />
     </div>
   );
 };
