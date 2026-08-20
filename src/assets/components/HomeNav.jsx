@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './HomeNav.css';
 
-const HomeNav = () => {
+const HomeNav = ({ overDarkBg = false }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOverCard, setIsOverCard] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,7 +46,7 @@ const HomeNav = () => {
 
   return (
     <header
-      className={`home-nav ${isOverCard ? 'is-over-card' : ''} ${isScrolled ? 'is-scrolled' : ''}`}
+      className={`home-nav ${isOverCard ? 'is-over-card' : ''} ${isScrolled ? 'is-scrolled' : ''} ${overDarkBg ? 'is-dark-bg' : ''}`}
       ref={navRef}
     >
       <div className="home-nav-pill">

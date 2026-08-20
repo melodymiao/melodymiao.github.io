@@ -15,16 +15,19 @@
  symmetrically, so the extra `padding-left` below doesn't shift the
  outer edges, only what's inset within them).
 
- padding-left matches the pill's own 20px left padding (see
+ padding-left/right both match the pill's own 20px left padding (see
  .home-nav-pill in HomeNav.css) — combined with .proj-sidebar-nav's
  existing -10px/+10px cancellation (see Projects.css), that puts the
  sidebar link *text* exactly under the wordmark's text, not just the
- sidebar's box edge under the pill's.
+ sidebar's box edge under the pill's. Matching padding-right to it (it
+ used to be 0, flush with .proj-body's own right edge) is what makes the
+ outer margins on the two sides of the page read as even — a 0 right
+ inset paired with a 20px left inset put more visible whitespace on the
+ left than the right, even though .proj-body's own outer box is
+ perfectly centered.
 
- padding-right is 0, and .proj-content's max-width is removed (it's
- flex:1, so it now grows to fill exactly what's left after the
- sidebar) so content's own right edge reaches all the way to
- .proj-body's right edge — same point as the pill's right edge.
+ .proj-content's max-width is removed (it's flex:1, so it grows to fill
+ exactly what's left after the sidebar and this padding).
 
  Scoped to >900px so it doesn't fight the shared mobile reset, which
  hides the sidebar and gives .proj-body its own simpler padding. */
@@ -33,15 +36,20 @@
     max-width: 1367px;
     margin: 0 auto;
     padding-left: 20px;
-    padding-right: 0;
+    padding-right: 20px;
   }
 
   .drank-case-study .proj-sidebar {
     width: 160px;
   }
 
+  /* Content used to grow uncapped (flex:1) to fill everything left after
+     the sidebar — ~1167px on a full-width viewport, which read as too
+     wide for body text. Capped back down to ~3/4 of that (875px); it no
+     longer reaches .proj-body's own right edge, leaving whitespace
+     there instead, same as a narrower article column normally would. */
   .drank-case-study .proj-content {
-    max-width: none;
+    max-width: 875px;
   }
 }
 
@@ -57,9 +65,156 @@
   color: #7C7A27;
 }
 
+/* ─── Nav text goes light when it's scrolled over something dark ───
+ HomeNav is `position: fixed`, so as the page scrolls it stays on top of
+ the hero's animated GIF (see DrankProject.jsx) — the shared .theme-plain
+ override (HomeNav.css) forces dark navy text, right for this page's
+ white body copy but unreadable over the GIF's darker frames (e.g. its
+ UI-mockup screens).
+
+ `.is-dark-bg` is added to the nav by DrankProject.jsx, which actually
+ samples the hero <img>'s current frame onto a canvas and checks its
+ real luminance (see the effect in DrankProject.jsx) — a first pass at
+ this used `mix-blend-mode: difference` on white text instead, which
+ needs no JS at all, but two separate failures ruled it out: on Home's
+ gradient it goes low-contrast at mid-tone colors, and here — layered
+ under the pill's own backdrop-filter/translucent background — it went
+ fully invisible rather than just low-contrast, so it's not a reliable
+ technique in this component's structure, not just a style trade-off.
+
+ Specificity note: `.theme-plain .home-nav-wordmark` etc. in HomeNav.css
+ is a 2-class selector; this chains 5 class selectors across
+ `.drank-case-study.theme-plain` (wrapper) and `.home-nav.is-dark-bg`
+ (the nav itself), so it reliably wins regardless of stylesheet import
+ order. Resume is left out — its contrast comes from its own solid fill,
+ not from whatever's behind the nav.
+
+ The darkness check in DrankProject.jsx only looks at the hero <img>'s
+ own frame — but the hero is a rounded, inset box narrower than the nav
+ (there's plain white margin on both sides of it, from the sidebar and
+ the page's own side padding), so the wordmark in particular is really
+ never actually over the hero itself. A flat white swap would go
+ invisible there whenever the check fires. The text-shadow below is a
+ deliberate safety net for that mismatch: a dark halo keeps white text
+ legible over a light background too (not just dark), so a wrong "it's
+ dark" read costs some crispness rather than disappearing entirely. */
+.drank-case-study.theme-plain .home-nav.is-dark-bg .home-nav-wordmark,
+.drank-case-study.theme-plain .home-nav.is-dark-bg .home-nav-link:not(.home-nav-resume),
+.drank-case-study.theme-plain .home-nav.is-dark-bg .home-nav-toggle {
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7), 0 0 8px rgba(0, 0, 0, 0.45);
+}
+
+/* Active chapter reads via text color alone now — no background pill —
+   so it stays the accent olive instead of the shared layout's blue
+   highlight (background-color is set explicitly since the shared
+   .proj-sidebar-link.active rule in Projects.css already sets one; a
+   more-specific selector that didn't mention it wouldn't cancel it). */
 .drank-case-study .proj-sidebar-link.active {
   color: #7C7A27;
-  background-color: #F7F5DE;
+  background-color: transparent;
+}
+
+/* ─── Typography — Helvetica Neue, matching the redesigned home page ───
+ The shared editorial layout pairs a serif (Domine) for headings with
+ DM Sans for body copy; this page drops both in favor of Helvetica Neue
+ everywhere text isn't meant to read as a small monospace label/eyebrow
+ (.proj-chapter-label, .proj-meta-group h3, .proj-project-eyebrow, and
+ the sidebar's "Next" button all keep DM Mono — same role Home.css uses
+ it for, e.g. the weather readout). Only selectors this page actually
+ renders are listed. */
+.drank-case-study .proj-overview-title,
+.drank-case-study .proj-meta-group p,
+.drank-case-study .proj-sidebar-link,
+.drank-case-study .proj-heading h2,
+.drank-case-study .proj-text-block p,
+.drank-case-study .proj-solution-name,
+.drank-case-study .proj-solution-tagline {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Sidebar chapter links: larger, sentence case ("Overview" instead of
+   the shared layout's uppercase "OVERVIEW") to match the Helvetica Neue
+   switch above instead of reading like a leftover mono-style label, and
+   no letter-spacing — 0.05em tracking is meant for all-caps mono text,
+   and reads as loose/odd once the text is normal sentence case. */
+.drank-case-study .proj-sidebar-link {
+  font-size: 16px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* ─── "Next" link → rounded rectangle button ───
+ Was a bare mono/uppercase text link with a divider above it; now a
+ filled, rounded-corner button (no divider) so it reads as a distinct
+ tappable action instead of another row in the chapter list — font stays
+ DM Mono/uppercase/tracked, matching the chapter-label eyebrows.
+
+ Padding is even on all sides (6px) for a smaller, tighter button. That
+ alone would leave "NEXT: AUGENE" sitting 4px right of where "Overview"
+ etc. above it start, since the sidebar's shared -10px shift (see
+ .proj-sidebar-nav/.proj-sidebar-footer in Projects.css) assumes a 10px
+ padding-left to land text flush with the sidebar's edge — margin-left
+ here adds back the difference (10px - 6px) so the *box* sits 4px
+ further right than the shift alone would put it, while the padding
+ keeps the *text* lined up with the chapter list above. */
+.drank-case-study .proj-sidebar-footer {
+  border-top: none;
+}
+
+.drank-case-study .proj-sidebar-project-link {
+  color: #6b6b6b;
+  background-color: #f1f1f1;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  padding: 6px;
+  margin-left: 4px;
+}
+
+/* The → arrow's glyph sits lower than the surrounding text's x-height in
+   this font, so centering it purely via the button's shared
+   align-items:center (which centers each flex child's own box, not
+   individual glyphs) isn't quite enough — nudged up slightly to read as
+   vertically centered against "Next: Augene" next to it. */
+.drank-case-study .proj-sidebar-project-arrow {
+  position: relative;
+  top: -1px;
+}
+
+/* ─── Tighter gap above showcase images ───
+ .proj-chapter uses a single flex `gap: 64px` (see Projects.css) between
+ all of its direct children — fine between genuinely separate blocks
+ (e.g. the end of one chapter section and the start of the next text
+ block), but too loose both between a paragraph and the image
+ illustrating it, and between back-to-back images in the same sequence
+ (e.g. the v0 → wireframes → Figma run in PROCESS) — both should read as
+ one grouped unit rather than evenly-spaced unrelated blocks. */
+.drank-case-study .proj-text-block + .proj-showcase,
+.drank-case-study .proj-showcase + .proj-showcase {
+  margin-top: -40px;
+}
+
+.drank-case-study .proj-sidebar-project-link:hover {
+  background-color: #ececec;
+  color: #292929;
+}
+
+/* ─── Hero ───
+ Taller than the shared layout's 400px now that it's showing the
+ portfolio grid's animated thumbnail (see DrankProject.jsx) instead of a
+ static hero photo — more height gives the animation more room to read. */
+.drank-case-study .proj-hero {
+  height: 480px;
+}
+
+/* .proj-content's shared `gap: 120px` (Projects.css) sits between every
+   direct child — right between chapters, but too loose specifically
+   between the cover image and the title/intro right below it. Pulling
+   just the first chapter up (not touching the general 120px, which still
+   applies between every other pairing) tightens that one gap down to
+   ~56px without affecting spacing anywhere else on the page. */
+.drank-case-study .proj-hero + .proj-chapter {
+  margin-top: -64px;
 }
 
 /* ─── Accordion demo: crop out baked-in blank header ───
@@ -77,4 +232,243 @@
   height: 100%;
   object-fit: cover;
   object-position: center bottom;
+}
+
+/* ─── v0 prompt → produced page, side by side ───
+ Each row pairs one produced screen (upload/rank/share) with the v0
+ prompt that generated it — page on the left (it's the actual result,
+ the thing worth seeing clearly), prompt on the right (supporting
+ reference text), together spanning the full content column.
+ align-items:start (not center/stretch) keeps both images anchored to
+ the row's top edge instead of vertically centering them against each
+ other — the page screenshots and prompt screenshots have different
+ aspect ratios/heights, so centering would leave their tops misaligned.
+
+ Uses the *exact* same 4-column/16px-gap grid as .proj-make-row below
+ (not an independently-chosen 3fr/1fr split) specifically so
+ .proj-prompt-page (spanning columns 1-3) lines up pixel-for-pixel with
+ .proj-make-row's own 3rd column — same width, same right edge — rather
+ than two separately-tuned ratios that happen to look close. */
+.drank-case-study .proj-prompt-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* Page screenshot sits in a fixed-proportion rectangle rather than just
+   rendering at its own natural aspect ratio — upload/rank/share are three
+   different heights (637/834/754px at the same 1179px width), so without
+   this each row's box would be a different size. aspect-ratio (not a
+   fixed pixel height) keeps that proportion consistent across all three
+   while still scaling with the column's own responsive width. Flex
+   centering (not object-fit:contain filling 100%) is what shrinks the
+   image down and keeps it centered instead of stretching it to the box's
+   own edges — see the img rule below for why contain specifically can't
+   give all three the same rendered width. */
+.drank-case-study .proj-prompt-page {
+  position: relative;
+  grid-column: span 3;
+  aspect-ratio: 3 / 2;
+  background: #CADFF4;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fixed width (not object-fit:contain at 100%/100%) is what makes all
+   three pages render at the *same* width — contain picks whichever
+   dimension is the tighter fit for each image's own aspect ratio, so
+   upload (1.85:1, wider than the 3:2 box) would end up width-constrained
+   while rank (1.41:1, narrower than the box) would end up
+   height-constrained and visibly narrower than the other two. A flat
+   percentage sidesteps that: height stays auto (each image keeps its own
+   aspect ratio, so their rendered heights still differ — only width is
+   forced equal), and 75% (vs. the label's ~36px minimum clearance need,
+   see .proj-prompt-page-label below) leaves >=~39px of vertical gap
+   above/below even the tallest-relative-to-width image (rank), so the
+   label never lands on top of any of the three. */
+.drank-case-study .proj-prompt-page img {
+  width: 75%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* Bottom-left label, sized so its footprint (line-height, set to exactly
+   1 so "text height" below means the font-size and nothing more) plus
+   the gap on either side of it is the *minimum* clearance the shrunk
+   image above needs to leave: textHeight (12px) + 2 x the label's own
+   offset from the container's bottom edge (12px) = 36px. The image's
+   75% width (above) comfortably clears that for all three pages. */
+.drank-case-study .proj-prompt-page-label {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+/* Prompt screenshot (right column) — explicitly no rounding, unlike the
+   page rectangle to its left. */
+.drank-case-study .proj-prompt-img {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+}
+
+/* ─── Figma Make layout explorations — 4 across ───
+ Same page-in-a-colored-rectangle idea as .proj-prompt-page above (fixed
+ aspect-ratio box, image shrunk + centered inside, mono caption bottom-
+ left reusing .proj-prompt-page-label), but for 4 equal columns instead
+ of 2, a different fill color, and much taller/narrower source images —
+ these are full mobile screens (738px wide x up to 1993px tall — a
+ ~2.7:1 height:width ratio for the tallest, "long form"), not landscape
+ app screenshots, so both the container's aspect-ratio and the image's
+ width fraction are tuned differently than .proj-prompt-page's 3:2/75%. */
+.drank-case-study .proj-make-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* 1:2.15 (width:height) — a bit taller than the previous 1:2 — is tall
+   enough that even "long form" — the most extreme ratio of the four —
+   fits within it at 65% width with room to spare for the caption; the
+   other three (tabs/in-line edits/accordion, all shorter) end up with
+   proportionally more headroom above/below. */
+.drank-case-study .proj-make-page {
+  position: relative;
+  aspect-ratio: 1 / 2.15;
+  background: #F4A95C;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drank-case-study .proj-make-page img {
+  width: 65%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* "long form" (make-1, the first column) is the tallest-relative-to-
+   width of the four — even with the taller box above, centering it at
+   the same 65% as the other three leaves the least breathing room
+   before its caption. Narrowed further just for this one so its own
+   image-to-caption gap matches the others' instead of reading tighter. */
+.drank-case-study .proj-make-row .proj-make-page:first-child img {
+  width: 58%;
+}
+
+/* ─── Tabbed-with-preview vs. accordion-without-preview, side by side ───
+ Same page-in-a-colored-rectangle pattern again (fixed aspect-ratio box,
+ image shrunk + centered, mono caption bottom-left reusing
+ .proj-prompt-page-label) — 2 equal columns this time, a third fill
+ color, for the pair of mobile mockups being compared directly above the
+ combined tabs-vs-accordions summary image. Both source images are
+ tall-but-less-extreme portrait screens (708x1604 / 774x1604, ~0.44-0.48
+ width:height) than the Figma Make row's, so the box doesn't need to be
+ nearly as tall as .proj-make-page's 1:2.15 — 1:1.7 at 65% width clears
+ both with room for the caption. */
+.drank-case-study .proj-accordion-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.drank-case-study .proj-accordion-page {
+  position: relative;
+  aspect-ratio: 1 / 1.7;
+  background: #FFB1D0;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drank-case-study .proj-accordion-page img {
+  width: 55%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* ─── Free-text vs. radio-button customizations, side by side ───
+ Same 2-column page-in-a-colored-rectangle pattern as .proj-accordion-row
+ just above (fixed aspect-ratio box, image shrunk + centered, mono
+ caption bottom-left reusing .proj-prompt-page-label) — a fourth fill
+ color, directly above the combined sugar/ice summary image it's
+ comparing. Source images (812x1531 / 812x1715, ~0.47-0.53 width:height)
+ are close enough in proportion to .proj-accordion-page's that the same
+ 1:1.7 box / 55% image width clears both with room for the caption. */
+.drank-case-study .proj-customization-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.drank-case-study .proj-customization-page {
+  position: relative;
+  aspect-ratio: 1 / 1.7;
+  background: #E0DE96;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drank-case-study .proj-customization-page img {
+  width: 55%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* ─── No feedback vs. rotating loading messages, side by side ───
+ Same 2-column page-in-a-colored-rectangle pattern as the rows above, a
+ fifth fill color — these two source gifs (800x542, ~1.48:1 width:height)
+ are landscape screen recordings, not portrait phone mockups, so the box
+ uses a landscape ratio too rather than the tall 1:1.7 used for
+ accordion/customization. 3:2.3 (a bit taller than a plain 3:2) is what
+ gives the caption real breathing room below the image — at 3:2 exactly,
+ 80%-width image left only ~27px of clearance on each side, which read as
+ the caption sitting right under the image instead of separated from it. */
+.drank-case-study .proj-loading-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.drank-case-study .proj-loading-page {
+  position: relative;
+  aspect-ratio: 3 / 2.3;
+  background: #9BCFEC;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drank-case-study .proj-loading-page img {
+  width: 80%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
 }

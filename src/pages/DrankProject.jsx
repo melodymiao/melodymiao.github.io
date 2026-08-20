@@ -6,18 +6,34 @@ import HomeNav from '../assets/components/HomeNav';
 import HomeFooter from '../assets/components/HomeFooter';
 
 
-import DrankHero        from '../assets/images/drank/hero.jpg';
+import DrankHero        from '../assets/images/portfolio-grid/drank-thumbnail.gif';
 import DrankCompAnalysis from '../assets/images/drank/subject-vs-share.jpg';
 import DrankUpload      from '../assets/images/drank/upload step.gif';
 import DrankRank        from '../assets/images/drank/rank step.gif';
 import DrankShare       from '../assets/images/drank/share step.gif';
 import DrankV0          from '../assets/images/drank/v0-prototypes.jpg';
+import DrankUploadPage  from '../assets/images/drank/upload-page.jpg';
+import DrankPrompt1     from '../assets/images/drank/prompt-1.png';
+import DrankRankPage    from '../assets/images/drank/rank-page.jpg';
+import DrankPrompt2     from '../assets/images/drank/prompt-2.png';
+import DrankSharePage   from '../assets/images/drank/share-page.jpg';
+import DrankPrompt3     from '../assets/images/drank/prompt-3.png';
 import DrankWireframes  from '../assets/images/drank/initial-wireframes.jpg';
+import DrankMake1       from '../assets/images/drank/make-1.jpg';
+import DrankMake2       from '../assets/images/drank/make-2.jpg';
+import DrankMake3       from '../assets/images/drank/make-3.jpg';
+import DrankMake4       from '../assets/images/drank/make-4.jpg';
 import DrankFigma       from '../assets/images/drank/figma-explorations.jpg';
 import DrankSystem      from '../assets/images/drank/design-system.jpg';
+import DrankAccordion1  from '../assets/images/drank/accordion-1.png';
+import DrankAccordion2  from '../assets/images/drank/accordion-2.png';
 import DrankAccordion   from '../assets/images/drank/accordion.jpg';
 import DrankAccordionDemo   from '../assets/images/drank/accordion-layout.gif';
+import DrankCustomizations1 from '../assets/images/drank/customizations-1.gif';
+import DrankCustomizations2 from '../assets/images/drank/customizations-2.gif';
 import DrankSugar       from '../assets/images/drank/sugar-ice-button-group.jpg';
+import DrankLoading1    from '../assets/images/drank/loading-1.gif';
+import DrankLoading2    from '../assets/images/drank/loading-2.gif';
 import DrankLoading     from '../assets/images/drank/sticker-loading.gif';
 import DrankHistory     from '../assets/images/drank/history-page.gif';
 
@@ -34,9 +50,20 @@ const CHAPTERS = [
   { id: 'reflection', label: 'Reflection' },
 ];
 
+// How tall a chunk of the viewport's top the fixed nav actually occupies —
+// approximate (its real height varies a few px with scroll-shrink state,
+// see HomeNav.css .is-scrolled) but only needs to be "big enough" for the
+// overlap check below, not exact.
+const NAV_OVERLAP_HEIGHT = 100;
+// Below this, the hero frame reads as dark enough that the plain theme's
+// navy nav text goes unreadable over it.
+const DARK_LUMINANCE_THRESHOLD = 0.4;
+
 const DrankProject = () => {
   const [activeId, setActiveId] = useState('overview');
+  const [navOverDarkBg, setNavOverDarkBg] = useState(false);
   const observerRef = useRef(null);
+  const heroImgRef = useRef(null);
 
   const handleLinkClick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -55,6 +82,61 @@ const DrankProject = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
+  // The fixed nav sits on top of the hero's animated GIF at the top of the
+  // page — samples the GIF's *currently playing* frame onto an offscreen
+  // canvas (drawImage on an animated <img> captures whatever frame is
+  // rendering at that instant) and checks its real luminance, so the nav
+  // can switch to light text specifically while the GIF is showing a dark
+  // frame, and back to dark text the rest of the time (including once
+  // scrolled past the hero entirely). Polls on an interval since the GIF's
+  // own frame changes have no DOM event to hook into, not just on scroll.
+  useEffect(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 16;
+    canvas.height = 16;
+    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+
+    const sample = () => {
+      const img = heroImgRef.current;
+      if (!img) return;
+      const rect = img.getBoundingClientRect();
+      const overlapsNav = rect.top < NAV_OVERLAP_HEIGHT && rect.bottom > 0;
+      if (!overlapsNav) {
+        setNavOverDarkBg(false);
+        return;
+      }
+      try {
+        // object-position: center top (see Projects.css .proj-hero img)
+        // anchors the source image's own top edge to the rendered top —
+        // no vertical crop from the top — so sampling row 0 of the raw
+        // source corresponds directly to what's under the nav, without
+        // needing to replicate object-fit:cover's crop math.
+        ctx.drawImage(img, 0, 0, 16, 16);
+        const { data } = ctx.getImageData(0, 0, 16, 2);
+        let total = 0;
+        let count = 0;
+        for (let i = 0; i < data.length; i += 4) {
+          total += 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+          count++;
+        }
+        if (count > 0) setNavOverDarkBg(total / count / 255 < DARK_LUMINANCE_THRESHOLD);
+      } catch {
+        // Image not decoded yet, or a transient canvas read failure —
+        // leave the last known value in place rather than flicker.
+      }
+    };
+
+    const onScroll = () => requestAnimationFrame(sample);
+    sample();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    const intervalId = setInterval(sample, 200);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      clearInterval(intervalId);
+    };
+  }, []);
+
   const scrollTo = (id) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -62,7 +144,7 @@ const DrankProject = () => {
 
   return (
     <div className="drank-case-study theme-plain">
-      <HomeNav />
+      <HomeNav overDarkBg={navOverDarkBg} />
 
       {/* ── Body: sidebar + content ── */}
       <div className="proj-body">
@@ -84,7 +166,8 @@ const DrankProject = () => {
 
           <div className="proj-sidebar-footer">
             <Link className="proj-sidebar-project-link" to="/augene" onClick={handleLinkClick}>
-              → Next: Augene
+              <span className="proj-sidebar-project-arrow">→</span>
+              Next: Augene
             </Link>
           </div>
         </nav>
@@ -94,7 +177,7 @@ const DrankProject = () => {
 
           {/* ── Hero ── */}
           <div className="proj-hero">
-            <img src={DrankHero} alt="drank project" />
+            <img ref={heroImgRef} src={DrankHero} alt="drank project" />
           </div>
 
           {/* ── OVERVIEW ── */}
@@ -232,20 +315,47 @@ const DrankProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <div className="proj-showcase-media">
-                <img src={DrankV0} alt="v0 prompts and initial prototypes" />
+              <div className="proj-prompt-row">
+                <div className="proj-prompt-page">
+                  <img src={DrankUploadPage} alt="Upload page produced by the v0 prompt" />
+                  <span className="proj-prompt-page-label">v0 upload page</span>
+                </div>
+                <img className="proj-prompt-img" src={DrankPrompt1} alt="v0 prompt for the upload screen" />
+              </div>
+              <div className="proj-prompt-row">
+                <div className="proj-prompt-page">
+                  <img src={DrankRankPage} alt="Rank page produced by the v0 prompt" />
+                  <span className="proj-prompt-page-label">v0 rank page</span>
+                </div>
+                <img className="proj-prompt-img" src={DrankPrompt2} alt="v0 prompt for the rank screen" />
+              </div>
+              <div className="proj-prompt-row">
+                <div className="proj-prompt-page">
+                  <img src={DrankSharePage} alt="Share page produced by the v0 prompt" />
+                  <span className="proj-prompt-page-label">v0 share page</span>
+                </div>
+                <img className="proj-prompt-img" src={DrankPrompt3} alt="v0 prompt for the share screen" />
               </div>
             </div>
 
             <div className="proj-showcase">
-              <div className="proj-showcase-media">
-                <img src={DrankWireframes} alt="drank initial wireframes" />
-              </div>
-            </div>
-
-            <div className="proj-showcase">
-              <div className="proj-showcase-media">
-                <img src={DrankFigma} alt="Figma rank page layout explorations" />
+              <div className="proj-make-row">
+                <div className="proj-make-page">
+                  <img src={DrankMake1} alt="Figma Make exploration — long form layout" />
+                  <span className="proj-prompt-page-label">long form</span>
+                </div>
+                <div className="proj-make-page">
+                  <img src={DrankMake2} alt="Figma Make exploration — tabs layout" />
+                  <span className="proj-prompt-page-label">tabs</span>
+                </div>
+                <div className="proj-make-page">
+                  <img src={DrankMake3} alt="Figma Make exploration — in-line edits layout" />
+                  <span className="proj-prompt-page-label">in-line edits</span>
+                </div>
+                <div className="proj-make-page">
+                  <img src={DrankMake4} alt="Figma Make exploration — accordion layout" />
+                  <span className="proj-prompt-page-label">accordion</span>
+                </div>
               </div>
             </div>
 
@@ -291,8 +401,15 @@ const DrankProject = () => {
 
 
             <div className="proj-showcase">
-              <div className="proj-showcase-media">
-                <img src={DrankAccordion} alt="Tabs to accordions" />
+              <div className="proj-accordion-row">
+                <div className="proj-accordion-page">
+                  <img src={DrankAccordion1} alt="Tabbed rank layout with the receipt preview" />
+                  <span className="proj-prompt-page-label">tabbed layout with preview</span>
+                </div>
+                <div className="proj-accordion-page">
+                  <img src={DrankAccordion2} alt="Accordion rank layout without the receipt preview" />
+                  <span className="proj-prompt-page-label">accordion layout without preview</span>
+                </div>
               </div>
             </div>
 
@@ -308,15 +425,21 @@ const DrankProject = () => {
               </div>
               <p>
                 Sugar and ice were originally free-form text inputs. Beyond being slower to fill
-                in, they caused data inconsistency (someone typing "Light Ice" would show up as
-                "Light Ice Ice"). Milk type used a button group and was faster to complete, so I applied
-                the same pattern to the sugar and ice fields.
+                in, they caused inconsistency (someone typing "Light Ice" would show up as
+                "Light Ice Ice").
               </p>
             </div>
 
             <div className="proj-showcase">
-              <div className="proj-showcase-media">
-                <img src={DrankSugar} alt="Text input to button group for sugar and ice" />
+              <div className="proj-customization-row">
+                <div className="proj-customization-page">
+                  <img src={DrankCustomizations1} alt="Sugar and ice as free-text fields" />
+                  <span className="proj-prompt-page-label">free-text fields</span>
+                </div>
+                <div className="proj-customization-page">
+                  <img src={DrankCustomizations2} alt="Sugar and ice as radio button groups" />
+                  <span className="proj-prompt-page-label">radio buttons</span>
+                </div>
               </div>
             </div>
 
@@ -333,8 +456,15 @@ const DrankProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <div className="proj-showcase-media">
-                <img src={DrankLoading} alt="Drink sticker loading state" />
+              <div className="proj-loading-row">
+                <div className="proj-loading-page">
+                  <img src={DrankLoading1} alt="Drink sticker with no immediate response after toggling it on" />
+                  <span className="proj-prompt-page-label">no immediate response</span>
+                </div>
+                <div className="proj-loading-page">
+                  <img src={DrankLoading2} alt="Drink sticker with rotating loading status messages" />
+                  <span className="proj-prompt-page-label">rotating loading messages</span>
+                </div>
               </div>
             </div>
 
