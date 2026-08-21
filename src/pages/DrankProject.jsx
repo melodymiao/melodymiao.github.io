@@ -29,6 +29,8 @@ import DrankAccordion1  from '../assets/images/drank/accordion-1.png';
 import DrankAccordion2  from '../assets/images/drank/accordion-2.png';
 import DrankAccordion   from '../assets/images/drank/accordion.jpg';
 import DrankAccordionDemo   from '../assets/images/drank/accordion-layout.gif';
+import DrankAccordionDesktop from '../assets/images/drank/accordion-desktop.gif';
+import DrankAccordionMobile  from '../assets/images/drank/accordion-mobile.gif';
 import DrankCustomizations1 from '../assets/images/drank/customizations-1.gif';
 import DrankCustomizations2 from '../assets/images/drank/customizations-2.gif';
 import DrankSugar       from '../assets/images/drank/sugar-ice-button-group.jpg';
@@ -359,21 +361,6 @@ const DrankProject = () => {
               </div>
             </div>
 
-            <div className="proj-text-block">
-              <div className="proj-heading">
-                <h2>Warm, handcrafted, like a cozy café</h2>
-              </div>
-              <p>
-                Once the layouts were settled, I created a design system and designed
-                components, including hand-drawn elements used throughout
-                the app. The app uses soft, warm colors throughout to create a handcrafted, cozy feeling.
-              </p>
-            </div>
-
-            <div className="proj-showcase">
-              <img src={DrankSystem} alt="Design system — color, typography, UI elements" />
-            </div>
-
           </section>
 
           {/* ── ITERATIONS ── */}
@@ -414,8 +401,15 @@ const DrankProject = () => {
             </div>
 
             <div className="proj-showcase">
-              <div className="proj-showcase-media proj-showcase-media--accordion-demo">
-                <img src={DrankAccordionDemo} alt="Accordion layouts - desktop and mobile" />
+              <div className="proj-accordion-device-row">
+                <div className="proj-accordion-device-page proj-accordion-device-page--desktop">
+                  <img src={DrankAccordionDesktop} alt="Accordion layout on desktop" />
+                  <span className="proj-prompt-page-label">desktop accordion</span>
+                </div>
+                <div className="proj-accordion-device-page proj-accordion-device-page--mobile">
+                  <img src={DrankAccordionMobile} alt="Accordion layout on mobile" />
+                  <span className="proj-prompt-page-label">mobile accordion</span>
+                </div>
               </div>
             </div>
 
@@ -458,11 +452,15 @@ const DrankProject = () => {
             <div className="proj-showcase">
               <div className="proj-loading-row">
                 <div className="proj-loading-page">
-                  <img src={DrankLoading1} alt="Drink sticker with no immediate response after toggling it on" />
+                  <div className="proj-loading-crop">
+                    <img src={DrankLoading1} alt="Drink sticker with no immediate response after toggling it on" />
+                  </div>
                   <span className="proj-prompt-page-label">no immediate response</span>
                 </div>
                 <div className="proj-loading-page">
-                  <img src={DrankLoading2} alt="Drink sticker with rotating loading status messages" />
+                  <div className="proj-loading-crop">
+                    <img src={DrankLoading2} alt="Drink sticker with rotating loading status messages" />
+                  </div>
                   <span className="proj-prompt-page-label">rotating loading messages</span>
                 </div>
               </div>

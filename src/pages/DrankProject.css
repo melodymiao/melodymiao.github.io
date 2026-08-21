@@ -258,6 +258,59 @@
   border-radius: 4px;
 }
 
+/* ─── Desktop vs. mobile accordion layout, side by side ───
+ Same page-in-a-colored-rectangle idea as .proj-accordion-row above, but
+ a 2-column grid with an uneven 7fr/3fr split instead of equal columns:
+ the desktop screenshot (1853x1000, landscape) and the mobile mockup
+ (726x1530, portrait) are too different in proportion to share one box
+ shape or width. fr tracks already fill 100% of the row regardless of
+ the ratio chosen, so 7fr/3fr keeps the row spanning the full content
+ column while giving the mobile box real width instead of collapsing to
+ whatever a matching-aspect-ratio box would force it down to (which
+ read as squished — barely any gutter around the phone mockup). Both
+ boxes share one fixed height instead of an aspect-ratio, so the width
+ split is free to be tuned independently of height.
+
+ Desktop's image is landscape (wider than the box), so it's sized by
+ width (85%, height auto) same as every other row on this page. Mobile's
+ image is portrait — much taller relative to its own width than the box
+ is — so sizing it by that same width fraction would overflow the fixed
+ height; sizing by height (80%, width auto) instead fits it vertically
+ and leaves horizontal gutters in the same rough pixel range as
+ desktop's, rather than the tall thin slivers a width-based fit would
+ leave on the narrow mobile column. */
+.drank-case-study .proj-accordion-device-row {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 16px;
+}
+
+.drank-case-study .proj-accordion-device-page {
+  position: relative;
+  height: 400px;
+  background: #FF7347;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drank-case-study .proj-accordion-device-page img {
+  display: block;
+  border-radius: 4px;
+}
+
+.drank-case-study .proj-accordion-device-page--desktop img {
+  width: 85%;
+  height: auto;
+}
+
+.drank-case-study .proj-accordion-device-page--mobile img {
+  height: 80%;
+  width: auto;
+}
+
 /* ─── Free-text vs. radio-button customizations, side by side ───
  Same 2-column page-in-a-colored-rectangle pattern as .proj-accordion-row
  just above (fixed aspect-ratio box, image shrunk + centered, mono
@@ -293,13 +346,24 @@
 
 /* ─── No feedback vs. rotating loading messages, side by side ───
  Same 2-column page-in-a-colored-rectangle pattern as the rows above, a
- fifth fill color — these two source gifs (800x542, ~1.48:1 width:height)
- are landscape screen recordings, not portrait phone mockups, so the box
- uses a landscape ratio too rather than the tall 1:1.7 used for
- accordion/customization. 3:2.3 (a bit taller than a plain 3:2) is what
- gives the caption real breathing room below the image — at 3:2 exactly,
- 80%-width image left only ~27px of clearance on each side, which read as
- the caption sitting right under the image instead of separated from it. */
+ fifth fill color — but each source gif (800x542) is cropped down to a
+ 356x514 window (222px trimmed off each side, 2px off the top, 26px off
+ the bottom) rather than shown in full like every other row's image. The
+ crop is a literal window into the source, not an object-fit guess: the
+ window (.proj-loading-crop) is sized to the *cropped* aspect ratio
+ (356/514) and clips its overflow, while the img inside is rendered at
+ ~224.72% of the window's width (= 800/356, the image's real width
+ relative to a window that's only 356px of it) and shifted left 50% of
+ its own width to recenter horizontally. The left/right crop is
+ symmetric (222px each), so that's all the horizontal positioning needs;
+ the top/bottom crop isn't (2px vs. 26px), so the img is also nudged up
+ by 2/542 = 0.369% of its own height (translateY) so the window's
+ visible top edge lands exactly at source row 2 instead of row 0.
+
+ The window fills 78% of the outer box's width (from the previous
+ padding pass — that's what controls the padding/size of the image
+ within the rectangle, not this crop), and the box's aspect-ratio
+ matches the crop's own ratio so padding stays even on all four sides. */
 .drank-case-study .proj-loading-row {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -309,18 +373,29 @@
 
 .drank-case-study .proj-loading-page {
   position: relative;
-  aspect-ratio: 3 / 2.3;
+  aspect-ratio: 356 / 514;
   background: #9BCFEC;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.drank-case-study .proj-loading-page img {
-  width: 80%;
+.drank-case-study .proj-loading-crop {
+  position: relative;
+  width: 78%;
+  aspect-ratio: 356 / 514;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.drank-case-study .proj-loading-crop img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 224.72%;
   height: auto;
+  transform: translate(-50%, -0.369%);
   display: block;
-  border-radius: 4px;
 }

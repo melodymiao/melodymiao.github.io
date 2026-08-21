@@ -140,8 +140,8 @@ const InnoDProject = () => {
               <div className="proj-row">
                 <div className="proj-row-label">
                   <div className="proj-heading">
-                    <span className="proj-chapter-label">Spring 2024</span>
-                    <h2>Club / DeCal Recruitment</h2>
+                    <span className="proj-chapter-label">SP24 Recruitment</span>
+                    <h2>Comic-Book Bold</h2>
                   </div>
                   <p>
                     Every semester the club opens applications for teams and student-led DeCal courses.
@@ -169,8 +169,8 @@ const InnoDProject = () => {
               <div className="proj-row">
                 <div className="proj-row-label">
                   <div className="proj-heading">
-                    <span className="proj-chapter-label">Spring 2024</span>
-                    <h2>Reach Grow Build</h2>
+                    <span className="proj-chapter-label">SP24 RGB</span>
+                    <h2>All In at the Casino</h2>
                   </div>
                   <p>
                     RGB is a speaker series where professional artists and photographers give workshops
@@ -197,8 +197,8 @@ const InnoDProject = () => {
               <div className="proj-row">
                 <div className="proj-row-label">
                   <div className="proj-heading">
-                    <span className="proj-chapter-label">Spring 2024</span>
-                    <h2>Hone and Explore</h2>
+                    <span className="proj-chapter-label">SP24 HEX</span>
+                    <h2>Chromecore Meets Y2K Futurism</h2>
                   </div>
                   <p>
                     HEX is a weekend of free graphic design, photography, and web design workshops
@@ -225,8 +225,8 @@ const InnoDProject = () => {
               <div className="proj-row">
                 <div className="proj-row-label">
                   <div className="proj-heading">
-                    <span className="proj-chapter-label">Fall 2024</span>
-                    <h2>Club / DeCal Recruitment</h2>
+                    <span className="proj-chapter-label">FA24 Recruitment</span>
+                    <h2>A Cozy Animal Crossing Bakery</h2>
                   </div>
                   <p>
                     The fall recruitment page again provided the timeline and application links
@@ -253,8 +253,8 @@ const InnoDProject = () => {
               <div className="proj-row">
                 <div className="proj-row-label">
                   <div className="proj-heading">
-                    <span className="proj-chapter-label">Fall 2024</span>
-                    <h2>Hone and Explore</h2>
+                    <span className="proj-chapter-label">FA24 HEX</span>
+                    <h2>A Jelly-Soft Windows 95 Throwback</h2>
                   </div>
                   <p>
                     The fall HEX page featured a throwback 90s Windows theme with interactive,
@@ -281,8 +281,8 @@ const InnoDProject = () => {
               <div className="proj-row">
                 <div className="proj-row-label">
                   <div className="proj-heading">
-                    <span className="proj-chapter-label">Fall 2024</span>
-                    <h2>Come Make Your Mark</h2>
+                    <span className="proj-chapter-label">FA24 CMYK</span>
+                    <h2>Bold and Loud Maximalist Grids</h2>
                   </div>
                   <p>
                     CMYK is a designathon and speaker series where students compete in a design
