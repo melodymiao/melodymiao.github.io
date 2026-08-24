@@ -4,7 +4,7 @@ import './PortfolioGrid.css';
 import drankThumb from '../images/portfolio-grid/drank-thumbnail.gif';
 import augeneThumb from '../images/portfolio-grid/augene thumbnail.jpg';
 import checktThumb from '../images/portfolio-grid/checkt thumbnail.jpg';
-import innodThumb from '../images/portfolio-grid/innod thumbnail.jpg';
+import innodThumb from '../images/portfolio-grid/innod-thumbnail.gif';
 
 const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 

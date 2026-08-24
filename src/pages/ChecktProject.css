@@ -12,7 +12,8 @@
  background. */
 
 .checkt-case-study .proj-chapter-label,
-.checkt-case-study .proj-solution-tagline {
+.checkt-case-study .proj-solution-tagline,
+.checkt-case-study .proj-project-eyebrow {
   color: #9E51CD;
 }
 

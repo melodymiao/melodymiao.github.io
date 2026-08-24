@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: flex-start;
     gap: 4%;
-    padding: 120px 24px 100px 24px;
+    padding: 80px 24px 100px 24px;
     margin: 0;
     min-height: 100vh;
     box-sizing: border-box;
@@ -29,7 +29,7 @@
 }
 
 .about-headline {
-    font-family: "Domine", serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-size: 40px;
     line-height: 1.25;
@@ -41,7 +41,7 @@
 }
 
 .about-subtext {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 18px;
     color: #6c6c6c;
     line-height: 1.7;
@@ -94,7 +94,7 @@
 }
 
 .about-list li {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 17px;
     color: #4a4a4a;
     line-height: 1.6;
@@ -135,12 +135,12 @@
 }
 
 .about-link:hover {
-    color: #F2582D;
-    border-color: #F2582D;
+    color: #2A68FB;
+    border-color: #2A68FB;
 }
 
 .haappy-link {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #292929;
     text-decoration: none;
     border-bottom: 1px solid #292929;
@@ -149,8 +149,8 @@
 }
 
 .haappy-link:hover {
-    color: #F2582D;
-    border-color: #F2582D;
+    color: #2A68FB;
+    border-color: #2A68FB;
 }
 
 

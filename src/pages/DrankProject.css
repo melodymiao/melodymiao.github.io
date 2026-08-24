@@ -10,15 +10,13 @@
  ═══════════════════════════════════════════════════════ */
 
 /* ─── Accent palette ───
- Pale olive-cream tint (#F7F5DE) is lifted from the sugar/ice button
- screenshots. The foreground olive (#7C7A27) sits on the same hue as
- the app's dark (#727025) and pale (#E0DE96) olives, just lighter —
- legible against white while staying distinct from the near-black
- heading text. */
+ Mid olive (#C5C37A) accent used for chapter labels, the solution
+ tagline, and the active sidebar link. */
 .drank-case-study .proj-chapter-label,
 .drank-case-study .proj-solution-tagline,
+.drank-case-study .proj-project-eyebrow,
 .drank-case-study .proj-sidebar-link.active {
-  color: #7C7A27;
+  color: #C5C37A;
 }
 
 /* ─── Nav text goes light when it's scrolled over something dark ───
@@ -208,7 +206,7 @@
 }
 
 .drank-case-study .proj-make-page img {
-  width: 65%;
+  width: 74%;
   height: auto;
   display: block;
   border-radius: 4px;
@@ -216,11 +214,11 @@
 
 /* "long form" (make-1, the first column) is the tallest-relative-to-
    width of the four — even with the taller box above, centering it at
-   the same 65% as the other three leaves the least breathing room
+   the same width as the other three leaves the least breathing room
    before its caption. Narrowed further just for this one so its own
    image-to-caption gap matches the others' instead of reading tighter. */
 .drank-case-study .proj-make-row .proj-make-page:first-child img {
-  width: 58%;
+  width: 66%;
 }
 
 /* ─── Tabbed-with-preview vs. accordion-without-preview, side by side ───

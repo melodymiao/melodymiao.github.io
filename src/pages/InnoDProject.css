@@ -12,7 +12,8 @@
  background. */
 
 .innod-case-study .proj-chapter-label,
-.innod-case-study .proj-solution-tagline {
+.innod-case-study .proj-solution-tagline,
+.innod-case-study .proj-project-eyebrow {
   color: #CD28BD;
 }
 

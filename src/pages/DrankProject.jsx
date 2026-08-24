@@ -208,7 +208,7 @@ const DrankProject = () => {
                 </div>
                 <div className="proj-meta-group">
                   <h3>Links</h3>
-                  <p><a href="https://drank.vercel.app" target="_blank" rel="noreferrer" style={{ color: '#7C7A27', textDecoration: 'none' }}>drank.vercel.app ↗</a></p>
+                  <p><a href="https://drank.vercel.app" target="_blank" rel="noreferrer" style={{ color: '#C5C37A', textDecoration: 'none' }}>drank.vercel.app ↗</a></p>
                 </div>
               </div>
             </div>
@@ -216,18 +216,16 @@ const DrankProject = () => {
             <div className="proj-text-block">
               <div className="proj-heading">
                 <span className="proj-chapter-label">Overview</span>
-                <h2>Rate the drink, not the whole restaurant</h2>
+                <h2>Rate individual drinks, not the whole restaurant</h2>
               </div>
               <p>
-                Apps like Yelp and Beli are great for rating a whole restaurant or café, but
-                oftentimes you've only tried one thing. And lots of times, the specific way you
-                ordered it matters just as much as the drink itself.
+                Yelp and Beli are great for rating a whole restaurant or cafe, but usually you've only
+                tried one thing there. Sometimes, you only want to recommend one item.
               </p>
               <p>
-                People love sharing a good find, especially when they customized it perfectly.
-                But there's no easy way to post that online. drank gives you something cute to
-                share on your existing social media circles. Getting friends to download a new app
-                to see your drink recommendations is tough, but getting them to tap your story isn't.
+                People love sharing a good find, especially one they customized just right, but there's
+                no easy way to share that. drank turns drink rankings into something cute to share
+                on your existing social media stories.
               </p>
             </div>
 
@@ -245,7 +243,7 @@ const DrankProject = () => {
             <div className="proj-solution-intro">
               <span className="proj-chapter-label">Solution</span>
               <h1 className="proj-solution-name">drank</h1>
-              <p className="proj-solution-tagline">Rate it. Style it. Share it.</p>
+              <p className="proj-solution-tagline">drink. then rank.</p>
             </div>
 
             <div className="proj-text-block">
@@ -253,10 +251,8 @@ const DrankProject = () => {
                 <h2>Upload your drink photo</h2>
               </div>
               <p>
-                Start by uploading a photo from your camera roll, taking one in-app, or skipping
-                straight to ranking if you don't have one. When you add a photo, drank reads its
-                EXIF metadata and uses GPS coordinates to find nearby cafés, which pre-fills the
-                café name. If it guessed wrong, a dropdown shows other options from the same area.
+                Upload a photo. drank reads its EXIF data and GPS to guess the business name. 
+                Wrong guess? A dropdown shows other spots nearby.
               </p>
             </div>
 
@@ -271,8 +267,8 @@ const DrankProject = () => {
                 <h2>Fill in the details</h2>
               </div>
               <p>
-                Next, fill out your receipt. Fill in your rating, order details, and notes. A live
-                receipt preview updates as you type.
+                Fill in your ranking, order, and notes, and watch a live receipt preview update as
+                you type.
               </p>
             </div>
 
@@ -287,8 +283,8 @@ const DrankProject = () => {
                 <h2>Customize and share</h2>
               </div>
               <p>
-                Customize your receipt with text stickers or make a drink sticker 
-                from your photo. Export as a receipt card or a 9:16 story image.
+                Add text stickers, or turn your photo into a drink sticker. Export as a receipt
+                card or a 9:16 story you can share.
               </p>
             </div>
 
@@ -309,13 +305,17 @@ const DrankProject = () => {
                 <h2>From rough prompt to production</h2>
               </div>
               <p>
-                I started with a rough prompt in v0 describing the structure and functions I wanted on each page,
-                which gave me a working prototype with uploadable images and live receipt previews. From there I moved into Figma to generate layout
-                explorations and compare options, allowing me to explore how the same page should
-                feel on mobile vs desktop.
+                After planning how I wanted the flow to work, I started in v0 with a rough prompt describing what each page
+                should do. From there, I got a working prototype complete with image uploads and a live receipt
+                preview.
               </p>
             </div>
 
+            <div className="proj-text-block">
+              <p>First, v0 generated an upload page with a working image upload and capture feature. (Note: all prompts
+                shown below are simplified for brevity.)
+              </p>
+            </div>
             <div className="proj-showcase">
               <div className="proj-prompt-row">
                 <div className="proj-prompt-page">
@@ -324,6 +324,13 @@ const DrankProject = () => {
                 </div>
                 <img className="proj-prompt-img" src={DrankPrompt1} alt="v0 prompt for the upload screen" />
               </div>
+            </div>
+
+            <div className="proj-text-block">
+              <p>For the rank screen, v0 generated a page with a live receipt preview that updated as
+                fields for the drink name, ranking, customizations, and notes were filled in.</p>
+            </div>
+            <div className="proj-showcase">
               <div className="proj-prompt-row">
                 <div className="proj-prompt-page">
                   <img src={DrankRankPage} alt="Rank page produced by the v0 prompt" />
@@ -331,6 +338,12 @@ const DrankProject = () => {
                 </div>
                 <img className="proj-prompt-img" src={DrankPrompt2} alt="v0 prompt for the rank screen" />
               </div>
+            </div>
+
+            <div className="proj-text-block">
+              <p>Finally, v0 generated a share page with a preview of the final downloadable receipt card and story canvas.</p>
+            </div>
+            <div className="proj-showcase">
               <div className="proj-prompt-row">
                 <div className="proj-prompt-page">
                   <img src={DrankSharePage} alt="Share page produced by the v0 prompt" />
@@ -340,6 +353,11 @@ const DrankProject = () => {
               </div>
             </div>
 
+            <div className="proj-text-block">
+              <p>From there, I used Figma Make to explore four layouts for the same rank screen. Initially,
+                I focused on exploring mobile-first designs.
+              </p>
+            </div>
             <div className="proj-showcase">
               <div className="proj-make-row">
                 <div className="proj-make-page">
@@ -369,20 +387,21 @@ const DrankProject = () => {
             <div className="proj-text-block">
               <div className="proj-heading">
                 <span className="proj-chapter-label">Iterations</span>
-                <h2>What changed after testing</h2>
+                <h2>Many rounds of testing and iteration</h2>
               </div>
+              <p>
+                Vibe coding allowed me to iterate quickly on the design and functionality of the app. 
+                Here are some of the key iterations I made based on feedback from testing with real users.
+              </p>
             </div>
 
             <div className="proj-text-block">
               <div className="proj-heading">
-                <h2>Rank page: from tabs to accordions</h2>
+                <h2>Tabs to accordions</h2>
               </div>
               <p>
-                The original layout had BASICS and CUSTOMIZATIONS as side-by-side tabs. Users
-                kept missing the CUSTOMIZATIONS tab, so
-                I switched to two stacked accordions. On mobile, both are open by default so all
-                fields become visible as you scroll. On desktop, only one is open at a time so both
-                sections stay visible on the page without scrolling. The layout is different by device on purpose.
+                When using the rank page, people kept missing the CUSTOMIZATIONS tab. 
+                I switched to a stacked accordion layout instead, which allows both sections to be visible in a linear flow.
               </p>
             </div>
 
@@ -400,6 +419,12 @@ const DrankProject = () => {
               </div>
             </div>
 
+            <div className="proj-text-block">
+              <p>On desktop, the accordion is collapsed by default to make both accordion sections fit without scrolling the page.
+                On mobile, it's open by default to make both accordion sections visible as you scroll. I also removed
+                the mobile receipt preview to make the input fields more visible.
+              </p>
+            </div>
             <div className="proj-showcase">
               <div className="proj-accordion-device-row">
                 <div className="proj-accordion-device-page proj-accordion-device-page--desktop">
@@ -415,12 +440,11 @@ const DrankProject = () => {
 
             <div className="proj-text-block">
               <div className="proj-heading">
-                <h2>Sugar and ice: text fields to button groups</h2>
+                <h2>Text fields to button groups</h2>
               </div>
               <p>
-                Sugar and ice were originally free-form text inputs. Beyond being slower to fill
-                in, they caused inconsistency (someone typing "Light Ice" would show up as
-                "Light Ice Ice").
+                Sugar and ice used to be free-text fields, which were slower to fill in and inconsistent
+                (typing "Light Ice" would show up as "Light Ice Ice"). Button groups improved both issues.
               </p>
             </div>
 
@@ -439,13 +463,11 @@ const DrankProject = () => {
 
             <div className="proj-text-block">
               <div className="proj-heading">
-                <h2>Drink sticker: adding loading feedback</h2>
+                <h2>Loading progress feedback</h2>
               </div>
               <p>
-                Background removal takes a while, and without any feedback, users saw nothing
-                happen after toggling the sticker on and assumed it was broken. Rotating status
-                messages gave the process a visible presence so users understood something was
-                actually running.
+                Background removal takes a few seconds and without any feedback, users would see nothing happen
+                and assume it broke. I added rotating status messages to visibly indicate that something was happening.
               </p>
             </div>
 
@@ -471,10 +493,8 @@ const DrankProject = () => {
                 <h2>History page</h2>
               </div>
               <p>
-                There was no way to look back at previous rankings or compare drinks.
-                The history page adds a list of past receipts and ratings.
-                Tapping one opens a full preview, and any receipt can be edited by going back
-                through the rank and share flow with the original data pre-filled.
+                Originally, there was no way to look back at previous rankings, compare drinks, or see your drink stats. 
+                I added a history page which lists past receipts and allows you to edit the original data.
               </p>
             </div>
 
@@ -492,27 +512,24 @@ const DrankProject = () => {
             <div className="proj-text-block">
               <div className="proj-heading">
                 <span className="proj-chapter-label">Reflection</span>
-                <h2>Ship fast, fix what's actually broken</h2>
+                <h2>Ship fast, fix fast</h2>
               </div>
               <p>
-                The most useful thing about AI prototyping tools was having something real to test
-                much quicker. The accordion layout, the loading messages, and the open-by-default
-                mobile fields all came from watching the app get used and noticing what wasn't
-                working.
+                The real value of AI prototyping tools was having something real to test, fast.
+                All of my improvements (the accordion layout, the loading messages, the open-by-default mobile fields, and more) all
+                came from watching people actually use the app and noticing what wasn't working.
               </p>
             </div>
 
             <div className="proj-text-block">
               <div className="proj-heading">
-                <h2>Design and engineering are the same job</h2>
+                <h2>Good UX is also in the engineering</h2>
               </div>
               <p>
-                Some of the best UX decisions I made, like keeping both accordions open on mobile
-                or having prefilled photo metadata input, came directly from being in the code.
-                I could test a behavior, feel how it worked, and change it the same day. The line
-                between design and engineering is blurring, and I think the products that benefit
-                most from this are the ones where the feedback loop is tight enough to
-                feel what you're building.
+                Some of the best UX improvements, like keeping both accordions open on mobile or pre-filling photo
+                metadata, came from living in the code, not from a design spec. I could test something,
+                feel how it worked, and improve it the same day. The lines between design and engineering are
+                blurring together, and I am excited about what can be accomplished through design engineering.
               </p>
             </div>
 

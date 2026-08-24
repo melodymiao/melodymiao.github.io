@@ -1,5 +1,5 @@
-import Header from '../assets/components/Header'
-import Footer from '../assets/components/Footer'
+import HomeNav from '../assets/components/HomeNav'
+import HomeFooter from '../assets/components/HomeFooter'
 import Portrait from '../assets/images/about/portrait.jpg'
 import Balboa from '../assets/images/about/balboa.jpg'
 import BTS from '../assets/images/about/bts concert.jpg'
@@ -8,8 +8,8 @@ import './About.css'
 
 const About = () => {
     return (
-    <>
-    <Header />
+    <div className="about-page theme-plain">
+    <HomeNav />
     <main>
         <section className='about-section'>
 
@@ -71,8 +71,8 @@ const About = () => {
 
         </section>
     </main>
-    <Footer />
-    </>
+    <HomeFooter />
+    </div>
 );
 }
 
