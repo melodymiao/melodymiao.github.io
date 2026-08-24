@@ -1,0 +1,162 @@
+/* ═══════════════════════════════════════════════════════
+ SITE FOOTER — new footer, theme-aware like HomeNav's pill.
+ Gradient theme (default): a glass card floating over the page's own
+ moving ShaderBackground, same recipe as .home-nav-pill (HomeNav.css) —
+ translucent white + backdrop-filter, white text.
+ Plain theme (.theme-plain ancestor, see Home.jsx's theme class): solid
+ white card, dark text, plus a soft weather-colored ellipse standing in
+ for the gradient these pages otherwise don't show at all.
+ ═══════════════════════════════════════════════════════ */
+
+.site-footer {
+  display: flex;
+  justify-content: center;
+  padding: 0 24px 24px;
+  box-sizing: border-box;
+}
+
+.site-footer-card {
+  position: relative;
+  width: 100%;
+  /* Matches .home-nav-pill / .work-card's own max-width + box-sizing so
+     this card's outer edges line up with the nav pill above it. */
+  max-width: 1367px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 48px 48px 28px;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+}
+
+.theme-plain .site-footer-card {
+  color: #2e2f3b;
+  background: #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid #ededed;
+}
+
+/* ─── Weather sun/glow — plain theme only ───
+ A radial glow in the same colors that would otherwise be driving the
+ moving gradient background (see SiteFooter.jsx) — centered on the card
+ and pushed mostly below its bottom edge so only a small arc peeks over,
+ like a sun on the horizon rather than a blob filling the card. Fixed px
+ size (not a % of card width) so it stays a modest accent even on very
+ wide viewports, where a width-relative circle would balloon past the
+ card's own height and swallow the whole thing.
+
+ Deliberately no border-radius clip, and the box is much bigger than the
+ glow itself — the radial-gradient (see SiteFooter.jsx) is given an
+ explicit fixed radius well inside the box's own edges on every side, so
+ it fades all the way to transparent before it ever reaches a boundary.
+ (An earlier version relied on the gradient's default "farthest-corner"
+ sizing, which only reaches transparent at the box's corners — much
+ closer edges, like the top here since the glow sits low in its box,
+ were still cut off mid-fade, showing as a hard edge.) */
+.site-footer-ellipse {
+  position: absolute;
+  left: 50%;
+  bottom: -209%;
+  width: 1100px;
+  height: 1100px;
+  transform: translateX(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.theme-plain .site-footer-ellipse {
+  /* The fade-to-transparent already lives in the gradient's own alpha
+     stops (see SiteFooter.jsx) — this just needs to let the solid core
+     read at full saturation instead of diluting it further. */
+  opacity: 1;
+}
+
+.site-footer-row {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Matches .project-meta-tag (PortfolioGrid.css) exactly — same family,
+   weight, size, and letter-spacing as the grid's own mono tags, so the
+   footer's mono text doesn't read as a subtly different typeface. */
+.site-footer-status p {
+  margin: 0;
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  line-height: 1.7;
+}
+
+.site-footer-columns {
+  display: flex;
+  gap: 64px;
+}
+
+.site-footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Matches .project-meta-tag (PortfolioGrid.css) exactly — see the note
+   on .site-footer-status p above. */
+.site-footer-label {
+  font-family: "DM Mono", monospace;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 4px;
+}
+
+.site-footer-column a {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.site-footer-column a:hover {
+  opacity: 1;
+}
+
+@media (max-width: 720px) {
+  .site-footer-card {
+    padding: 32px 24px 20px;
+    min-height: 0;
+  }
+
+  .site-footer-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .site-footer-columns {
+    gap: 40px;
+  }
+
+  .site-footer-ellipse {
+    width: 700px;
+    height: 700px;
+    bottom: -220%;
+  }
+}

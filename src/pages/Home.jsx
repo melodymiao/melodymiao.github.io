@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import HomeNav from '../assets/components/HomeNav'
-import HomeFooter from '../assets/components/HomeFooter'
+import SiteFooter from '../assets/components/SiteFooter'
 import PortfolioGrid from '../assets/components/PortfolioGrid'
 import ShaderBackground from '../assets/components/ShaderBackground'
 import GradientToggle from '../assets/components/GradientToggle'
@@ -70,7 +70,7 @@ const Home = () => {
           </div>
         </section>
 
-        <HomeFooter />
+        <SiteFooter />
       </div>
     </div>
   )
