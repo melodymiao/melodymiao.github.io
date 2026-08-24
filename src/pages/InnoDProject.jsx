@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Projects.css';
 import './InnoDProject.css';
 import HomeNav from '../assets/components/HomeNav';
-import HomeFooter from '../assets/components/HomeFooter';
+import SiteFooter from '../assets/components/SiteFooter';
 import InnoDPreview from '../assets/images/innod/innod preview.jpg';
 import SP24RecruitLogo from '../assets/images/innod/sp24 recruitment logo.png';
 import SP24RecruitPage from '../assets/images/innod/sp24 recruitment website.jpg';
@@ -307,7 +307,7 @@ const InnoDProject = () => {
         </main>
       </div>
 
-      <HomeFooter />
+      <SiteFooter />
     </div>
   );
 };

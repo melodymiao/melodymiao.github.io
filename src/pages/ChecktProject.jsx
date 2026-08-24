@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Projects.css';
 import './ChecktProject.css';
 import HomeNav from '../assets/components/HomeNav';
-import HomeFooter from '../assets/components/HomeFooter';
+import SiteFooter from '../assets/components/SiteFooter';
 import PhoneHeader from '../assets/images/checkt/checkt header.jpg';
 import ToDoList from '../assets/images/checkt/to do list.jpg';
 import TasksVSHabits from '../assets/images/checkt/tasks vs habits.jpg';
@@ -457,7 +457,7 @@ const ChecktProject = () => {
         </main>
       </div>
 
-      <HomeFooter />
+      <SiteFooter />
     </div>
   );
 };

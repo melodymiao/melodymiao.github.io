@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Projects.css';
 import './DrankProject.css';
 import HomeNav from '../assets/components/HomeNav';
-import HomeFooter from '../assets/components/HomeFooter';
+import SiteFooter from '../assets/components/SiteFooter';
 
 
 import DrankHero        from '../assets/images/portfolio-grid/drank-thumbnail.gif';
@@ -538,7 +538,7 @@ const DrankProject = () => {
         </main>
       </div>
 
-      <HomeFooter />
+      <SiteFooter />
     </div>
   );
 };

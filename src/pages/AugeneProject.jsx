@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './Projects.css';
 import HomeNav from '../assets/components/HomeNav';
-import HomeFooter from '../assets/components/HomeFooter';
+import SiteFooter from '../assets/components/SiteFooter';
 import AugeneThumb from '../assets/images/portfolio-grid/augene thumbnail.jpg';
 import SkincareProducts from '../assets/images/augene/skincare products.png';
 import CompetitiveAnalysis from '../assets/images/augene/competitive analysis.jpg';
@@ -476,7 +476,7 @@ const AugeneProject = () => {
         </main>
       </div>
 
-      <HomeFooter />
+      <SiteFooter />
     </div>
   );
 };

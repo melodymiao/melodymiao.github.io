@@ -1,5 +1,5 @@
 import HomeNav from '../assets/components/HomeNav'
-import HomeFooter from '../assets/components/HomeFooter'
+import SiteFooter from '../assets/components/SiteFooter'
 import Portrait from '../assets/images/about/portrait.jpg'
 import Balboa from '../assets/images/about/balboa.jpg'
 import BTS from '../assets/images/about/bts concert.jpg'
@@ -71,7 +71,7 @@ const About = () => {
 
         </section>
     </main>
-    <HomeFooter />
+    <SiteFooter />
     </div>
 );
 }
