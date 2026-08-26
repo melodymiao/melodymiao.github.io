@@ -6,7 +6,8 @@ import SiteFooter from '../assets/components/SiteFooter';
 import AugeneThumb from '../assets/images/portfolio-grid/augene thumbnail.jpg';
 import SkincareProducts from '../assets/images/augene/skincare products.png';
 import CompetitiveAnalysis from '../assets/images/augene/competitive analysis.jpg';
-import Persona from '../assets/images/augene/persona.jpg';
+import Persona1 from '../assets/images/augene/persona-1.jpg';
+import Persona2 from '../assets/images/augene/persona-2.jpg';
 import HMW from '../assets/images/augene/hmw.jpg';
 import AugeneMockup from '../assets/images/augene/augene mockup.png';
 import LoFi1 from '../assets/images/augene/lofi 1.png';
@@ -18,7 +19,7 @@ import Dashboard1 from '../assets/images/augene/dashboard 1.jpg';
 import Dashboard2 from '../assets/images/augene/kap dashboard 2.gif';
 import Dashboard3 from '../assets/images/augene/dashboard 3.gif';
 import Dashboard4 from '../assets/images/augene/dashboard 4.gif';
-import Picnic from '../assets/images/augene/augene picnic.jpg';
+import Picnic from '../assets/images/augene/augene-picnic.jpg';
 
 const CHAPTERS = [
   { id: 'overview',   label: 'Overview'   },
@@ -133,10 +134,8 @@ const AugeneProject = () => {
               </div>
               <p>
                 Augene Beauty analyzes the facial microbiome to help clinicians make
-                evidence-based skincare recommendations, rather than generic advice,
-                toward routines that actually match each patient's biology. My job was
-                to design the product that sits between the lab results and the patient
-                and make complex data feel clear, personal, and actionable.
+                evidence-based skincare recommendations, rather than generic advice. My job was
+                to design a product for patients that complex data feel personal and actionable.
               </p>
             </div>
 
@@ -151,15 +150,10 @@ const AugeneProject = () => {
                 <h2>Generic advice doesn't work for everyone</h2>
               </div>
               <p>
-                The skincare internet is full of recommendations, but most are one-size-fits-all
-                (best products for oily skin, best routine for beginners, etc.). For people with
+                The skincare internet is full of recommendations, but most are one-size-fits-all. For people with
                 complex or sensitive skin, this noise is overwhelming and confusing. Augene's
                 microbiome analysis offers something personalized and useful, but only if the results
                 are actually understandable and actionable for the person reading them.
-              </p>
-              <p>
-                The question I was designing for wasn't <em>"how do we show test results?"</em>,
-                it was <em>"how do we make someone feel confident about their skin and their routines?"</em>
               </p>
             </div>
 
@@ -174,10 +168,10 @@ const AugeneProject = () => {
                 <h2>What are competitors missing?</h2>
               </div>
               <p>
-                I analyzed skin testing companies across four dimensions: how they collected
-                samples, how they displayed results, how they made product recommendations,
-                and how they educated users. Most delivered a PDF report or a simple score
-                without next steps or something to build understanding over time.
+                I analyzed skin testing companies across how they collected
+                samples, displayed results, made product recommendations,
+                and educated users. Most delivered a PDF report or a simple score
+                without actionable steps.
               </p>
             </div>
 
@@ -192,26 +186,31 @@ const AugeneProject = () => {
               <div className="proj-heading">
                 <h2>Three gaps worth designing for</h2>
               </div>
-              <div className="proj-insight-list">
-                <div className="proj-insight">
-                  <span className="proj-insight-number">01</span>
-                  <div>
-                    <p className="proj-insight-title">Results without context</p>
-                    <p>Competitors showed scores but didn't explain what they meant or what to do about them. Patients were left to interpret data with no medical background.</p>
+              <div className="proj-insight-band">
+                <div className="proj-insight-list">
+                  <div className="proj-insight">
+                    <div className="proj-insight-top">
+                      <span className="proj-insight-number">01</span>
+                      <p className="proj-insight-title">Results without context</p>
+                    </div>
+                    <div className="proj-insight-icon" role="img" aria-label="Magnifying glass icon">🔍</div>
+                    <p className="proj-insight-desc">Competitors showed scores but didn't explain what to do about them</p>
                   </div>
-                </div>
-                <div className="proj-insight">
-                  <span className="proj-insight-number">02</span>
-                  <div>
-                    <p className="proj-insight-title">No path to products</p>
-                    <p>Analysis and product recommendations weren't connected or didn't exist at all. The leap from "your skin is dry" to "here's what to buy" was left to the user.</p>
+                  <div className="proj-insight">
+                    <div className="proj-insight-top">
+                      <span className="proj-insight-number">02</span>
+                      <p className="proj-insight-title">No path to products</p>
+                    </div>
+                    <div className="proj-insight-icon" role="img" aria-label="Compass icon">🧭</div>
+                    <p className="proj-insight-desc">Analysis and product recommendations weren't connected</p>
                   </div>
-                </div>
-                <div className="proj-insight">
-                  <span className="proj-insight-number">03</span>
-                  <div>
-                    <p className="proj-insight-title">One-time, not ongoing</p>
-                    <p>Most experiences felt like a report you read once. There was no reason to track your skin progress over time.</p>
+                  <div className="proj-insight">
+                    <div className="proj-insight-top">
+                      <span className="proj-insight-number">03</span>
+                      <p className="proj-insight-title">One-time, not ongoing</p>
+                    </div>
+                    <div className="proj-insight-icon" role="img" aria-label="Refresh/loop icon">🔄</div>
+                    <p className="proj-insight-desc">Most experiences were reports you read once with progress tracking</p>
                   </div>
                 </div>
               </div>
@@ -230,14 +229,18 @@ const AugeneProject = () => {
               <p>
                 The Augene dashboard serves two distinct users: the clinician who interprets
                 results and the patient who acts on them. I built personas for both to keep
-                their different mental models visible throughout the design process:
-                a clinician wants density and precision, and a patient needs clarity and confidence.
+                their different mental models visible throughout the design process.
               </p>
             </div>
 
-            <div className="proj-showcase">
-              <div className="proj-showcase-media">
-                <img src={Persona} alt="User personas for clinician and patient" />
+            <div className="aug-persona-row">
+              <div className="aug-persona-page">
+                <img src={Persona1} alt="Clinician persona" />
+                <span className="aug-persona-caption">clinician persona</span>
+              </div>
+              <div className="aug-persona-page">
+                <img src={Persona2} alt="Patient persona" />
+                <span className="aug-persona-caption">patient persona</span>
               </div>
             </div>
 
@@ -248,8 +251,7 @@ const AugeneProject = () => {
                 </div>
                 <p>
                   From the competitor gaps and persona needs, I distilled three core problems
-                  and framed each as a "How Might We" question to keep design decisions
-                  grounded in real friction rather than assumptions.
+                  and framed each as a "How Might We" question.
                 </p>
               </div>
               <div className="proj-row-content">
@@ -262,30 +264,34 @@ const AugeneProject = () => {
                 <h2>Design principles before touching Figma</h2>
               </div>
               <p>Before wireframing, I established three principles to guide every decision:</p>
-              <div className="proj-principles">
-                <div className="proj-principle">
-                  <p className="proj-principle-title">Translate, don't display</p>
-                  <p>Raw microbiome scores mean nothing to most patients. Every data point needed to be reframed as something actionable, such as a concern to address, an ingredient to look for, or a step to add.</p>
-                </div>
-                <div className="proj-principle">
-                  <p className="proj-principle-title">Connect results to routine</p>
-                  <p>The experience needed to feel like one continuous flow from test results to understanding to products to a routine.</p>
-                </div>
-                <div className="proj-principle">
-                  <p className="proj-principle-title">Give patients control</p>
-                  <p>Clinician recommendations should be a starting point, not a prescription. Users needed the flexibility to swap products, adjust steps, and build something that fit their real life.</p>
+              <div className="proj-insight-band">
+                <div className="proj-insight-list">
+                  <div className="proj-insight">
+                    <div className="proj-insight-top">
+                      <span className="proj-insight-number">01</span>
+                      <p className="proj-insight-title">Translate, don't display</p>
+                    </div>
+                    <div className="proj-insight-icon" role="img" aria-label="Speech balloon icon">💬</div>
+                    <p className="proj-insight-desc">Raw scores mean nothing to most patients. Every data point needed to be reframed as something actionable.</p>
+                  </div>
+                  <div className="proj-insight">
+                    <div className="proj-insight-top">
+                      <span className="proj-insight-number">02</span>
+                      <p className="proj-insight-title">Connect results to routine</p>
+                    </div>
+                    <div className="proj-insight-icon" role="img" aria-label="Link icon">🔗</div>
+                    <p className="proj-insight-desc">The experience needed to feel like one continuous flow from test results to understanding products.</p>
+                  </div>
+                  <div className="proj-insight">
+                    <div className="proj-insight-top">
+                      <span className="proj-insight-number">03</span>
+                      <p className="proj-insight-title">Give patients control</p>
+                    </div>
+                    <div className="proj-insight-icon" role="img" aria-label="Control knobs icon">🎛️</div>
+                    <p className="proj-insight-desc">Clinician recommendations should be a starting point, not a prescription.</p>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="proj-text-block">
-              <div className="proj-heading">
-                <h2>From wireframes to decisions</h2>
-              </div>
-              <p>
-                Before touching high-fidelity design, I wireframed the core screens to pressure-test
-                the layout and information hierarchy. Two decisions ended up shaping the whole product.
-              </p>
             </div>
 
             {/* Decision 1: data visualization */}
@@ -294,12 +300,10 @@ const AugeneProject = () => {
                 <span className="aug-decision-tag">Decision 01</span>
                 <h3 className="aug-decision-title">Gauge meters instead of a pie chart</h3>
                 <p>
-                  The early wireframe used a pie chart to show overall skin composition. In practice,
-                  it made the data feel like a chemistry breakdown — technically precise but impossible
-                  to act on. A pie chart compares slices against each other, which isn't the question
-                  a patient is asking. They want to know: <em>is my water level low? Is my oil level
-                  normal?</em> Gauge meters answer that directly, showing each metric against a healthy
-                  range rather than against the other metrics.
+                  Users want to know "<em>Is my water level low? Is my oil level
+                  normal?</em>" The earlier pie chart design compares results against other metrics. 
+                  Meters answer that directly by showing each metric against a healthy
+                  range.
                 </p>
               </div>
               <div className="aug-decision-images">
@@ -318,15 +322,12 @@ const AugeneProject = () => {
             <div className="aug-decision">
               <div className="aug-decision-label">
                 <span className="aug-decision-tag">Decision 02</span>
-                <h3 className="aug-decision-title">Breaking one page into four</h3>
+                <h3 className="aug-decision-title">Four separate pages</h3>
                 <p>
-                  The first wireframe crammed Products and Clinician Notes onto the home screen
-                  as secondary sections. It worked as a checklist but not as an experience —
-                  everything felt equal, so nothing felt important. Choosing a product isn't a
-                  quick scan, it's a decision. Users needed space to compare options, read
+                  Users needed space to compare options, read
                   ingredient lists, and understand why something was recommended for their skin.
-                  Splitting into four dedicated pages — Home, Skin Analysis, Products for You,
-                  and Build Your Routine — gave each job room to do its job.
+                  I split the dashboard into four dedicated pages: Home, Skin Analysis, Products for You,
+                  and Build Your Routine.
                 </p>
               </div>
               <div className="aug-decision-images">
@@ -349,8 +350,7 @@ const AugeneProject = () => {
                 <p>
                   A dashboard doesn't just display test data, it creates
                   a place where patients could understand their skin, explore product
-                  options, and follow a personalized routine. This framing shaped
-                  all screens that followed.
+                  options, and follow a personalized routine.
                 </p>
               </div>
               <div className="proj-row-content">
@@ -377,13 +377,10 @@ const AugeneProject = () => {
 
             <div className="proj-feature">
               <div className="proj-feature-title-row">
-                <span className="proj-feature-emoji">🏠</span>
-                <h2 className="proj-feature-title">Everything you need to know, upfront</h2>
+                <h2 className="proj-feature-title">Your skin, at a glance</h2>
               </div>
               <p className="proj-feature-desc">
-                Skin type, key concerns, top recommended ingredients, and a note from
-                your clinician are all visible at first glance. The home screen is designed
-                to help quickly understand the user's current skin condition.
+                The home screen is designed to help quickly understand the user's current skin condition.
               </p>
               <div className="proj-feature-img-wrap">
                 <img className="proj-feature-img" src={Dashboard1} alt="Dashboard home screen" />
@@ -392,13 +389,10 @@ const AugeneProject = () => {
 
             <div className="proj-feature">
               <div className="proj-feature-title-row">
-                <span className="proj-feature-emoji">🔬</span>
                 <h2 className="proj-feature-title">Understand the risks, not just the numbers</h2>
               </div>
               <p className="proj-feature-desc">
-                Rather than showing raw microbiome data, the analysis screen translates
-                results into plain language. Understand what conditions your skin is at risk for,
-                and what you can do about each one.
+                Understand what conditions your skin is at risk for, and what you can do about each one.
               </p>
               <div className="proj-feature-img-wrap">
                 <img className="proj-feature-img" src={Dashboard2} alt="Skin analysis screen" />
@@ -407,12 +401,10 @@ const AugeneProject = () => {
 
             <div className="proj-feature">
               <div className="proj-feature-title-row">
-                <span className="proj-feature-emoji">🛍️</span>
-                <h2 className="proj-feature-title">Recommendations you can actually compare</h2>
+                <h2 className="proj-feature-title">Recommendations to compare</h2>
               </div>
               <p className="proj-feature-desc">
-                Instead of a single suggested product, users can browse and compare options
-                filtered to their skin profile so they can compare price, ingredients,
+                Instead of a single suggested product, users can browse and compare price, ingredients,
                 and reviews before committing to a routine.
               </p>
               <div className="proj-feature-img-wrap">
@@ -422,13 +414,11 @@ const AugeneProject = () => {
 
             <div className="proj-feature">
               <div className="proj-feature-title-row">
-                <span className="proj-feature-emoji">📋</span>
-                <h2 className="proj-feature-title">A routine built around your life, not a template</h2>
+                <h2 className="proj-feature-title">A routine built around your life</h2>
               </div>
               <p className="proj-feature-desc">
-                The routine builder lets users select products step by step, with AM/PM
-                labeling and ordering built in. It's flexible to fit different budgets
-                while still reflecting what the microbiome data suggests.
+                The flexible routine builder lets users select products with AM/PM
+                labeling and step by step instructions built in.
               </p>
               <div className="proj-feature-img-wrap">
                 <img className="proj-feature-img" src={Dashboard4} alt="Routine builder screen" />
@@ -454,19 +444,12 @@ const AugeneProject = () => {
               <p>
                 If I had more time, I would have run usability tests with real patients,
                 especially with the routine builder, which had the most interaction
-                complexity. I made a lot of calls based on personal intuition and competitor
-                gaps, and real user feedback would have stress-tested those assumptions in
-                ways that design reviews alone couldn't.
-              </p>
-              <p>
-                This internship also showed me how much good design depends on the people
-                around you. The team's energy made it easier to push ideas further, ask the
-                dumb questions, and actually enjoy the process.
+                complexity. 
               </p>
             </div>
 
             <div className="proj-showcase">
-              <div className="proj-showcase-media">
+              <div className="proj-showcase-media aug-picnic-media">
                 <img src={Picnic} alt="Augene team at a picnic" />
               </div>
             </div>

@@ -1032,11 +1032,39 @@ border-radius: 8px;
 display: block;
 }
 
+/* ─── Augene: picnic photo, smaller + tilted ───
+   overflow:visible overrides .proj-showcase-media's overflow:hidden
+   (needed so the rotated corners and the drop shadow aren't clipped by
+   the wrapper's own box). Centered at a reduced width since the source
+   image (3020x2495) otherwise runs the full content column width like
+   every other showcase image on the page. */
+.augene-case-study .aug-picnic-media {
+  overflow: visible;
+  width: 55%;
+  margin: 0 auto;
+  border-radius: 0;
+}
+
+.augene-case-study .aug-picnic-media img {
+  border-radius: 8px;
+  transform: rotate(-3deg);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 900px) {
+  .augene-case-study .aug-picnic-media {
+    width: 80%;
+  }
+}
+
 .proj-showcase-caption {
-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
+font-family: "DM Mono", monospace;
+font-size: 11px;
+font-weight: 400;
 color: #BFBFBF;
-text-align: center;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+text-align: left;
 }
 
 /* ─── Numbered insight list ─────────────────────────── */
@@ -1114,6 +1142,90 @@ color: #7a7a7a;
 line-height: 1.8;
 }
 
+/* ─── Augene: icon cards on a bold blue band ───
+   Overrides the shared .proj-insight-list vertical-divider-list styling
+   (still used as-is on Checkt) with a bold-blue band (this page's accent,
+   #2A68FB) holding a 3-across row of white cards. Each card is a grid
+   split into three rows — eyebrow+title pinned top (auto), an icon
+   placeholder centered in the middle (1fr), description pinned bottom
+   (auto) — so all three stay aligned regardless of text length. Reused
+   as-is (same classes) for both the "Three gaps" insights and the
+   "Design principles" section below, since the two are styled identically. */
+.augene-case-study .proj-insight-band {
+  background: #2A68FB;
+  border-radius: 12px;
+  padding: 32px;
+}
+
+.augene-case-study .proj-insight-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  border-top: none;
+}
+
+.augene-case-study .proj-insight {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  align-items: initial;
+  gap: 16px;
+  min-height: 380px;
+  padding: 28px;
+  background: #fff;
+  border: none;
+  border-radius: 8px;
+}
+
+.augene-case-study .proj-insight-top {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.augene-case-study .proj-insight-number {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  color: #BFBFBF;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 0;
+}
+
+.augene-case-study .proj-insight-title.proj-insight-title {
+  font-size: 26px;
+  margin-bottom: 0;
+}
+
+.augene-case-study .proj-insight-icon {
+  font-size: 104px;
+  line-height: 1;
+  text-align: center;
+  align-self: center;
+  justify-self: center;
+}
+
+.augene-case-study .proj-insight-desc {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #7a7a7a;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .augene-case-study .proj-insight-list {
+    grid-template-columns: 1fr;
+  }
+
+  .augene-case-study .proj-insight-band {
+    padding: 20px;
+  }
+
+  .augene-case-study .proj-insight {
+    min-height: 0;
+  }
+}
+
 /* ─── Solution intro block ──────────────────────────── */
 .proj-solution-intro {
 display: flex;
@@ -1180,6 +1292,12 @@ justify-content: center;
 width: 75%;
 border-radius: 8px;
 display: block;
+}
+
+/* Augene: solution screenshots span the full content width, unlike the
+   shared 75%-width default (still used as-is on Checkt). */
+.augene-case-study .proj-feature-img {
+width: 100%;
 }
 
 /* ─── Project eyebrow label ─────────────────────────── */
@@ -1333,6 +1451,51 @@ font-weight: 400;
 color: #BFBFBF;
 text-transform: uppercase;
 letter-spacing: 0.05em;
+}
+
+/* ─── Clinician vs. patient persona, side by side ───
+   Same page-in-a-colored-rectangle pattern as drank's .proj-accordion-page
+   / .proj-accordion-device-page (fixed-ratio box, image shrunk + centered,
+   mono caption bottom-left) — sized for these two landscape (1100x600,
+   ~1.83:1) source images: a 4:3 box is shorter relative to its width than
+   the images, so sizing the image by width (90%, height auto) still leaves
+   it shorter than the box, with room top/bottom for the caption.
+   Fill color is a lighter tint of this page's accent blue (#2A68FB). */
+.augene-case-study .aug-persona-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.augene-case-study .aug-persona-page {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #D4E1FE;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.augene-case-study .aug-persona-page img {
+  width: 90%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.augene-case-study .aug-persona-caption {
+  position: absolute;
+  left: 16px;
+  bottom: 12px;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.2);
 }
 
 .proj-img-placeholder {

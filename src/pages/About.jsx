@@ -21,19 +21,19 @@ const About = () => {
                     I'm a designer who builds what I design.
                     </h1>
                     <p className='about-subtext'>
-                        UC Berkeley grad, Data Science + Cognitive Science
+                        UC Berkeley grad, Data Science B.A. + Cognitive Science B.A.
                     </p>
                     <div className='about-status'>
                         <span className='status-dot' />
-                        <span>Open to work</span>
+                        <span>Open to full-time and contract design work</span>
                     </div>
                 </div>
 
                 <div className='about-block'>
                     <ul className='about-list'>
-                        <li>Grew up in San Diego around beaches and perpetual sunshine</li>
-                        <li>Exploring AI tools throughout my process: wireframing, rapid iteration, and pushing ideas faster</li>
-                        <li>Got into design because it combines empathy and craft</li>
+                        <li>Born and raised in the San Diego sun</li>
+                        <li>Tinkering with new Figma updates and generative plugins</li>
+                        <li>Vibecoding new, fun projects</li>
                     </ul>
                 </div>
 
@@ -50,7 +50,7 @@ const About = () => {
 
                 <div className='about-block'>
                     <p className='about-subtext'>
-                        Open to full-time roles, freelance projects, and good conversations.
+                        Reach out about my projects, your projects, or a good conversation.
                     </p>
                     <div className='about-links'>
                         <a href="mailto:melodymiao001@gmail.com" className='about-link'>Email ↗</a>
@@ -65,7 +65,7 @@ const About = () => {
                 <div className='photo-grid'>
                     <img className='photo-main' src={Portrait} alt="me!" />
                     <img className='photo-secondary' src={Wagon} alt="beach day :)" />
-                    <img className='photo-secondary' src={BTS} alt="me @ BTS Arirang Tour in Vegas" />
+                    <img className='photo-secondary' src={BTS} alt="@ BTS Arirang Tour in Vegas" />
                 </div>
             </div>
 
