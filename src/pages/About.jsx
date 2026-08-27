@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef, useState } from 'react'
 import HomeNav from '../assets/components/HomeNav'
 import SiteFooter from '../assets/components/SiteFooter'
 import Portrait from '../assets/images/about/portrait.jpg'
@@ -7,6 +8,32 @@ import Wagon from '../assets/images/about/wagon.jpg'
 import './About.css'
 
 const About = () => {
+    const leftColumnRef = useRef(null)
+    const [photoHeight, setPhotoHeight] = useState(null)
+
+    // Photos should stand as tall as the text column next to them — measured
+    // live (instead of a guessed pixel value) so it stays correct as copy
+    // changes. Below the 1100px breakpoint the layout switches to a
+    // shorter/auto-height photo arrangement (see About.css), so we stop
+    // forcing a height there and let CSS take over.
+    useLayoutEffect(() => {
+        const leftEl = leftColumnRef.current
+        if (!leftEl) return
+
+        const updateHeight = () => {
+            setPhotoHeight(window.innerWidth > 1100 ? leftEl.offsetHeight : null)
+        }
+
+        updateHeight()
+        const observer = new ResizeObserver(updateHeight)
+        observer.observe(leftEl)
+        window.addEventListener('resize', updateHeight)
+        return () => {
+            observer.disconnect()
+            window.removeEventListener('resize', updateHeight)
+        }
+    }, [])
+
     return (
     <div className="about-page theme-plain">
     <HomeNav />
@@ -14,7 +41,7 @@ const About = () => {
         <section className='about-section'>
 
             {/* ── Left column ── */}
-            <div className='about-left'>
+            <div className='about-left' ref={leftColumnRef}>
 
                 <div className='about-intro'>
                     <h1 className='about-headline'>
@@ -23,16 +50,12 @@ const About = () => {
                     <p className='about-subtext'>
                         UC Berkeley grad, Data Science B.A. + Cognitive Science B.A.
                     </p>
-                    <div className='about-status'>
-                        <span className='status-dot' />
-                        <span>Open to full-time and contract design work</span>
-                    </div>
                 </div>
 
                 <div className='about-block'>
                     <ul className='about-list'>
                         <li>Born and raised in the San Diego sun</li>
-                        <li>Tinkering with new Figma updates and generative plugins</li>
+                        <li>Tinkering with Figma motion and generative plugins</li>
                         <li>Vibecoding new, fun projects</li>
                     </ul>
                 </div>
@@ -62,7 +85,7 @@ const About = () => {
 
             {/* ── Right column: photos ── */}
             <div className='about-right'>
-                <div className='photo-grid'>
+                <div className='photo-grid' style={photoHeight ? { height: `${photoHeight}px` } : undefined}>
                     <img className='photo-main' src={Portrait} alt="me!" />
                     <img className='photo-secondary' src={Wagon} alt="beach day :)" />
                     <img className='photo-secondary' src={BTS} alt="@ BTS Arirang Tour in Vegas" />

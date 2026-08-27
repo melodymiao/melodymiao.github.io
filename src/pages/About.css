@@ -3,8 +3,10 @@
     flex-direction: row;
     align-items: flex-start;
     gap: 4%;
-    padding: 80px 24px 100px 24px;
-    margin: 0;
+    width: 100%;
+    max-width: 1367px;
+    padding: 140px 24px 100px 24px;
+    margin: 0 auto;
     min-height: 100vh;
     box-sizing: border-box;
 }
@@ -13,7 +15,7 @@
 .about-left {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 28px;
     flex: 0 0 38%;
     min-width: 0;
 }
@@ -42,9 +44,9 @@
 
 .about-subtext {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    color: #6c6c6c;
-    line-height: 1.7;
+    font-size: 16px;
+    color: #7a7a7a;
+    line-height: 1.8;
     max-width: 480px;
 }
 
@@ -95,9 +97,9 @@
 
 .about-list li {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 17px;
-    color: #4a4a4a;
-    line-height: 1.6;
+    font-size: 16px;
+    color: #7a7a7a;
+    line-height: 1.8;
     padding-left: 16px;
     position: relative;
 }
@@ -110,7 +112,7 @@
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background-color: #4a4a4a;
+    background-color: #7a7a7a;
 }
 
 .about-list li em {
@@ -126,24 +128,21 @@
 .about-link {
     font-family: "DM Mono", monospace;
     font-size: 13px;
-    color: #292929;
+    color: #BFBFBF;
     text-decoration: none;
     text-transform: uppercase;
-    border-bottom: 1px solid #292929;
-    padding-bottom: 1px;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .about-link:hover {
     color: #2A68FB;
-    border-color: #2A68FB;
 }
 
 .haappy-link {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: #292929;
+    color: #7a7a7a;
     text-decoration: none;
-    border-bottom: 1px solid #292929;
+    border-bottom: 1px solid #7a7a7a;
     padding-bottom: 1px;
     transition: color 0.2s ease, border-color 0.2s ease;
 }
@@ -158,9 +157,11 @@
 .photo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 334px 334px;  /* (680px - 12px gap) / 2 */
+    grid-template-rows: 1fr 1fr;
     gap: 12px;
-    height: 680px;
+    /* Fallback for the instant before JS measures the text column
+       (see About.jsx) — overridden inline to match its real height. */
+    height: 560px;
 }
 
 .photo-main {
@@ -168,13 +169,19 @@
     grid-row: 1 / -1;
     width: 100%;
     height: 100%;
+    min-height: 0;
     object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
 }
 
 .photo-secondary {
     width: 100%;
     height: 100%;
+    min-height: 0;
     object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
 }
 
 /* ── Photo column breakpoint ── */
